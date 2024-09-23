@@ -1,0 +1,461 @@
+<div class="container-divider"></div>
+<div class="container">
+  <nav class="sub-nav">
+    {{breadcrumbs}}
+   {{!--  <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
+        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+      </svg>
+      {{search scoped=settings.scoped_kb_search submit=false}}
+    </div> --}}
+  </nav>
+
+  <div class="article-container" id="article-container">
+    <aside class="article-sidebar" aria-labelledby="section-articles-title">
+      {{#if settings.show_articles_in_section}}
+        <div class="collapsible-sidebar">
+          <button type="button" class="collapsible-sidebar-toggle" aria-labelledby="section-articles-title" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon x-icon">
+              <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
+            </svg>
+          </button>
+          <span id="section-articles-title" class="collapsible-sidebar-title sidenav-title">
+            {{t 'articles_in_section'}}
+          </span>
+          <div class="collapsible-sidebar-body">
+            <ul>
+              {{#each section.articles}}
+                <li>
+                  <a href="{{url}}" class="sidenav-item {{#is id ../article.id}}current-article{{/is}}">{{title}}</a>
+                </li>
+              {{/each}}
+            </ul>
+            {{#if section.more_articles}}
+              <a href="{{section.url}}" class="article-sidebar-item">{{t 'see_more'}}</a>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+    </aside>
+
+    <article id="main-content" class="article">
+      <header class="article-header">
+        <h1 title="{{article.title}}" class="article-title">
+          {{article.title}}
+          {{#if article.internal}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+              <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+              <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+            </svg>
+          {{/if}}
+        </h1>
+
+        <div class="article-author">
+          {{#if settings.show_article_author}}
+            <div class="avatar article-avatar">
+              {{#if article.author.agent}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent">
+                  <path fill="currentColor" d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2.3 7H3.7c-.3 0-.4-.3-.3-.5C3.9 7.6 4.9 7 6 7s2.1.6 2.6 1.5c.1.2 0 .5-.3.5z"/>
+                </svg>
+              {{/if}}
+              <img src="{{article.author.avatar_url}}" alt="" class="user-avatar"/>
+            </div>
+          {{/if}}
+          <div class="article-meta">
+            {{#if settings.show_article_author}}
+              {{#link 'user_profile' id=article.author.id}}
+                {{article.author.name}}
+              {{/link}}
+            {{/if}}
+
+            <ul class="meta-group">
+              {{#is article.created_at article.edited_at}}
+                <li class="meta-data">{{date article.created_at timeago=true}}</li>
+              {{else}}
+                <li class="meta-data">{{date article.edited_at timeago=true}}</li>
+                <li class="meta-data">{{t 'updated'}}</li>
+              {{/is}}
+            </ul>
+          </div>
+        </div>
+
+        {{#if settings.show_follow_article}}
+          <div class="article-subscribe">{{subscribe}}</div>
+        {{/if}}
+      </header>
+
+      <section class="article-info">
+        <div class="article-content">
+          <div class="article-body">{{article.body}}
+          
+          
+          
+          
+          </div>
+          {{#if attachments}}
+            <div class="article-attachments">
+              <ul class="attachments">
+                {{#each attachments}}
+                  <li class="attachment-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="attachment-icon">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M9.5 4v7.7c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5V3C6.5 1.6 7.6.5 9 .5s2.5 1.1 2.5 2.5v9c0 1.9-1.6 3.5-3.5 3.5S4.5 13.9 4.5 12V4"/>
+                    </svg>
+                    <a href="{{url}}" target="_blank">{{name}}</a>
+                    <div class="attachment-meta meta-group">
+                      <span class="attachment-meta-item meta-data">{{size}}</span>
+                      <a href="{{url}}" target="_blank" class="attachment-meta-item meta-data">{{t 'download'}}</a>
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
+        </div>
+        
+<!--       DIDNT HELP -->
+        <div id="welcomeDiv"  style="display:none;" class="answer_list" >
+  <h2 style="text-align:center;">
+    {{dc 'contact_us'}}
+    <span class="follow-up-hint">
+     
+    </span>
+  </h2>
+
+  <div id="main-content" class="form">
+    <h4>{{dc 'hear_from_you'}}</h4>
+  </div>
+    
+    <div id="contact__container">
+<div data-content-type="row" data-appearance="full-bleed" data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-position: left top; background-size: cover; background-repeat: no-repeat; background-attachment: scroll; border-style: none; border-width: 1px; border-radius: 0px; margin: 0px; padding: 0px;">
+<div data-content-type="block" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-radius: 0px; margin: 10px 0px 0px; padding: 10px 0px 0px;"> <div class="widget block block-static-block">
+<div data-content-type="row" data-appearance="contained" data-element="main">
+<div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-element="inner" style="justify-content: flex-start; display: flex; flex-direction: column; background-color: rgb(246, 246, 246); background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 10px 0px; padding: 10px; background-position: left top; background-repeat: no-repeat no-repeat;"><h4 data-content-type="heading" data-appearance="default" data-element="main" style="text-align: center; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;"> {{dc 'contact_us'}}</h4>
+<div class="pagebuilder-column-group" style="display: flex;" data-content-type="column-group" data-grid-size="12" data-element="main">
+<div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 33.3333%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;">
+<figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;">
+<img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/live-chat-icon-sm.png" id="live__image" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;" role="button"></figure><div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;">
+  <p style="text-align: center;"><a href="javascript:zE('messenger', 'open');"><strong>LIVE CHAT</strong></a></p>
+<p style="text-align: center;">Need some help, speak to a specialist.</p>
+</div>
+<div data-content-type="divider" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 10px;"><hr data-element="line" style="width: 100%; border-width: 1px; border-color: rgb(255, 255, 255); display: inline-block;"></div></div><div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 33.3333%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;"><figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;"><a href="https://www.vivobarefoot.com/uk/contact-us" target="" data-link-type="page" title="" data-element="link"><img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/email-icon-sm.png" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;"></a></figure><div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;"><p style="text-align:center;" ><strong>EMAIL</strong></p>
+<p style="text-align:center;">We'd love to hear from you</p>
+<p style="text-align:center; overflow-wrap: break-word;"><a href="mailto:customerservices@vivobarefoot.com">customerservices@vivobarefoot.com</a></p></div><div data-content-type="divider" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 10px;"><hr data-element="line" style="width: 100%; border-width: 1px; border-color: rgb(255, 255, 255); display: inline-block;"></div></div><div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 33.3333%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;"><figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;"><img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/call-icon-sm.png" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;"></figure><div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;"><p style="text-align: center;"><strong>CALL</strong></p>
+<p style="text-align: center;">{{dc 'phone_number'}}</p></div><div data-content-type="divider" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 10px;"><hr data-element="line" style="width: 100%; border-width: 1px; border-color: rgb(255, 255, 255); display: inline-block;"></div></div></div></div></div></div></div></div>
+</div>
+
+  </div>
+
+<div class="help__container">
+  <div class="button-containers" style="display:flex; justify-content:space-around; margin-bottom:50px;">
+    <input type="submit" name="answer" value="Didn't answer your question" id='showbuttonNo' onclick="showChatButton()"/> 
+    <input type="submit" name="answer" value="Chat with us" id='showbuttonChat' onclick="zE('messenger', 'open');" style="display: none;"/> 
+  </div>
+</div>
+
+<script>
+  function showChatButton() {
+    document.getElementById('showbuttonNo').style.display = 'none';
+    document.getElementById('showbuttonChat').style.display = 'block';
+  }
+</script>
+
+
+
+
+        
+        {{#with article}}
+        
+        
+          <div class="article-votes">
+            <span class="article-votes-question" id="article-votes-label">{{dc 'helpful'}}</span>
+            <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
+              {{vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
+              {{vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
+            </div>
+            <small class="article-votes-count">
+              {{vote 'label' class='article-vote-label'}}
+            </small>
+          </div>
+        {{/with}}
+      </section>
+      
+      
+
+      {{!--<footer>
+        <div class="article-footer">
+          {{#if settings.show_article_sharing}}
+            <div class="article-share">{{share}}</div>
+          {{/if}}
+          {{#if settings.show_article_comments}}
+            {{#if comments}}
+              <a href="#article-comments" class="article-comment-count" title="{{t 'go_to_comments'}}">
+                <span class="visibility-hidden">
+                  {{t 'comments_count' count=article.comment_count}}
+                </span>
+                <span aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="article-comment-count-icon">
+                    <path fill="none" stroke="currentColor" d="M1 .5h10c.3 0 .5.2.5.5v7c0 .3-.2.5-.5.5H6l-2.6 2.6c-.3.3-.9.1-.9-.4V8.5H1C.7 8.5.5 8.3.5 8V1C.5.7.7.5 1 .5z"/>
+                  </svg>
+                  {{article.comment_count}}
+                </span>
+              </a>
+            {{/if}}
+          {{/if}}
+        </div>
+        {{#with article}}
+          <div class="article-votes">
+            <span class="article-votes-question" id="article-votes-label">{{t 'was_this_article_helpful'}}</span>
+            <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
+              {{vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
+              {{vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
+            </div>
+            <small class="article-votes-count">
+              {{vote 'label' class='article-vote-label'}}
+            </small>
+          </div>
+        {{/with}}
+
+        <div class="article-more-questions">
+          {{request_callout}}
+        </div>
+        <div class="article-return-to-top">
+          <a href="#article-container">
+            {{t 'return_to_top'}}
+            <svg xmlns="http://www.w3.org/2000/svg" class="article-return-to-top-icon" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+            </svg>
+          </a>
+        </div>
+      </footer> --}}
+
+      <div class="article-relatives">
+        {{#if settings.show_recently_viewed_articles}}
+          {{recent_articles}}
+        {{/if}}
+        {{#if settings.show_related_articles}}
+          {{related_articles}}
+        {{/if}}
+      </div>
+      {{#if settings.show_article_comments}}
+        <div class="article-comments" id="article-comments">
+          <section class="comments">
+            <header class="comment-overview">
+              <h2 class="comment-heading">
+                {{t 'comments'}}
+              </h2>
+              <p class="comment-callout">{{t 'comments_count' count=article.comment_count}}</p>
+              {{#if comments}}
+                <div class="dropdown comment-sorter">
+                  <button class="dropdown-toggle" aria-haspopup="true">
+                    {{dc 'sort'}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+                    </svg>
+                  </button>
+                  <span class="dropdown-menu" role="menu">
+                    {{#each comment_sorters}}
+                      <a aria-selected="{{selected}}" href="{{url}}" role="menuitem">{{name}}</a>
+                    {{/each}}
+                  </span>
+                </div>
+              {{/if}}
+            </header>
+
+            <ul id="comments" class="comment-list">
+              {{#each comments}}
+                <li id="{{anchor}}" class="comment">
+                  <div class="comment-wrapper">
+                    <div class="comment-info">
+                      <div class="comment-author">
+                        <div class="avatar comment-avatar">
+                          {{#if author.agent}}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent">
+                              <path fill="currentColor" d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2.3 7H3.7c-.3 0-.4-.3-.3-.5C3.9 7.6 4.9 7 6 7s2.1.6 2.6 1.5c.1.2 0 .5-.3.5z"/>
+                            </svg>
+                          {{/if}}
+                          <img src="{{author.avatar_url}}" alt="" class="user-avatar"/>
+                        </div>
+                        <div class="comment-meta">
+                          <span title="{{author.name}}">
+                            {{#link 'user_profile' id=author.id}}
+                              {{author.name}}
+                            {{/link}}
+                          </span>
+
+                          <span aria-label="{{t 'badges'}}" class="community-badge community-badge-titles">
+                            {{#each (filter author.badges on="category_slug" equals="titles")}}
+                              <div class="community-badge community-badge-title" title="{{description}}" aria-label="{{name}}">
+                                {{name}}
+                              </div>
+                            {{/each}}
+                          </span>
+
+                          <ul class="meta-group meta-group-opposite">
+                            {{#if editor}}
+                              <li class="meta-data">{{date edited_at timeago=true}}</li>
+                              <li class="meta-data">{{t 'edited'}}</li>
+                            {{else}}
+                              <li class="meta-data">{{date created_at timeago=true}}</li>
+                            {{/if}}
+                          </ul>
+
+                          <div aria-label="{{t 'badges'}}" class="community-badge-container-achievements">
+                            {{#each (
+                              slice
+                                (
+                                  filter
+                                    (filter author.badges on="category_slug" equals="achievements")
+                                    on="icon_url"
+                                    starts_with="https"
+                                )
+                                0
+                                4
+                              )
+                            }}
+                              <div class="community-badge community-badge-achievements">
+                                <img src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" />
+                              </div>
+                            {{/each}}
+
+                            {{#if (compare (calc author.badges.length "-" 4) ">" 0)}}
+                              <div class="community-badge community-badge-achievements">
+                                {{#link "user_profile" id=author.id filter_by="badges" class="community-badge-achievements-rest"}}{{t 'plus_more' count=(calc author.badges.length "-" 4)}}{{/link}}
+                              </div>
+                            {{/if}}
+                          </div>
+                        </div>
+                        <div class="comment-labels">
+                          {{#with ticket}}
+                            <a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
+                              {{t 'request'}}{{id}}
+                            </a>
+                          {{/with}}
+                          {{#if pending}}
+                            <span class="comment-pending status-label status-label-pending-moderation">{{t 'pending_approval'}}</span>
+                          {{/if}}
+                        </div>
+                      </div>
+
+                      <section class="comment-body">{{body}}</section>
+                    </div>
+
+                    <div class="comment-actions-container">
+                      <div class="comment-vote vote" role="group">
+                        {{#vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+                          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
+                        </svg>
+                        {{/vote}}
+                        {{vote 'sum' class='vote-sum'}}
+                        {{#vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+                          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
+                        </svg>
+                        {{/vote}}
+                      </div>
+                      <div class="comment-actions actions">
+                        {{#actions}}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+                         <path fill="none" stroke="currentColor" d="M13.17 3.07l-1.64.71c-.48-.4-1.03-.72-1.63-.94l-.22-1.79a.511.511 0 00-.4-.44C8.86.54 8.44.5 8 .5c-.44 0-.86.04-1.28.11-.22.04-.38.22-.4.44l-.21 1.79c-.6.22-1.15.54-1.63.94l-1.65-.71a.491.491 0 00-.58.13c-.55.65-.99 1.4-1.29 2.21-.08.21 0 .44.18.58l1.45 1.08a4.91 4.91 0 000 1.87l-1.45 1.08c-.18.13-.25.37-.18.58.3.81.74 1.55 1.28 2.2.14.17.38.22.58.13l1.65-.71c.48.4 1.03.72 1.63.94l.21 1.79c.03.22.19.4.4.44.43.07.85.11 1.29.11.44 0 .86-.04 1.28-.11.22-.04.38-.22.4-.44l.21-1.79c.6-.22 1.15-.54 1.63-.94l1.65.71c.2.09.44.04.58-.13.54-.65.98-1.39 1.28-2.2.08-.21 0-.44-.18-.57L13.4 8.95c.07-.32.1-.63.1-.95s-.03-.63-.09-.94l1.45-1.08c.18-.13.25-.37.18-.58-.3-.81-.74-1.55-1.28-2.2a.51.51 0 00-.59-.13z"/>
+                         <circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor"/>
+                        </svg>
+                        {{/actions}}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+
+            {{pagination}}
+
+            {{#form 'comment' class='comment-form'}}
+              <div class="avatar comment-avatar">
+                {{user_avatar class='user-avatar'}}
+              </div>
+              <div class="comment-container">
+                {{wysiwyg 'body'}}
+                <div class="comment-form-controls">
+                  {{input type='submit' class="button button-large"}}
+                </div>
+              </div>
+            {{/form}}
+
+            <p class="comment-callout">{{comment_callout}}</p>
+          </section>
+        </div>
+      {{/if}}
+    </article>
+    
+<!--     FORM FIELD DISPLAY NONE - FIX HAMBURGER MENU ISSUE -->
+    
+    <div class="form-field" style="">
+  <label for="request-attachments">Please upload any relevant images or photos relating to your enquiry</label>
+  <div id="upload-dropzone" class="upload-dropzone">
+  <input type="file" multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-gb/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" aria-describedby="upload-error">
+  <span>
+    <a>Add file</a> or drop files here
+  </span>
+</div>
+
+<div id="upload-error" class="notification notification-error notification-inline" style="display: none;">
+  <span data-upload-error-message=""></span>
+</div>
+
+
+  <ul id="request-attachments-pool" class="upload-pool" data-template="upload-template"></ul>
+
+<script type="text/html" id="upload-template">
+<li class="upload-item" data-upload-item>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="upload-item-icon">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M2.5 4v4.5c0 1.7 1.3 3 3 3s3-1.3 3-3v-6c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 .6.4 1 1 1s1-.4 1-1V4"/>
+    </svg>
+    <div aria-hidden="true" class="upload-item-icon-spacer"></div>
+  <a class="upload-link" target="_blank" data-upload-link></a>
+  <p class="upload-path" data-upload-path></p>
+  <p class="upload-path" data-upload-size></p>
+  <p data-upload-issue class="notification notification-alert notification-inline" aria-hidden="true"></p>
+  <span class="upload-remove" aria-label="Remove attachment" role="button" tabindex="0" data-upload-remove>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="upload-item-icon">
+      <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
+    </svg>
+  </span>
+  <div class="upload-progress" data-upload-progress></div>
+  <input type="hidden">
+</li>
+</script>
+
+
+</div>   
+      
+    
+    
+    
+  </div>
+  
+  <script> 
+  function showDiv() {
+  document.getElementById('showbuttonChat').style.display = "block";
+   document.getElementById('showbuttonContact').style.display = "block";
+   document.getElementById('showbuttonNo').style.display = "none";
+}
+   function showContactUs() {
+  document.getElementById('welcomeDiv').style.display = "block";
+   document.getElementById('showbuttonChat').style.display = "none";
+   document.getElementById('showbuttonContact').style.display = "none";
+}
+ 
+   $( document ).ready(function() {
+    $(".request_custom_fields_360031285578").parent().prepend($(".request_custom_fields_360031285578"));
+});
+   
+  
+
+   
+</script>   
+  
+</div>

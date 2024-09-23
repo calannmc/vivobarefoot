@@ -1,0 +1,61 @@
+<div class="container-divider"></div>
+<div class="container">
+  <div id="contact-scroll"> 
+    <h2 style="text-align:center;">
+      {{dc 'contact_us'}}
+      <span class="follow-up-hint">
+        {{follow_up}}
+      </span>
+    </h2>
+  </div>
+
+  <div id="main-content" class="form">
+    <h4>{{dc 'hear_from_you'}}</h4>
+    {{request_form wysiwyg=true}}
+  </div>
+    
+  <div id="contact__container">
+    <div class="contact-bottom" data-content-type="row" data-appearance="full-bleed" data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-position: left top; background-size: cover; background-repeat: no-repeat; background-attachment: scroll; border-style: none; border-width: 1px; border-radius: 0px; margin: 0px; padding: 0px; width:75%; margin:auto;">
+      <div data-content-type="block" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-radius: 0px; margin: 10px 0px 0px; padding: 10px 0px 0px;">
+        <div class="widget block block-static-block">
+          <div data-content-type="row" data-appearance="contained" data-element="main">
+            <div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-element="inner" style="justify-content: flex-start; display: flex; flex-direction: column; background-color: rgb(246, 246, 246); background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 10px 0px; padding: 10px; background-position: left top; background-repeat: no-repeat no-repeat;">
+              <h2 data-content-type="heading" data-appearance="default" data-element="main" style="text-align: center; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">{{dc 'contact_us'}}</h2>
+              <div class="pagebuilder-column-group" style="display: flex;" data-content-type="column-group" data-grid-size="auto" data-element="main">
+                <div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 50%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;">
+                  <figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;">
+                    <img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/live-chat-icon-sm.png" id="live__image" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;" role="button">
+                  </figure>
+                  <div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;">
+                    <p style="text-align: center;"><a href="javascript:zE('webWidget', 'open');"><strong>{{dc 'live_chat'}}</strong></a></p>
+                    <p style="text-align: center;">{{dc 'need_some_help'}}.</p>
+                  </div>
+                </div>
+
+                <div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 50%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;">
+                  <figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;">
+                    <img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/call-icon-sm.png" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;">
+                  </figure>
+                  <div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;">
+                    <p style="text-align: center;"><strong>{{dc 'call'}}</strong></p>
+                    <p style="text-align: center;">
+                      <a href="tel:{{dc 'phone_number'}}">
+                        {{dc 'phone_number'}}
+                      </a>{{dc 'toll_free'}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script> 
+    $(document).ready(function() {
+      $(".request_custom_fields_360031285578").parent().prepend($(".request_custom_fields_360031285578"));
+    });
+  </script>
+</div>

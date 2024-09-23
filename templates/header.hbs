@@ -1,0 +1,96 @@
+
+<noscript><iframe src=" https://www.googletagmanager.com/ns.html?id=GTM-NX8W5M"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<a class="skip-navigation" tabindex="1" href="#main-content">{{t 'skip_navigation' }}</a>
+
+<header class="header">
+  <div class="logo">
+    {{#link 'help_center'}}
+      <img src="{{settings.logo}}" alt="{{t 'home_page' name=help_center.name}}" />
+      {{#if settings.show_brand_name}}
+        <span aria-hidden="true">{{help_center.name}}</span>
+      {{/if}}
+    {{/link}}
+  </div>
+
+  <div class="nav-wrapper-desktop">
+    <nav class="user-nav" id="user-nav">
+      <ul class="user-nav-list">
+        <li><a href="{{dc 'main_site_link'}}">{{dc 'main_site'}}</a></li>
+        <li>{{#link 'help_center' class='submit-a-request'}}{{dc 'faq'}} {{/link}}</li>
+      </ul>
+    </nav>
+  </div>
+  
+  <div class="search-container search-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
+        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+      </svg>
+      {{search submit=false instant=settings.instant_search}}
+    </div>
+
+  <div class="nav-wrapper-mobile">
+    <button class="menu-button-mobile" aria-controls="user-nav-mobile" aria-expanded="false" aria-label="{{t 'toggle_navigation'}}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-menu">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M1.5 3.5h13m-13 4h13m-13 4h13"/>
+      </svg>
+    </button>
+    <nav class="menu-list-mobile" id="user-nav-mobile" aria-expanded="false">
+      <ul class="menu-list-mobile-items">
+          <li class="nav-divider"></li>
+        <li><a href="https://www.vivobarefoot.com/">{{dc 'main_site'}}</a></li>
+        <li>{{#link 'help_center' class='submit-a-request'}} {{dc 'faq'}}{{/link}}</li>
+        <li class="nav-divider"></li>
+      </ul>
+    </nav>
+  </div>
+  
+<!--   Form field for attachement - fix hamburger menu issue - otherwise error set properties of null (setting 'innerHTML') - and won't open burger menu 
+   -->
+<!--       <div class="form-field" style="">
+  <label for="request-attachments">Please upload any relevant images or photos relating to your enquiry</label>
+  <div id="upload-dropzone" class="upload-dropzone">
+  <input type="file" multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-gb/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" aria-describedby="upload-error">
+  <span>
+    <a>Add file</a> or drop files here
+  </span>
+</div>
+
+<div id="upload-error" class="notification notification-error notification-inline" style="display: none;">
+  <span data-upload-error-message=""></span>
+</div>
+
+
+  <ul id="request-attachments-pool" class="upload-pool" data-template="upload-template"></ul>
+
+<script type="text/html" id="upload-template">
+<li class="upload-item" data-upload-item>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="upload-item-icon">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M2.5 4v4.5c0 1.7 1.3 3 3 3s3-1.3 3-3v-6c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 .6.4 1 1 1s1-.4 1-1V4"/>
+    </svg>
+    <div aria-hidden="true" class="upload-item-icon-spacer"></div>
+  <a class="upload-link" target="_blank" data-upload-link></a>
+  <p class="upload-path" data-upload-path></p>
+  <p class="upload-path" data-upload-size></p>
+  <p data-upload-issue class="notification notification-alert notification-inline" aria-hidden="true"></p>
+  <span class="upload-remove" aria-label="Remove attachment" role="button" tabindex="0" data-upload-remove>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="upload-item-icon">
+      <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
+    </svg>
+  </span>
+  <div class="upload-progress" data-upload-progress></div>
+  <input type="hidden">
+</li>
+</script>
+
+
+</div>  -->
+
+</header>
+<div class="header black-nav"></div>
+
+<!--This should be added at the very top -->
+<div class="alertbox"></div>

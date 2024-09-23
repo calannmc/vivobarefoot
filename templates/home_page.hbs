@@ -1,0 +1,220 @@
+<h1 class="visibility-hidden">{{ help_center.name }}</h1>
+
+
+
+<div class="container">
+  
+	<h1 style="text-align:center; margin-top:50px;">{{dc 'welcome_to_the_vivosphere'}}</h1>
+		<p style="text-align:center">{{dc 'help_center_intro'}}</p>
+	<h2 style="text-align:center; margin-top:50px;">{{dc 'opening_hours'}}</h2>
+	{{dc 'opening_hours_content'}}
+  
+  
+   <section class="section knowledge-base">
+    {{#if promoted_articles}}
+      <section class="articles">
+        <h2 style="text-align:center; margin-top:50px;">{{dc 'text_-_popular_questions'}}</h2>
+                <ul class="article-list promoted-articles" 
+            style="display:flex; 
+                   align-items: center;
+                   justify-content:space-evenly;">
+                  
+          {{#each promoted_articles}}
+            <div class="wrap">
+            <div class="card">
+               
+                <div class="img-{{id}}"></div> 
+                <div class="container" style="margin-top:50px;">
+                  
+                  {{title}}
+                 
+					        
+                </div>
+              <div class="card-button">     
+                <button  class="button-{{id}}"  onclick="location.href='{{url}}'"type="submit" value="Read More">{{dc 'read_more'}}</button>
+              </div>
+            </div>          
+        </div>
+            
+          {{/each}}
+                  
+        </ul>
+      </section>
+    {{/if}}
+  </section>
+
+  
+    <div id="search_header_container">
+  <h2 style="text-align:center;">
+   {{dc 'have_a_question'}}
+  </h2>
+   <div class="search search-full" style="margin-bottom:30px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
+        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+      </svg>
+      {{search submit=false instant=settings.instant_search class='search search-full'}}
+    </div>
+  
+  <section class="section knowledge-base">
+    <h2 class="visibility-hidden">{{ t 'categories' }}</h2>
+    
+    <section class="categories blocks">
+      <ul class="blocks-list">
+        {{#each categories}}
+          {{#if ../has_multiple_categories}}
+            <li class="blocks-item">
+              <a href='{{url}}' class="blocks-item-link">
+                <span class="blocks-item-title">{{name}}</span>
+                {{!-- <span class="blocks-item-description">{{excerpt description}}</span> --}}
+              </a>
+            </li>
+          {{else}}
+            {{#each sections}}
+              <li class="blocks-item">
+                <a href='{{url}}' class="blocks-item-link">
+                  <span class="blocks-item-title">
+                    {{name}}
+                  </span>
+                  {{!-- <span class="blocks-item-description">{{excerpt description}}</span> --}}
+                </a>
+              </li>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </ul>
+      {{pagination}}
+    </section>
+</section>
+
+      
+<!--   CONTACT FORM -->
+
+<div id="welcomeDiv"  style="display:none;" class="answer_list" >
+  <h2 style="text-align:center;">
+    {{dc 'contact_us'}}
+    <span class="follow-up-hint">
+     
+    </span>
+  </h2>
+
+  <div id="main-content" class="form">
+     <h4>{{dc 'hear_from_you'}}</h4>
+  </div>
+    
+<div id="contact__container">
+<div data-content-type="row" data-appearance="full-bleed" data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-position: left top; background-size: cover; background-repeat: no-repeat; background-attachment: scroll; border-style: none; border-width: 1px; border-radius: 0px; margin: 0px; padding: 0px;">
+<div data-content-type="block" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-radius: 0px; margin: 10px 0px 0px; padding: 10px 0px 0px;"> <div class="widget block block-static-block">
+<div data-content-type="row" data-appearance="contained" data-element="main">
+<div data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-element="inner" style="justify-content: flex-start; display: flex; flex-direction: column; background-color: rgb(246, 246, 246); background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 10px 0px; padding: 10px; background-position: left top; background-repeat: no-repeat no-repeat;"><h4 data-content-type="heading" data-appearance="default" data-element="main" style="text-align: center; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">{{dc 'contact_us'}}</h4>
+<div class="pagebuilder-column-group" style="display: flex;" data-content-type="column-group" data-grid-size="12" data-element="main">
+<div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 33.3333%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;">
+<figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;">
+<img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/live-chat-icon-sm.png" id="live__image" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;" role="button"></figure><div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;">
+  <p style="text-align: center;"><a onclick="zE('messenger', 'open');"><strong>{{dc 'live_chat'}}</strong></a></p>
+<p style="text-align: center;">Need some help, speak to a specialist.</p>
+</div>
+<div data-content-type="divider" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 10px;"><hr data-element="line" style="width: 100%; border-width: 1px; border-color: rgb(255, 255, 255); display: inline-block;"></div></div><div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 33.3333%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;"><figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;"><a href="https://www.vivobarefoot.com/uk/contact-us" target="" data-link-type="page" title="" data-element="link"><img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/email-icon-sm.png" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;"></a></figure><div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;"><p style="text-align:center;" ><strong>EMAIL</strong></p>
+<p style="text-align:center;">We'd love to hear from you</p>
+<p style="text-align:center; overflow-wrap: break-word;"><a href="mailto:customerservices@vivobarefoot.com">customerservices@vivobarefoot.com</a></p></div><div data-content-type="divider" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 10px;"><hr data-element="line" style="width: 100%; border-width: 1px; border-color: rgb(255, 255, 255); display: inline-block;"></div></div><div class="pagebuilder-column" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" style="justify-content: flex-start; display: flex; flex-direction: column; background-size: cover; background-attachment: scroll; border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; width: 33.3333%; margin: 0px; padding: 10px; align-self: stretch; background-position: left top; background-repeat: no-repeat no-repeat;"><figure data-content-type="image" data-appearance="full-width" data-element="main" style="text-align: center; margin: 0px; padding: 0px; border-style: none;"><img class="pagebuilder-mobile-only" src="https://www.vivobarefoot.com/media/wysiwyg/icons/call-icon-sm.png" alt="" title="" data-element="mobile_image" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; max-width: 100%; height: auto;"></figure><div data-content-type="text" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 0px;"><p style="text-align: center;"><strong>CALL</strong></p>
+<p style="text-align: center;">{{dc 'phone_number'}}</p></div><div data-content-type="divider" data-appearance="default" data-element="main" style="border-style: none; border-width: 1px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; margin: 0px; padding: 10px;"><hr data-element="line" style="width: 100%; border-width: 1px; border-color: rgb(255, 255, 255); display: inline-block;"></div></div></div></div></div></div></div></div>
+</div>
+
+  </div>
+
+<div class="help__container">
+  <div class="button-containers" style="display:flex; justify-content:space-around; margin-bottom:50px;">
+    <input type="submit" name="answer" value="Didn't answer your question" id='showbuttonNo' onclick="showChatButton()"/> 
+    <input type="submit" name="answer" value="Chat with us" id='showbuttonChat' onclick="zE('messenger', 'open');" style="display: none;"/> 
+  </div>
+</div>
+
+<script>
+  function showChatButton() {
+    document.getElementById('showbuttonNo').style.display = 'none';
+    document.getElementById('showbuttonChat').style.display = 'block';
+  }
+</script>
+      
+      
+      
+      
+      
+      
+      
+<!--     FORM FIELD DISPLAY NONE - FIX HAMBURGER MENU ISSUE -->
+    
+    <div class="form-field" style="">
+  <label for="request-attachments">Please upload any relevant images or photos relating to your enquiry</label>
+  <div id="upload-dropzone" class="upload-dropzone">
+  <input type="file" multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-gb/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" aria-describedby="upload-error">
+  <span>
+    <a>Add file</a> or drop files here
+  </span>
+</div>
+
+<div id="upload-error" class="notification notification-error notification-inline" style="display: none;">
+  <span data-upload-error-message=""></span>
+</div>
+
+
+  <ul id="request-attachments-pool" class="upload-pool" data-template="upload-template"></ul>
+
+<script type="text/html" id="upload-template">
+<li class="upload-item" data-upload-item>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="upload-item-icon">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M2.5 4v4.5c0 1.7 1.3 3 3 3s3-1.3 3-3v-6c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 .6.4 1 1 1s1-.4 1-1V4"/>
+    </svg>
+    <div aria-hidden="true" class="upload-item-icon-spacer"></div>
+  <a class="upload-link" target="_blank" data-upload-link></a>
+  <p class="upload-path" data-upload-path></p>
+  <p class="upload-path" data-upload-size></p>
+  <p data-upload-issue class="notification notification-alert notification-inline" aria-hidden="true"></p>
+  <span class="upload-remove" aria-label="Remove attachment" role="button" tabindex="0" data-upload-remove>
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="upload-item-icon">
+      <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
+    </svg>
+  </span>
+  <div class="upload-progress" data-upload-progress></div>
+  <input type="hidden">
+</li>
+</script>
+
+
+</div>   
+ 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+ <script> 
+  function showDiv() {
+  document.getElementById('showbuttonChat').style.display = "block";
+   document.getElementById('showbuttonContact').style.display = "block";
+   document.getElementById('showbuttonNo').style.display = "none";
+}
+   function showContactUs() {
+  document.getElementById('welcomeDiv').style.display = "block";
+   document.getElementById('showbuttonChat').style.display = "none";
+   document.getElementById('showbuttonContact').style.display = "none";
+}
+   
+
+   $( document ).ready(function() {
+    $(".request_custom_fields_360031285578").parent().prepend($(".request_custom_fields_360031285578"));
+});
+  
+    $( document ).ready(function() {
+      document.querySelector("label[for='request-attachments']").textContent = 'Please upload any relevant images or photos relating to your enquiry';
+});
+   
+ 
+   
+</script>      
+</div>
