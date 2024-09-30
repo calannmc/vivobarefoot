@@ -1331,6 +1331,9 @@ ul {
 .section {
   margin-bottom: 40px;
 }
+.knowledgebase{
+  background-color:#eee;
+}
 
 @media (min-width: 768px) {
   .section {
