@@ -4,8 +4,8 @@
 
 <div class="container">
   
-	<h1 style="text-align:center; margin-top:50px;">{{dc 'welcome_to_the_vivosphere'}}</h1>
-		<p style="text-align:center">{{dc 'help_center_intro'}}</p>
+	<h1 style="text-align:center; margin-top:50px;">{{dc 'wvv_hero'}}</h1>
+		<p style="text-align:center">{{dc 'vv_hero_intro'}}</p>
 	<h2 style="text-align:center; margin-top:50px;">{{dc 'opening_hours'}}</h2>
 	{{dc 'opening_hours_content'}}
   
@@ -48,17 +48,17 @@
   <h2 style="text-align:center;">
    {{dc 'have_a_question'}}
   </h2>
-   <div class="search search-full" style="margin-bottom:30px;">
+  
+  
+  <section class="section knowledge-base">
+    <h2 class="visibility-hidden">{{ t 'categories' }}</h2>
+     <div class="search search-full" style="margin-bottom:30px;">
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
         <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
         <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
       </svg>
       {{search submit=false instant=settings.instant_search class='search search-full'}}
     </div>
-  
-  <section class="section knowledge-base">
-    <h2 class="visibility-hidden">{{ t 'categories' }}</h2>
-    
     <section class="categories blocks">
       <ul class="blocks-list">
         {{#each categories}}
