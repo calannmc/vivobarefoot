@@ -128,46 +128,14 @@
 </div>
 <!--   CONTACT FORM -->
 <div class="container">
-  
-	<h1 style="text-align:center; margin-top:50px;">{{dc 'welcome_to_the_vivosphere'}}</h1>
-		<p style="text-align:center">{{dc 'help_center_intro'}}</p>
-	<h2 style="text-align:center; margin-top:50px;">{{dc 'opening_hours'}}</h2>
+  	<p style="text-align:center">{{dc 'still_need_help'}}</p>
+	<h1 style="text-align:center; margin-top:50px;">{{dc 'contact_us'}}</h1>
+	
+	<h2 style="text-align:center; margin-top:50px;">{{dc 'customer_serrvice_team'}}</h2>
 	{{dc 'opening_hours_content'}}
   
   
-   <section class="section knowledge-base">
-    {{#if promoted_articles}}
-      <section class="articles">
-        <h2 style="text-align:center; margin-top:50px;">{{dc 'text_-_popular_questions'}}</h2>
-                <ul class="article-list promoted-articles" 
-            style="display:flex; 
-                   align-items: center;
-                   justify-content:space-evenly;">
-                  
-          {{#each promoted_articles}}
-            <div class="wrap">
-            <div class="card">
-               
-                <div class="img-{{id}}"></div> 
-                <div class="container" style="margin-top:50px;">
-                  
-                  {{title}}
-                 
-					        
-                </div>
-              <div class="card-button">     
-                <button  class="button-{{id}}"  onclick="location.href='{{url}}'"type="submit" value="Read More">{{dc 'read_more'}}</button>
-              </div>
-            </div>          
-        </div>
-            
-          {{/each}}
-                  
-        </ul>
-      </section>
-    {{/if}}
-  </section>
-
+  
   
     {{!--<div id="search_header_container">
   <h2 style="text-align:center;">
