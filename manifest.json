@@ -1,7 +1,7 @@
 {
   "name": "devTheme2024",
   "author": "Zendesk",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -285,6 +285,221 @@
           "description": "recent_activity_description",
           "label": "recent_activity_label",
           "value": false
+        }
+      ]
+    },
+    {
+      "label": "Category Cards",
+      "variables": [
+        {
+          "identifier": "category_card_icon_1",
+          "type": "file",
+          "description": "Icon for the first category card",
+          "label": "Card_Icon_1"
+        },
+        {
+          "identifier": "category_card_1_name",
+          "type": "text",
+          "description": "Name for category 1",
+          "label": "Category one name",
+          "value": "Category  One"
+        },
+        {
+          "identifier": "category_card_icon_2",
+          "type": "file",
+          "description": "Icon for the second category card",
+          "label": "Card_Icon_2"
+        },
+        {
+          "identifier": "category_card_2_name",
+          "type": "text",
+          "description": "Name for category 2",
+          "label": "Category two name",
+          "value": "622GW"
+        },
+        {
+          "identifier": "category_card_icon_3",
+          "type": "file",
+          "description": "Icon for the third category card",
+          "label": "Card_Icon_3"
+        },
+        {
+          "identifier": "category_card_3_name",
+          "type": "text",
+          "description": "Name for category 3",
+          "label": "Category three name",
+          "value": "522GW"
+        },
+        {
+          "identifier": "category_card_icon_4",
+          "type": "file",
+          "description": "Icon for the fourth category card",
+          "label": "Card_Icon_4"
+        },
+        {
+          "identifier": "category_card_4_name",
+          "type": "text",
+          "description": "Name for category 4",
+          "label": "Category four name",
+          "value": "422GW"
+        },
+        {
+          "identifier": "category_card_icon_5",
+          "type": "file",
+          "description": "Icon for the fifth category card",
+          "label": "Card_Icon_5"
+        },
+        {
+          "identifier": "category_card_5_name",
+          "type": "text",
+          "description": "Name for category 5",
+          "label": "Category five name",
+          "value": "380GWX"
+        },
+        {
+          "identifier": "category_card_icon_6",
+          "type": "file",
+          "description": "Icon for the sixth category card",
+          "label": "Card_Icon_6"
+        },
+        {
+          "identifier": "category_card_6_name",
+          "type": "text",
+          "description": "Name for category 6",
+          "label": "Category sixth name",
+          "value": "380GW"
+        },
+        {
+          "identifier": "category_card_icon_7",
+          "type": "file",
+          "description": "Icon for the seveth category card",
+          "label": "Card_Icon_7"
+        },
+        {
+          "identifier": "category_card_7_name",
+          "type": "text",
+          "description": "Name for category 7",
+          "label": "Category seveth name",
+          "value": "322GW"
+        },
+        {
+          "identifier": "category_card_icon_8",
+          "type": "file",
+          "description": "Icon for the eighth category card",
+          "label": "Card_Icon_8"
+        },
+        {
+          "identifier": "category_card_8_name",
+          "type": "text",
+          "description": "Name for category 8",
+          "label": "Category eighth name",
+          "value": "320XR"
+        },
+        {
+          "identifier": "category_card_icon_9",
+          "type": "file",
+          "description": "Icon for the nine category card",
+          "label": "Card_Icon_9"
+        },
+        {
+          "identifier": "category_card_9_name",
+          "type": "text",
+          "description": "Name for category 9",
+          "label": "Category nine name",
+          "value": "300W"
+        },
+        {
+          "identifier": "category_card_icon_10",
+          "type": "file",
+          "description": "Icon for the ten category card",
+          "label": "Card_Icon_10"
+        },
+        {
+          "identifier": "category_card_10_name",
+          "type": "text",
+          "description": "Name for category 10",
+          "label": "Category ten name",
+          "value": "222G"
+        },
+        {
+          "identifier": "category_card_icon_11",
+          "type": "file",
+          "description": "Icon for the 11 category card",
+          "label": "Card_Icon_11"
+        },
+        {
+          "identifier": "category_card_11_name",
+          "type": "text",
+          "description": "Name for category 11",
+          "label": "Category 11 name",
+          "value": "222X"
+        },
+        {
+          "identifier": "category_card_icon_12",
+          "type": "file",
+          "description": "Icon for the 12 category card",
+          "label": "Card_Icon_12"
+        },
+        {
+          "identifier": "category_card_12_name",
+          "type": "text",
+          "description": "Name for category 12",
+          "label": "Category 12 name",
+          "value": "222XR"
+        },
+        {
+          "identifier": "popular_articles_text",
+          "type": "text",
+          "description": "Text for the popular articles section on the homepage",
+          "label": "Popular Articles Text",
+          "value": "Featured articles"
+        },
+        {
+          "identifier": "article_page_title",
+          "type": "text",
+          "description": "Title for the article page",
+          "label": "Article Page Title",
+          "value": "Article page"
+        },
+        {
+          "identifier": "article_page_description",
+          "type": "text",
+          "description": "Description for the article page",
+          "label": "Article Page Description",
+          "value": "Article page"
+        },
+        {
+          "identifier": "disable_defaults",
+          "type": "checkbox",
+          "description": "Option to disable defaults",
+          "label": "Disable Defaults",
+          "value": false
+        },
+        {
+          "identifier": "new_request_title",
+          "type": "text",
+          "description": "Title for the new request page",
+          "label": "New Request Title",
+          "value": "Submit a request"
+        },
+        {
+          "identifier": "new_request_description",
+          "type": "text",
+          "description": "Description for the new request page",
+          "label": "New Request Description",
+          "value": ""
+        },
+        {
+          "identifier": "article_vote_icon",
+          "type": "file",
+          "description": "Icon for article voting",
+          "label": "Article_Vote_Icon"
+        },
+        {
+          "identifier": "popular_articles_icon",
+          "type": "file",
+          "description": "Icon for popular articles",
+          "label": "popular_articles_icon"
         }
       ]
     },
