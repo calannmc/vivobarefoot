@@ -1278,7 +1278,6 @@ ul {
     $blocks_bg_color_bottom
   );
   transition: all 0.2s;
-  border-radius: 50px;
   z-index: 1;
 }
 
@@ -1296,7 +1295,6 @@ ul {
   opacity: 0;
   transition: all 0.2s;
   z-index: -1;
-  border-radius: 50px;
 }
 
 @media (min-width: 768px) {
@@ -1399,7 +1397,7 @@ ul {
   background-repeat: no-repeat;
 }
 
-.knowledge-base ..blocks-item:nth-child(10n + 1) .blocks-item-link:before {
+.knowledge-base .blocks-item:nth-child(10n + 1) .blocks-item-link:before {
   background-image: url("$blocks_icon_1");
 }
 
