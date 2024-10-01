@@ -125,50 +125,7 @@
 </section>
 </div>
 </section>
-
-   <section class="section knowledge-base">
-    {{#if promoted_articles}}
-      <section class="articles">
-        <h2 style="text-align:center; margin-top:50px;">{{dc 'text_-_popular_questions'}}</h2>
-                <ul class="article-list promoted-articles" 
-            style="display:flex; 
-                   align-items: center;
-                   justify-content:space-evenly;">
-                  
-          {{#each promoted_articles}}
-            <div class="wrap">
-            <div class="card">
-               
-                <div class="img-{{id}}"></div> 
-                <div class="container" style="margin-top:50px;">
-                  
-                  {{title}}
-                 
-					        
-                </div>
-              <div class="card-button">     
-                <button  class="button-{{id}}"  onclick="location.href='{{url}}'"type="submit" value="Read More">{{dc 'read_more'}}</button>
-              </div>
-            </div>          
-        </div>
-            
-          {{/each}}
-                  
-        </ul>
-      </section>
-    {{/if}}
-  </section>
-
-  
-    <div id="search_header_container">
-  <h2 style="text-align:center;">
-   {{dc 'have_a_question'}}
-  </h2>
-  
-  
- 
-
-      
+</div>
 <!--   CONTACT FORM -->
 
 <div id="welcomeDiv"  style="display:none;" class="answer_list" >
@@ -220,7 +177,51 @@
       
     <h2 style="text-align:center; margin-top:50px;">{{dc 'opening_hours'}}</h2>
 	{{dc 'opening_hours_content'}}  
+      </div>
+   <section class="section knowledge-base">
+    {{#if promoted_articles}}
+      <section class="articles">
+        <h2 style="text-align:center; margin-top:50px;">{{dc 'text_-_popular_questions'}}</h2>
+                <ul class="article-list promoted-articles" 
+            style="display:flex; 
+                   align-items: center;
+                   justify-content:space-evenly;">
+                  
+          {{#each promoted_articles}}
+            <div class="wrap">
+            <div class="card">
+               
+                <div class="img-{{id}}"></div> 
+                <div class="container" style="margin-top:50px;">
+                  
+                  {{title}}
+                 
+					        
+                </div>
+              <div class="card-button">     
+                <button  class="button-{{id}}"  onclick="location.href='{{url}}'"type="submit" value="Read More">{{dc 'read_more'}}</button>
+              </div>
+            </div>          
+        </div>
+            
+          {{/each}}
+                  
+        </ul>
+      </section>
+    {{/if}}
+  </section>
+
+  
+    <div id="search_header_container">
+  <h2 style="text-align:center;">
+   {{dc 'have_a_question'}}
+  </h2>
+  
+  
+ 
+
       
+
       
       
       
