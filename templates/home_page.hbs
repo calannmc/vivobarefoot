@@ -100,22 +100,20 @@
             <a href='{{url}}' class="blocks-item-link">
                 <!-- Add icon dynamically based on index -->
                 {{#is @index 0}}
-                <img src="{{../settings.category_card_icon_1}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../settings.category_card_icon_1}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
                 {{#is @index 1}}
-                <img src="{{../settings.category_card_icon_2}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../settings.category_card_icon_2}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
                 {{#is @index 2}}
-                <img src="{{../settings.category_card_icon_3}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../settings.category_card_icon_3}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
                 {{#is @index 3}}
-                <img src="{{../settings.category_card_icon_4}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../settings.category_card_icon_4}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
-                {{#is @index 4}}
-                <img src="{{../settings.category_card_icon_5}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
-                {{/is}}
-                <!-- Continue adding more icons for more categories if needed -->
+                <!-- Continue adding more icons as needed -->
 
+                <!-- Category title -->
                 <span class="blocks-item-title">{{name}}</span>
             </a>
         </li>
@@ -125,16 +123,17 @@
             <a href='{{url}}' class="blocks-item-link">
                 <!-- Add icon dynamically based on section index -->
                 {{#is @index 0}}
-                <img src="{{../../settings.category_card_icon_1}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../../settings.category_card_icon_1}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
                 {{#is @index 1}}
-                <img src="{{../../settings.category_card_icon_2}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../../settings.category_card_icon_2}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
                 {{#is @index 2}}
-                <img src="{{../../settings.category_card_icon_3}}" class="blocks-item-icon mx-auto object-contain max-image-size" />
+                <img src="{{../../settings.category_card_icon_3}}" class="blocks-item-icon mx-auto object-contain max-image-size" style="width: 24px; height: 24px; margin-right: 10px;" />
                 {{/is}}
-                <!-- Continue adding more icons for more sections if needed -->
+                <!-- Continue adding more icons as needed -->
 
+                <!-- Section title -->
                 <span class="blocks-item-title">{{name}}</span>
             </a>
         </li>
@@ -144,6 +143,7 @@
     </ul>
     {{pagination}}
 </section>
+
 
     <section class="categories blocks">
         <ul class="blocks-list">
