@@ -447,60 +447,7 @@
           "label": "Category 12 name",
           "value": "222XR"
         },
-        {
-          "identifier": "popular_articles_text",
-          "type": "text",
-          "description": "Text for the popular articles section on the homepage",
-          "label": "Popular Articles Text",
-          "value": "Featured articles"
-        },
-        {
-          "identifier": "article_page_title",
-          "type": "text",
-          "description": "Title for the article page",
-          "label": "Article Page Title",
-          "value": "Article page"
-        },
-        {
-          "identifier": "article_page_description",
-          "type": "text",
-          "description": "Description for the article page",
-          "label": "Article Page Description",
-          "value": "Article page"
-        },
-        {
-          "identifier": "disable_defaults",
-          "type": "checkbox",
-          "description": "Option to disable defaults",
-          "label": "Disable Defaults",
-          "value": false
-        },
-        {
-          "identifier": "new_request_title",
-          "type": "text",
-          "description": "Title for the new request page",
-          "label": "New Request Title",
-          "value": "Submit a request"
-        },
-        {
-          "identifier": "new_request_description",
-          "type": "text",
-          "description": "Description for the new request page",
-          "label": "New Request Description",
-          "value": ""
-        },
-        {
-          "identifier": "article_vote_icon",
-          "type": "file",
-          "description": "Icon for article voting",
-          "label": "Article_Vote_Icon"
-        },
-        {
-          "identifier": "popular_articles_icon",
-          "type": "file",
-          "description": "Icon for popular articles",
-          "label": "popular_articles_icon"
-        }
+       
       ]
     },
     {
