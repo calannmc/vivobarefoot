@@ -101,7 +101,7 @@
             <a href='{{url}}' class="blocks-item-link">
                 <!-- Use 'is' helper instead of 'eq' -->
                 {{#is name 'Category 1'}}
-                <img src="{{settings.category_card_icon_1}}" alt="{{name}}" class="blocks-item-icon">
+                <img src="{{../settings.category_card_icon_1}}" alt="{{name}}" class="blocks-item-icon">
                 {{/is}}
                 {{#is name 'Category 2'}}
                 <img src="{{asset 'icon2.png'}}" alt="{{name}}" class="blocks-item-icon">
@@ -144,7 +144,7 @@
                 <img src="{{asset 'icon-section1.png'}}" alt="{{name}}" class="blocks-item-icon">
                 {{/is}}
                 {{#is name 'Section 2'}}
-                <img src="{{settings.category_card_icon_1}}" alt="{{name}}" class="blocks-item-icon">
+                <img src="{{../settings.category_card_icon_1}}" alt="{{name}}" class="blocks-item-icon">
                 {{/is}}
                 {{#is name 'Section 3'}}
                 <img src="{{asset 'icon-section3.png'}}" alt="{{name}}" class="blocks-item-icon">
