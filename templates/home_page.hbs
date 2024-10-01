@@ -91,32 +91,97 @@
 
     </div>
 
-    <!-- Categories Section -->
- <section class="categories blocks">
-        <ul class="blocks-list">
-            {{#each categories}}
-            {{#if ../has_multiple_categories}}
-            <li class="blocks-item">
-                <a href='{{url}}' class="blocks-item-link">
-                    <span class="blocks-item-title">{{name}}</span>
-                </a>
-            </li>
-            {{else}}
-            {{#each sections}}
-            <li class="blocks-item">
-                <a href='{{url}}' class="blocks-item-link">
-                    <span class="blocks-item-title">{{name}}</span>
-                </a>
-            </li>
-            {{/each}}
-            {{/if}}
-            {{/each}}
-        </ul>
-        {{pagination}}
-   
-       </section>
-     </div>
-      </section>
+   <!-- Categories Section -->
+<section class="categories blocks">
+    <ul class="blocks-list">
+        {{#each categories}}
+        {{#if ../has_multiple_categories}}
+        <li class="blocks-item">
+            <a href='{{url}}' class="blocks-item-link">
+                <!-- Add conditional logic for different icons based on category name -->
+                {{#if (eq name "Category 1")}}
+                <img src="{{asset 'icon1.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 2")}}
+                <img src="{{asset 'icon2.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 3")}}
+                <img src="{{asset 'icon3.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 4")}}
+                <img src="{{asset 'icon4.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 5")}}
+                <img src="{{asset 'icon5.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 6")}}
+                <img src="{{asset 'icon6.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 7")}}
+                <img src="{{asset 'icon7.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 8")}}
+                <img src="{{asset 'icon8.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 9")}}
+                <img src="{{asset 'icon9.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Category 10")}}
+                <img src="{{asset 'icon10.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                <!-- Continue adding more conditions for other categories if needed -->
+
+                <span class="blocks-item-title">{{name}}</span>
+            </a>
+        </li>
+        {{else}}
+        {{#each sections}}
+        <li class="blocks-item">
+            <a href='{{url}}' class="blocks-item-link">
+                <!-- Add conditional logic for different icons based on section name -->
+                {{#if (eq name "Section 1")}}
+                <img src="{{asset 'icon-section1.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 2")}}
+                <img src="{{asset 'icon-section2.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 3")}}
+                <img src="{{asset 'icon-section3.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 4")}}
+                <img src="{{asset 'icon-section4.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 5")}}
+                <img src="{{asset 'icon-section5.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 6")}}
+                <img src="{{asset 'icon-section6.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 7")}}
+                <img src="{{asset 'icon-section7.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 8")}}
+                <img src="{{asset 'icon-section8.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 9")}}
+                <img src="{{asset 'icon-section9.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                {{#if (eq name "Section 10")}}
+                <img src="{{asset 'icon-section10.png'}}" alt="{{name}}" class="blocks-item-icon">
+                {{/if}}
+                <!-- Continue for other sections if needed -->
+
+                <span class="blocks-item-title">{{name}}</span>
+            </a>
+        </li>
+        {{/each}}
+        {{/if}}
+        {{/each}}
+    </ul>
+    {{pagination}}
+</section>
+
+
 
    <section class="section knowledge-base">
     {{#if promoted_articles}}
