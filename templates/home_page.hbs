@@ -117,7 +117,60 @@
        </section>
      </div>
       </section>
+<section class="pb-5 sm:pb-10 bg-no-repeat bg-origin-padding	bg-white"></section>
+  <div class="container mx-auto text-center category-cards py-8 px-3 sm:py-10">
+    <h2 class="section-header text-center mb-4">Category Cards</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-8 px-5 bg-white">
+      {{#each categories}}
+        <a href="{{url}}" class="leading-6 card-link transform transition duration-300 ease-in-out bg-transparent  px-4 py-4 shadow-sm hover:bg-white hover:scale-105 hover:shadow-lg hover:border-transparent hover:shadow-outline hover:font-semibold hover:text-black next-card-title rounded-lg">
+          <div class="sm:mb-4">
+        {{#is @index 0}}
+          <img src="{{../settings.category_card_icon_1}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 1}}
+          <img src="{{../settings.category_card_icon_2}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 2}}
+          <img src="{{../settings.category_card_icon_3}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 3}}
+          <img src="{{../settings.category_card_icon_4}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 4}}
+          <img src="{{../settings.category_card_icon_5}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 5}}
+          <img src="{{../settings.category_card_icon_6}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 6}}
+          <img src="{{../settings.category_card_icon_7}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 7}}
+          <img src="{{../settings.category_card_icon_8}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 8}}
+          <img src="{{../settings.category_card_icon_9}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 9}}
+          <img src="{{../settings.category_card_icon_10}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 10}}
+          <img src="{{../settings.category_card_icon_11}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
+        {{#is @index 11}}
+          <img src="{{../settings.category_card_icon_12}}" class="mx-auto object-contain max-image-size" />
+        {{/is}}
 
+
+        <!-- Add more conditions for other indices if needed -->
+      </div>
+      <span class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{this.name}}</span>
+          <p class="text-base card-text-description line-clamp-2">{{this.description}}</p>
+    </a>
+  {{/each}}
+
+  </div>
+</section>
    <section class="section knowledge-base">
     {{#if promoted_articles}}
       <section class="articles">
