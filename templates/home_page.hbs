@@ -1,4 +1,33 @@
-
+<style>
+  .contact-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+  .contact-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    position: relative;
+  }
+  .contact-box-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  .chat-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    margin-left: 5px;
+  }
+  .online {
+    background-color: green;
+  }
+</style>
 <h1 class="visibility-hidden">{{ help_center.name }}</h1>
 
 <div class="container">
@@ -134,7 +163,40 @@
 	<p style="text-align:center; margin-top:50px;">{{dc 'customer_service_team'}}</hp>
 	{{dc 'opening_hours_content'}}
   
-  
+  <!-- Three boxes -->
+    <div class="container contact-boxes">
+
+        <!-- Box 1 - Live Chat -->
+        <div class="contact-box">
+            <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
+            <h3>{{dc 'live_chat_title'}}</h3>
+            <p>{{dc 'live_chat_description'}}</p>
+            <p>
+                <!-- Chat status with green when available -->
+                <strong><a onclick="zE('messenger', 'open');" href="#">Start Chat</a></strong>
+                <span id="chat-status" class="chat-status"></span>
+            </p>
+        </div>
+
+        <!-- Box 2 - Call Us -->
+        <div class="contact-box">
+            <img src="{{asset 'call-icon.png'}}" class="contact-box-icon" alt="Call Us Icon" />
+            <h3>{{dc 'call_us_title'}}</h3>
+            <p>{{dc 'call_us_description'}}</p>
+            <p><strong><a href="tel:+4402070480600">{{dc 'call_us_link'}}</a></strong></p>
+        </div>
+
+        <!-- Box 3 - Email Us -->
+        <div class="contact-box">
+            <img src="{{asset 'email-icon.png'}}" class="contact-box-icon" alt="Email Icon" />
+            <h3>{{dc 'email_us_title'}}</h3>
+            <p>{{dc 'email_us_description'}}</p>
+            <p><strong><a href="mailto:customerservices@vivobarefoot.com">{{dc 'email_us_link'}}</a></strong></p>
+        </div>
+
+    </div>
+</div>
+
   
   
     {{!--<div id="search_header_container">
@@ -366,4 +428,25 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
         window.location.href = localeOption.getAttribute('href'); // Navigate to the locale-specific URL
     });
 });
+</script>
+<script>
+// Function to check UK time and update chat status
+function updateChatStatus() {
+  var now = new Date();
+  var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
+  var currentHour = ukTime.getHours();
+  
+  var chatStatusElement = document.getElementById('chat-status');
+  if (currentHour >= 9 && currentHour < 22) {
+    chatStatusElement.classList.add('online'); // Set chat status to green
+  } else {
+    chatStatusElement.classList.remove('online'); // Set chat status to red
+  }
+}
+
+// Update chat status on page load
+updateChatStatus();
+
+// Optionally, update chat status every minute
+setInterval(updateChatStatus, 60000);
 </script>
