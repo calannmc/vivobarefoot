@@ -387,6 +387,31 @@
 
 
 <script>
+// Mapping the flags and country names based on locale
+const flagMappings = {
+    'en-US': '{{asset "usflag.png"}}',
+    'en-GB': '{{asset "ukflag.png"}}',
+    'de': '{{asset "germanflag.png"}}',
+    'sv': '{{asset "swedishflag.png"}}'
+};
+
+const countryNameMappings = {
+    'en-US': 'English (US)',
+    'en-GB': 'English (GB)',
+    'de': 'Deutsch (DE)',
+    'sv': 'Svenska (SE)'
+};
+
+// Function to set the flag and country based on the current locale
+function setFlagAndCountry(locale) {
+    const flagSrc = flagMappings[locale] || '{{asset "defaultflag.png"}}';
+    const countryName = countryNameMappings[locale] || 'English (Default)';
+
+    document.getElementById('current-flag').style.backgroundImage = `url(${flagSrc})`;
+    document.getElementById('current-flag').style.backgroundSize = 'cover';
+    document.getElementById('current-country').textContent = countryName;
+}
+
 // Function to toggle the dropdown visibility
 function toggleDropdown() {
     const dropdownMenu = document.getElementById('flag-dropdown-menu');
@@ -407,7 +432,7 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
     localeOption.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the default link behavior
 
-        // Update the flag and country name
+        const newLocale = localeOption.getAttribute('data-locale');
         const newFlagSrc = localeOption.querySelector('img').src; // Get the new flag image source
         const newCountry = localeOption.querySelector('span').textContent; // Get the new country name
 
@@ -416,9 +441,15 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
         document.getElementById('current-flag').style.backgroundSize = 'cover';
         document.getElementById('current-country').textContent = newCountry;
 
-        // Navigate to the selected locale URL
+        // Redirect to the selected locale URL
         window.location.href = localeOption.getAttribute('href');
     });
+});
+
+// Set the initial flag and country based on the current locale
+document.addEventListener('DOMContentLoaded', function () {
+    const currentLocale = HelpCenter.user.locale; // Assuming this is how you get the current locale in Zendesk
+    setFlagAndCountry(currentLocale);
 });
 
 </script>
