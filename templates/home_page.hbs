@@ -445,17 +445,24 @@ function updateChatStatus() {
     var onlineText = statusMessages[locale].online || 'Online';
     var offlineText = statusMessages[locale].offline || 'Offline';
 
+    // Log to see what will be set
+    console.log("Online Text: " + onlineText);
+    console.log("Offline Text: " + offlineText);
+
     if (currentHour >= 9 && currentHour < 22) {
         chatStatusElement.textContent = onlineText; // Set status to Online
         chatStatusElement.classList.add('online');
-        chatStatusElement.classList.remove('offline'); // Ensure offline class is removed
+        chatStatusElement.classList.remove('offline');
         console.log("Chat status set to Online");
     } else {
         chatStatusElement.textContent = offlineText; // Set status to Offline
         chatStatusElement.classList.remove('online');
-        chatStatusElement.classList.add('offline'); // Ensure offline class is added
+        chatStatusElement.classList.add('offline');
         console.log("Chat status set to Offline");
     }
+
+    // Log the current status text
+    console.log("Current Status Text: " + chatStatusElement.textContent);
 }
 
 // Update chat status on page load
@@ -463,5 +470,7 @@ updateChatStatus();
 
 // Optionally, update chat status every minute
 setInterval(updateChatStatus, 60000);
+
+console.log("Chat Status Classes: ", chatStatusElement.classList);
 
 </script>
