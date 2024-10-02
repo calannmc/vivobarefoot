@@ -35,6 +35,17 @@
     display: block !important;
 }
 
+ @media (max-width: 768px) {
+    .contact-boxes {
+      flex-direction: column;
+      align-items: center; /* Center the boxes on smaller screens */
+    }
+
+    .contact-box {
+      width: 90%; /* Make each box take up most of the width */
+      margin-bottom: 20px; /* Add some space between boxes */
+    }
+  }
 
 </style>
 <h1 class="visibility-hidden">{{ help_center.name }}</h1>
@@ -190,7 +201,7 @@
             </strong>
         </p>
     </div>
-</div>
+
 
 
  
