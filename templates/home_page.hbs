@@ -379,7 +379,7 @@
 // Function to toggle the dropdown visibility
 function toggleDropdown() {
     const dropdownMenu = document.getElementById('flag-dropdown-menu');
-    dropdownMenu.style.display = dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '' ? 'block' : 'none';
+    dropdownMenu.classList.toggle('show-dropdown');  // Toggle the visibility class
 }
 
 // Close the dropdown when clicking outside
@@ -387,13 +387,13 @@ document.addEventListener('click', function (event) {
     const flagDropdown = document.querySelector('.flag-dropdown');
     const dropdownMenu = document.getElementById('flag-dropdown-menu');
     if (!flagDropdown.contains(event.target)) {
-        dropdownMenu.style.display = 'none';
+        dropdownMenu.classList.remove('show-dropdown');
     }
 });
 
 // Set the current flag and country name based on locale
 document.addEventListener('DOMContentLoaded', function () {
-    const locale = HelpCenter.user.locale.toLowerCase(); // Fetches the locale from Zendesk and ensures lowercase
+    const locale = 'en-gb';  // Replace with logic to fetch correct locale if needed
     const currentFlag = document.getElementById('current-flag');
     const currentCountry = document.getElementById('current-country');
 
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const countryName = countryNameMappings[locale] || 'English (Default)';
 
     // Inject the correct flag and country name into the DOM
-    currentFlag.style.backgroundImage = url(${flagSrc});  // Use backticks for template literals
+    currentFlag.style.backgroundImage = `url(${flagSrc})`;  // Use backticks for template literals
     currentFlag.style.backgroundSize = 'cover';
     currentCountry.textContent = countryName;
 });
@@ -429,6 +429,7 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
         window.location.href = localeOption.getAttribute('href'); // Navigate to the locale-specific URL
     });
 });
+
 </script>
 
 <script>
