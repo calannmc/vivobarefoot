@@ -390,56 +390,34 @@
 // Function to toggle the dropdown visibility
 function toggleDropdown() {
     const dropdownMenu = document.getElementById('flag-dropdown-menu');
-    console.log("Toggling dropdown visibility"); // For debugging
-    dropdownMenu.classList.toggle('show-dropdown');  // Toggle the visibility class
+    dropdownMenu.style.display = dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '' ? 'block' : 'none';
 }
-
 
 // Close the dropdown when clicking outside
 document.addEventListener('click', function (event) {
     const flagDropdown = document.querySelector('.flag-dropdown');
     const dropdownMenu = document.getElementById('flag-dropdown-menu');
     if (!flagDropdown.contains(event.target)) {
-        dropdownMenu.classList.remove('show-dropdown');
+        dropdownMenu.style.display = 'none';
     }
 });
 
-// Set the current flag and country name based on locale
-document.addEventListener('DOMContentLoaded', function () {
-    const locale = 'en-gb';  // Replace with logic to fetch correct locale if needed
-    const currentFlag = document.getElementById('current-flag');
-    const currentCountry = document.getElementById('current-country');
-
-    // Mapping the flags and country names based on locale
-    const flagMappings = {
-        'en-us': '{{asset "usflag.png"}}',
-        'en-gb': '{{asset "ukflag.png"}}',
-        'de': '{{asset "germanflag.png"}}',
-        'sv': '{{asset "swedishflag.png"}}'
-    };
-
-    const countryNameMappings = {
-        'en-us': 'English (US)',
-        'en-gb': 'English (GB)',
-        'de': 'Deutsch (DE)',
-        'sv': 'Svenska (SE)'
-    };
-
-    // Fallback if locale is not mapped
-    const flagSrc = flagMappings[locale] || '{{asset "defaultflag.png"}}';
-    const countryName = countryNameMappings[locale] || 'English (Default)';
-
-    // Inject the correct flag and country name into the DOM
-    currentFlag.style.backgroundImage = `url(${flagSrc})`;  // Use backticks for template literals
-    currentFlag.style.backgroundSize = 'cover';
-    currentCountry.textContent = countryName;
-});
-
-// Add event listeners to each locale option to handle the URL navigation
+// Add event listeners to each locale option to update the flag and country
 document.querySelectorAll('.locale-option').forEach(function (localeOption) {
     localeOption.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the default link behavior
-        window.location.href = localeOption.getAttribute('href'); // Navigate to the locale-specific URL
+
+        // Update the flag and country name
+        const newFlagSrc = localeOption.querySelector('img').src; // Get the new flag image source
+        const newCountry = localeOption.querySelector('span').textContent; // Get the new country name
+
+        // Update the displayed flag and country name
+        document.getElementById('current-flag').style.backgroundImage = `url(${newFlagSrc})`;
+        document.getElementById('current-flag').style.backgroundSize = 'cover';
+        document.getElementById('current-country').textContent = newCountry;
+
+        // Navigate to the selected locale URL
+        window.location.href = localeOption.getAttribute('href');
     });
 });
 
