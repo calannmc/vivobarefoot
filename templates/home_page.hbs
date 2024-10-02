@@ -171,10 +171,11 @@
             <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
             <h3>{{dc 'live_chat_title'}}</h3>
             <p>{{dc 'live_chat_description'}}</p>
-            <p>
-                <!-- Chat status with green when available -->
-                <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}
-            </p>
+    <p>
+  <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a></strong>
+  <span id="chat-status" class="chat-status"></span>
+</p>
+
         </div>
 
         <!-- Box 2 - Call Us -->
