@@ -431,31 +431,37 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
 </script>
 <script>
 
-
 function updateChatStatus() {
-  var now = new Date();
-  var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
-  var currentHour = ukTime.getHours();
-  
-  console.log("Current UK Time:", ukTime.toString());
-  console.log("Current UK Hour:", currentHour);
+    var now = new Date(); // Get the current local time
+    var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" })); // Convert to UK time
+    var currentHour = ukTime.getHours(); // Get the current hour in UK time
+    
+    console.log("Current UK Time:", ukTime.toString()); // For debugging
+    console.log("Current UK Hour:", currentHour); // For debugging
 
-  var chatStatusElement = document.getElementById('chat-status');
-  var locale = HelpCenter.user.locale.split('-')[0].toLowerCase(); // Get current locale, e.g., 'en', 'de', 'sv'
-  
-  var onlineText = statusMessages[locale].online || 'Online';
-  var offlineText = statusMessages[locale].offline || 'Offline';
+    var chatStatusElement = document.getElementById('chat-status');
+    var locale = HelpCenter.user.locale.split('-')[0].toLowerCase(); // Get current locale, e.g., 'en', 'de', 'sv'
+    
+    var onlineText = statusMessages[locale].online || 'Online';
+    var offlineText = statusMessages[locale].offline || 'Offline';
 
-  if (currentHour >= 9 && currentHour < 22) {
-    chatStatusElement.textContent = onlineText; // Set status to Online
-    chatStatusElement.classList.add('online');
-    console.log("Chat status set to Online");
-  } else {
-    chatStatusElement.textContent = offlineText; // Set status to Offline
-    chatStatusElement.classList.remove('online');
-    console.log("Chat status set to Offline");
-  }
+    if (currentHour >= 9 && currentHour < 22) {
+        chatStatusElement.textContent = onlineText; // Set status to Online
+        chatStatusElement.classList.add('online');
+        chatStatusElement.classList.remove('offline'); // Ensure offline class is removed
+        console.log("Chat status set to Online");
+    } else {
+        chatStatusElement.textContent = offlineText; // Set status to Offline
+        chatStatusElement.classList.remove('online');
+        chatStatusElement.classList.add('offline'); // Ensure offline class is added
+        console.log("Chat status set to Offline");
+    }
 }
 
+// Update chat status on page load
+updateChatStatus();
+
+// Optionally, update chat status every minute
+setInterval(updateChatStatus, 60000);
 
 </script>
