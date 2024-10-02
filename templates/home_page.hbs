@@ -17,7 +17,6 @@
     margin-bottom: 10px;
   }
  .chat-status {
-  margin-left: 5px;
   font-weight: bold;
   color: red; /* Default color for Offline */
 }
@@ -174,18 +173,25 @@
 	{{!--{{dc 'opening_hours_content'}}--}}
   
   <!-- Three boxes -->
-    <div class="container contact-boxes">
+ <div class="container contact-boxes">
+    <!-- Box 1 - Live Chat -->
+    <div class="contact-box">
+        <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
+        <h3>{{dc 'live_chat_title'}}</h3>
+        <p>{{dc 'live_chat_description'}}</p>
 
-        <!-- Box 1 - Live Chat -->
-        <div class="contact-box">
-            <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
-            <h3>{{dc 'live_chat_title'}}</h3>
-            <p>{{dc 'live_chat_description'}}</p>
-<p>
-  
-  <div id="chat-status" class="chat-status">Offline</div> <!-- Default to Offline -->
-  <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a></strong>
-</p>
+        <!-- Online/Offline Status -->
+        <p id="chat-status" class="chat-status">Offline</p> <!-- Default to Offline -->
+
+        <!-- Chat now / Send a message -->
+        <p>
+            <strong>
+                <a id="chat-link" onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a>
+            </strong>
+        </p>
+    </div>
+</div>
+
 
  
 
@@ -457,57 +463,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 
+// Function to update the chat status and link text
 function updateChatStatus() {
-    try {
-        var now = new Date(); // Get the current local time
-        var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" })); // Convert to UK time
-        var currentHour = ukTime.getHours(); // Get the current hour in UK time
-        
-        console.log("Current UK Time:", ukTime.toString()); // For debugging
-        console.log("Current UK Hour:", currentHour); // For debugging
+    var now = new Date();
+    var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
+    var currentHour = ukTime.getHours();
+    
+    var chatStatusElement = document.getElementById('chat-status');
+    var chatLinkElement = document.getElementById('chat-link');
+    
+    if (currentHour >= 9 && currentHour < 22) {
+        chatStatusElement.textContent = 'Online';
+        chatStatusElement.classList.add('online');
+        chatStatusElement.classList.remove('offline');
 
-        var chatStatusElement = document.getElementById('chat-status');
-        
-        // Since HelpCenter is not defined, we'll just use 'en' as a default locale.
-        var locale = 'en';  // Replace with appropriate locale logic if needed
+        chatLinkElement.textContent = '{{dc "Chat_now"}}'; // Chat now when online
+    } else {
+        chatStatusElement.textContent = 'Offline';
+        chatStatusElement.classList.add('offline');
+        chatStatusElement.classList.remove('online');
 
-        var statusMessages = {
-            'en': { online: 'Online', offline: 'Offline' },
-            'de': { online: 'Online', offline: 'Offline' },
-            'sv': { online: 'Online', offline: 'Offline' }
-        };
-
-        var onlineText = statusMessages[locale].online || 'Online';
-        var offlineText = statusMessages[locale].offline || 'Offline';
-
-        // Log to see what will be set
-        console.log("Online Text: " + onlineText);
-        console.log("Offline Text: " + offlineText);
-
-        if (currentHour >= 9 && currentHour < 22) {
-            chatStatusElement.textContent = onlineText; // Set status to Online
-            chatStatusElement.classList.add('online');
-            chatStatusElement.classList.remove('offline');
-            console.log("Chat status set to Online");
-        } else {
-            chatStatusElement.textContent = offlineText; // Set status to Offline
-            chatStatusElement.classList.remove('online');
-            chatStatusElement.classList.add('offline');
-            console.log("Chat status set to Offline");
-        }
-
-        // Log the current status text
-        console.log("Current Status Text: " + chatStatusElement.textContent);
-    } catch (error) {
-        console.error('Error in updateChatStatus:', error);
+        chatLinkElement.textContent = '{{dc "Send_a_message"}}'; // Send a message when offline
     }
 }
 
-// Update chat status on page load
+// Call the function to update the status on page load
 updateChatStatus();
 
-// Optionally, update chat status every minute
+// Optionally, update the status every minute
 setInterval(updateChatStatus, 60000);
+
 
 
 </script>
