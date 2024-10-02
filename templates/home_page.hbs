@@ -31,7 +31,7 @@
 
 
 
-.contact-boxes {
+ .contact-boxes {
     display: flex;
     justify-content: space-around;
     margin-top: 30px;
@@ -45,7 +45,13 @@
     text-align: left!important;
     position: relative;
     display: flex;
-    flex-direction: column; /* Ensure items stack vertically */
+    flex-direction: column;
+    justify-content: space-between; /* Ensure space between content and link */
+    min-height: 300px; /* Optional: Set a consistent minimum height for boxes */
+  }
+
+  .contact-box-content {
+    flex-grow: 1; /* Push the link to the bottom */
   }
 
   .contact-box-icon {
@@ -54,19 +60,14 @@
     margin-bottom: 10px;
   }
 
-  .contact-box p {
-    margin: 0; /* Remove default margins */
-  }
-
   .contact-box a {
-    margin-top: auto; /* Push the link to the bottom */
     padding-bottom: 10px; /* Add 10px padding beneath the link */
   }
 
   @media (max-width: 768px) {
     .contact-boxes {
       flex-direction: column;
-      align-items: center; /* Center the boxes on smaller screens */
+      align-items: center;
     }
 
     .contact-box {
