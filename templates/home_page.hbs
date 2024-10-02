@@ -1,21 +1,5 @@
 <style>
-  .contact-boxes {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-  }
-  .contact-box {
-    border: 1px solid #ccc;
-    padding: 20px;
-    width: 30%;
-    text-align: left!important;
-    position: relative;
-  }
-  .contact-box-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-  }
+
  .chat-status {
   font-weight: bold;
   color: red; /* Default color for Offline */
@@ -33,6 +17,7 @@
 
 .show-dropdown {
     display: block !important;
+}
 
   .send_us_message{
     text-align:center;
@@ -46,9 +31,39 @@
 
 
 
-}
+.contact-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    flex-wrap: wrap; /* Allow boxes to wrap on smaller screens */
+  }
 
- @media (max-width: 768px) {
+  .contact-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 30%;
+    text-align: left!important;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Ensure items stack vertically */
+  }
+
+  .contact-box-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .contact-box p {
+    margin: 0; /* Remove default margins */
+  }
+
+  .contact-box a {
+    margin-top: auto; /* Push the link to the bottom */
+    padding-bottom: 10px; /* Add 10px padding beneath the link */
+  }
+
+  @media (max-width: 768px) {
     .contact-boxes {
       flex-direction: column;
       align-items: center; /* Center the boxes on smaller screens */
