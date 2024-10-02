@@ -389,23 +389,23 @@
 <script>
 // Mapping the flags and country names based on locale
 const flagMappings = {
-    'en-US': '{{asset "usflag.png"}}',
-    'en-GB': '{{asset "ukflag.png"}}',
+    'en-us': '{{asset "usflag.png"}}',  // Lowercase 'en-us' for consistency
+    'en-gb': '{{asset "ukflag.png"}}',
     'de': '{{asset "germanflag.png"}}',
     'sv': '{{asset "swedishflag.png"}}'
 };
 
 const countryNameMappings = {
-    'en-US': 'English (US)',
-    'en-GB': 'English (GB)',
+    'en-us': 'English (US)',
+    'en-gb': 'English (GB)',
     'de': 'Deutsch (DE)',
     'sv': 'Svenska (SE)'
 };
 
 // Function to set the flag and country based on the current locale
 function setFlagAndCountry(locale) {
-    const flagSrc = flagMappings[locale] || '{{asset "defaultflag.png"}}';
-    const countryName = countryNameMappings[locale] || 'English (Default)';
+    const flagSrc = flagMappings[locale.toLowerCase()] || '{{asset "defaultflag.png"}}';  // Ensure lowercase comparison
+    const countryName = countryNameMappings[locale.toLowerCase()] || 'English (Default)';
 
     document.getElementById('current-flag').style.backgroundImage = `url(${flagSrc})`;
     document.getElementById('current-flag').style.backgroundSize = 'cover';
@@ -448,7 +448,7 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
 
 // Set the initial flag and country based on the current locale
 document.addEventListener('DOMContentLoaded', function () {
-    const currentLocale = HelpCenter.user.locale; // Assuming this is how you get the current locale in Zendesk
+    const currentLocale = HelpCenter.user.locale || 'en-us'; // Default to 'en-us' if undefined
     setFlagAndCountry(currentLocale);
 });
 
