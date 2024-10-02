@@ -438,9 +438,9 @@ function updateChatStatus() {
   
   var chatStatusElement = document.getElementById('chat-status');
   if (currentHour >= 9 && currentHour < 22) {
-    chatStatusElement.classList.add('online'); // Set chat status to green
+    chatStatusElement.classList.add('online'); // Set chat status to online (green)
   } else {
-    chatStatusElement.classList.remove('online'); // Set chat status to red
+    chatStatusElement.classList.remove('online'); // Set chat status to offline (red)
   }
 }
 
@@ -449,4 +449,5 @@ updateChatStatus();
 
 // Optionally, update chat status every minute
 setInterval(updateChatStatus, 60000);
+
 </script>
