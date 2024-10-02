@@ -207,7 +207,7 @@ template {
 body {
   background-color: $background_color;
   color: $text_color;
-  font-family: 'Knockout JuniorMiddleweight', Knockout Middleweight;
+  font-family: $text_font;
   font-size: 15px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -220,7 +220,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Knockout JuniorMiddleweight', Knockout Middleweight;
+  font-family: $header_font;
   margin-top: 0;
 }
 
@@ -1245,8 +1245,7 @@ ul {
   padding:60px;
   background-color:#e8e8e8;
 }
-/***** Blocks *****/
-/* Used in Homepage#categories and Community#topics */
+
 .blocks-list {
   display: flex;
   flex-wrap: wrap;
@@ -1265,6 +1264,7 @@ ul {
   padding:2rem;
   position: relative;
   border: 1px solid $blocks_border_color;
+  font-family:$blocks_font;
   border-radius: 4px;
   box-sizing: border-box;
   color: $blocks_txt_color;
@@ -2299,7 +2299,7 @@ ul {
   -webkit-hyphens: auto;
   word-break: break-word;
   word-wrap: break-word;
-  font-family: 'Knockout Middleweight', Knockout Middleweight;
+  font-family: $text_font;
   line-height: 1.6;
   overflow-x: auto;
 }
@@ -2582,7 +2582,7 @@ ul {
   content: attr(data-follower-count);
   color: $brand_color;
   display: inline-block;
-  font-family: 'Knockout Middleweight', Knockout Middleweight;
+  font-family: $text-font;
   margin-left: 15px;
   padding-left: 10px;
   position: absolute;
@@ -2843,7 +2843,7 @@ ul {
 }
 
 .post-content {
-  font-family: 'Knockout Middleweight', Knockout Middleweight;
+  font-family: $text_font;
   line-height: 1.6;
   word-break: break-word;
 }
@@ -4737,7 +4737,7 @@ html[lang|="zh"] .search-results-description em {
 .notification {
   border: 1px solid;
   display: table;
-  font-family: 'Knockout Middleweight', Knockout Middleweight;
+  font-family: $text_font;
   font-size: 12px;
   padding: 13px 15px;
   transition: height .2s;
