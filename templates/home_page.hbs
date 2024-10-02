@@ -16,17 +16,16 @@
     height: 50px;
     margin-bottom: 10px;
   }
-  .chat-status {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: red;
-    margin-left: 5px;
-  }
-  .online {
-    background-color: green;
-  }
+ .chat-status {
+  margin-left: 5px;
+  font-weight: bold;
+  color: red; /* Default color for Offline */
+}
+
+.online {
+  color: green; /* Color for Online status */
+}
+
 </style>
 <h1 class="visibility-hidden">{{ help_center.name }}</h1>
 
@@ -171,10 +170,12 @@
             <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
             <h3>{{dc 'live_chat_title'}}</h3>
             <p>{{dc 'live_chat_description'}}</p>
-    <p>
+<p>
   <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a></strong>
-  <span id="chat-status" class="chat-status"></span>
+  <span id="chat-status" class="chat-status">Offline</span> <!-- Default to Offline -->
 </p>
+
+ 
 
         </div>
 
@@ -429,17 +430,31 @@ document.querySelectorAll('.locale-option').forEach(function (localeOption) {
 });
 </script>
 <script>
-// Function to check UK time and update chat status
+// Localization object for status messages
+var statusMessages = {
+  'en': { online: 'Online', offline: 'Offline' },
+  'de': { online: 'Online', offline: 'Offline' },
+  'sv': { online: 'Online', offline: 'Offline' }
+};
+
+// Function to determine current locale and set status
 function updateChatStatus() {
   var now = new Date();
   var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
   var currentHour = ukTime.getHours();
   
   var chatStatusElement = document.getElementById('chat-status');
+  var locale = HelpCenter.user.locale.split('-')[0].toLowerCase(); // Get current locale, e.g., 'en', 'de', 'sv'
+  
+  var onlineText = statusMessages[locale].online || 'Online';
+  var offlineText = statusMessages[locale].offline || 'Offline';
+
   if (currentHour >= 9 && currentHour < 22) {
-    chatStatusElement.classList.add('online'); // Set chat status to green
+    chatStatusElement.textContent = onlineText; // Set status to Online
+    chatStatusElement.classList.add('online');
   } else {
-    chatStatusElement.classList.remove('online'); // Set chat status to red
+    chatStatusElement.textContent = offlineText; // Set status to Offline
+    chatStatusElement.classList.remove('online');
   }
 }
 
@@ -448,4 +463,6 @@ updateChatStatus();
 
 // Optionally, update chat status every minute
 setInterval(updateChatStatus, 60000);
+
+
 </script>
