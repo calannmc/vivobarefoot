@@ -122,7 +122,7 @@
 
    <!-- Categories Section -->
 
-  <div class="container"></div>
+  <div class="container">
     <section class="section knowledge-base">
       <h2 class="visibility-hidden">{{ t 'categories' }}</h2>
       <section class="categories blocks">
@@ -173,9 +173,11 @@
             <p>{{dc 'live_chat_description'}}</p>
             <p>
                 <!-- Chat status with green when available -->
-                <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}
-            </p>
-        </div>
+          <p>
+  <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a></strong>
+  <span id="chat-status" class="chat-status"></span>
+</p>
+
 
         <!-- Box 2 - Call Us -->
         <div class="contact-box">
