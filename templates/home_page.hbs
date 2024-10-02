@@ -26,6 +26,14 @@
   color: green; /* Color for Online status */
 }
 
+#flag-dropdown-menu {
+    display: none; /* Hide by default */
+}
+
+.show-dropdown {
+    display: block; /* Show when class is toggled */
+}
+
 </style>
 <h1 class="visibility-hidden">{{ help_center.name }}</h1>
 
@@ -379,8 +387,10 @@
 // Function to toggle the dropdown visibility
 function toggleDropdown() {
     const dropdownMenu = document.getElementById('flag-dropdown-menu');
+    console.log("Toggling dropdown visibility"); // For debugging
     dropdownMenu.classList.toggle('show-dropdown');  // Toggle the visibility class
 }
+
 
 // Close the dropdown when clicking outside
 document.addEventListener('click', function (event) {
