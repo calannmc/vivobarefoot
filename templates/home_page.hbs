@@ -437,12 +437,14 @@ var statusMessages = {
   'sv': { online: 'Online', offline: 'Offline' }
 };
 
-// Function to determine current locale and set status
 function updateChatStatus() {
   var now = new Date();
   var ukTime = new Date(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
   var currentHour = ukTime.getHours();
   
+  console.log("Current UK Time:", ukTime.toString());
+  console.log("Current UK Hour:", currentHour);
+
   var chatStatusElement = document.getElementById('chat-status');
   var locale = HelpCenter.user.locale.split('-')[0].toLowerCase(); // Get current locale, e.g., 'en', 'de', 'sv'
   
@@ -452,17 +454,13 @@ function updateChatStatus() {
   if (currentHour >= 9 && currentHour < 22) {
     chatStatusElement.textContent = onlineText; // Set status to Online
     chatStatusElement.classList.add('online');
+    console.log("Chat status set to Online");
   } else {
     chatStatusElement.textContent = offlineText; // Set status to Offline
     chatStatusElement.classList.remove('online');
+    console.log("Chat status set to Offline");
   }
 }
-
-// Update chat status on page load
-updateChatStatus();
-
-// Optionally, update chat status every minute
-setInterval(updateChatStatus, 60000);
 
 
 </script>
