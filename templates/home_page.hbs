@@ -122,7 +122,7 @@
 
    <!-- Categories Section -->
 
-  <div class="container">
+  <div class="container"></div>
     <section class="section knowledge-base">
       <h2 class="visibility-hidden">{{ t 'categories' }}</h2>
       <section class="categories blocks">
@@ -173,11 +173,9 @@
             <p>{{dc 'live_chat_description'}}</p>
             <p>
                 <!-- Chat status with green when available -->
-          <p>
-  <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a></strong>
-  <span id="chat-status" class="chat-status"></span>
-</p>
-
+                <strong><a onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}
+            </p>
+        </div>
 
         <!-- Box 2 - Call Us -->
         <div class="contact-box">
@@ -416,7 +414,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const countryName = countryNameMappings[locale] || 'English (Default)';
 
     // Inject the correct flag and country name into the DOM
-    currentFlag.style.backgroundImage = `url(${flagSrc})`;  // Use backticks for template literals
+    currentFlag.style.backgroundImage = url(${flagSrc});  // Use backticks for template literals
     currentFlag.style.backgroundSize = 'cover';
     currentCountry.textContent = countryName;
 });
@@ -438,9 +436,9 @@ function updateChatStatus() {
   
   var chatStatusElement = document.getElementById('chat-status');
   if (currentHour >= 9 && currentHour < 22) {
-    chatStatusElement.classList.add('online'); // Set chat status to online (green)
+    chatStatusElement.classList.add('online'); // Set chat status to green
   } else {
-    chatStatusElement.classList.remove('online'); // Set chat status to offline (red)
+    chatStatusElement.classList.remove('online'); // Set chat status to red
   }
 }
 
@@ -449,5 +447,4 @@ updateChatStatus();
 
 // Optionally, update chat status every minute
 setInterval(updateChatStatus, 60000);
-
 </script>
