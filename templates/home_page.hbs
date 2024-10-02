@@ -27,12 +27,15 @@
 }
 
 #flag-dropdown-menu {
-    display: none; /* Hide by default */
+    display: none;
+    position: absolute;
+    z-index: 1000; /* Ensure it's on top */
 }
 
 .show-dropdown {
-    display: block; /* Show when class is toggled */
+    display: block !important;
 }
+
 
 </style>
 <h1 class="visibility-hidden">{{ help_center.name }}</h1>
