@@ -22,8 +22,8 @@
     <!-- Main content area in a white box with grey border -->
     <div class="w-3/4 bg-white border border-gray-300">
       <section id="main-content" class="section-content">
-        <!-- Full-width grey box behind the title with no padding -->
-        <header class="page-header mb-6 bg-gray-200 text-left w-full">
+        <!-- Taller grey box behind the title with no white margins -->
+        <header class="page-header mb-6 bg-gray-200 text-left w-full" style="height: 100px;">
           <h1 class="text-2xl font-bold p-4">{{section.name}}</h1>
           {{#if section.description}}
             <p class="page-header-description p-4">{{section.description}}</p>
@@ -41,19 +41,21 @@
 
 <!-- Vanilla CSS Styling -->
 <style>
-  /* Align section titles with an icon */
+  /* Ensure section titles are left-aligned with an icon */
   #sections-sidebar li {
     display: flex;
     align-items: center;
     padding: 10px;
     border: 1px solid transparent;
     cursor: pointer;
+    text-align: left; /* Ensure text is left-aligned */
   }
 
   /* Icon styling for section titles */
   #sections-sidebar li::before {
-    content: url('path_to_your_icon.svg');
+    content: url('path_to_your_icon.svg'); /* Replace with your icon's path */
     margin-right: 8px;
+    display: inline-block;
   }
 
   /* Hover effects with top and bottom borders */
@@ -65,12 +67,18 @@
   /* Remove white margins from the grey header background */
   .page-header {
     margin: 0;
+    padding: 16px; /* Increase padding if needed for a taller header */
   }
 
   /* Add padding only to article titles */
   .page-header h1,
   .page-header-description {
     padding: 0 16px;
+  }
+
+  /* Make the grey header taller */
+  .page-header {
+    height: 100px; /* Adjust height to make the grey background taller */
   }
 </style>
 
