@@ -7,16 +7,16 @@
   <!-- Start of two-column layout -->
   <div class="flex">
 
-    <!-- Sidebar with sections in boxes -->
-    <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
-      <h3 class="collapsible-sidebar-title sidenav-title">Sections</h3>
+    <!-- Sidebar in a box with sections in their own boxes -->
+    <aside id="sections-list" class="w-1/4 p-4 border border-gray-300 bg-white rounded-lg">
+      <h3 class="collapsible-sidebar-title sidenav-title mb-4">Sections</h3>
 
       <!-- Check if there are any sections -->
       {{#if section.sections.length}}
       <ul class="space-y-4">
-        <!-- Loop through sections and display them -->
+        <!-- Loop through sections and display each in a box -->
         {{#each section.sections}}
-        <li class="border border-gray-300 p-4 text-left">
+        <li class="border border-gray-300 p-4 text-left bg-gray-100 rounded-lg">
           <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
         </li>
         {{/each}}
