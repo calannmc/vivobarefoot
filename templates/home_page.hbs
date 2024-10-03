@@ -3,7 +3,7 @@
  .chat-status {
   font-weight: bold;
   color: red; /* Default color for Offline */
-  padding-bottom:5px;
+  padding:0;
 }
 
 .online {
@@ -31,8 +31,8 @@
   }
 
 .box_bottom{
-  margin-top:auto;
-  margin-bottom:10px;
+ position:relative;
+ top:100px;
 }
 
  .contact-boxes {
@@ -230,7 +230,7 @@
         <p id="chat-status" class="chat-status">Offline</p> <!-- Default to Offline -->
 
         <!-- Chat now / Send a message -->
-        <p>
+        <p style="margin:0px; padding:0px;">
   
                 <a id="chat-link" onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a>
        
