@@ -93,28 +93,33 @@
   }
 </style>
 
-<!-- JavaScript to Move Search Box and Fetch Sections -->
+<!-- JavaScript to Fetch Section, Category, and Move Search Box -->
 <script>
   $(document).ready(function() {
-    // Get the category ID from the page's data attribute or URL
-    var categoryId = {{section.category_id}}; // Ensure the category ID is passed
+    // Get the section ID from the page's data attribute or URL
+    var sectionId = {{section.id}};
 
-    // Move the search box to the end of the section list
-    $('#search-box').insertAfter('#sections-sidebar');
+    // Fetch the section details to retrieve category_id
+    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '.json', function(sectionData) {
+      var categoryId = sectionData.section.category_id;
 
-    // Fetch sections for the category
-    $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
-      var sectionsList = '';
-      if (data.sections.length > 0) {
-        $.each(data.sections, function(index, section) {
-          sectionsList += '<li>' +
-                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
-                          '</li>';
-        });
-      } else {
-        sectionsList = '<p>No sections found in this category.</p>';
-      }
-      $('#sections-sidebar').html(sectionsList);
+      // Move the search box to the end of the section list
+      $('#search-box').insertAfter('#sections-sidebar');
+
+      // Fetch sections for the category
+      $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
+        var sectionsList = '';
+        if (data.sections.length > 0) {
+          $.each(data.sections, function(index, section) {
+            sectionsList += '<li>' +
+                            '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                            '</li>';
+          });
+        } else {
+          sectionsList = '<p>No sections found in this category.</p>';
+        }
+        $('#sections-sidebar').html(sectionsList);
+      });
     });
   });
 </script>
