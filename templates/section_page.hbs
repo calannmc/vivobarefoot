@@ -71,6 +71,12 @@
     transition: border 0.3s;
   }
 
+  /* Placeholder icon before section names */
+  .category-list li::before {
+    content: url('https://via.placeholder.com/16'); /* Placeholder icon */
+    margin-right: 8px;
+  }
+
   .category-list li:hover {
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
@@ -110,18 +116,25 @@
     background-color: #e5e7eb;
     padding: 16px;
     margin-bottom: 24px;
+    margin: 0; /* Remove any margins */
+    padding-left: 0; /* Remove padding */
+    padding-right: 0;
   }
 
   .article {
     border-bottom: 1px solid #ccc;
     padding-bottom: 12px;
     margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between; /* Ensure full width for arrows */
+    width: 100%;
   }
 
   .article-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* Make it span full width */
   }
 
   .article-title a {
@@ -137,6 +150,10 @@
     color: #2d3748;
   }
 
+  .article-title a svg {
+    margin-left: auto; /* Move arrow to the right */
+  }
+
   /* Remove padding behind grey background */
   .page-header {
     margin: 0;
@@ -145,7 +162,7 @@
   }
 </style>
 
-<!-- JavaScript to Fetch Section, Category, and Move Search Bar -->
+<!-- JavaScript to Fetch Sections, Articles, and Move Search Bar -->
 <script>
   $(document).ready(function() {
     var sectionId = {{section.id}}; // Get the section ID
