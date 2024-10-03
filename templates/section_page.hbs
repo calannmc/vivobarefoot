@@ -1,12 +1,14 @@
 <div class="container-divider"></div>
+<div class="container-divider"></div>
 <div class="container">
   <nav class="sub-nav">
     {{breadcrumbs}}
   </nav>
 
   <!-- Start of two-column layout with a gap between the boxes -->
-  <div class="flex-container"> <!-- Flexbox container for layout -->
+  <div class="flex-container"> <!-- Flex container that holds both aside and main content -->
     
+    <!-- Sidebar -->
     <aside id="sections-list" class="sidebar-box">
       <!-- Search Box -->
       <div class="search-box">
@@ -23,8 +25,6 @@
         </ul>
       </div>
     </aside>
-
-   
 
     <!-- Main content area with grey border and left-aligned text -->
     <div class="main-content-box">
@@ -57,7 +57,14 @@
       </section>
     </div>
   </div>
+
+  <!-- Box for the Back to Support Page Link outside the flex container -->
+  <div class="support-box">
+    <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
+  </div>
+
 </div>
+
 
 
 
@@ -95,7 +102,7 @@
 
 <!-- Add Vanilla CSS -->
 <style>
- .flex-container {
+.flex-container {
   display: flex;
   gap: 20px;
 }
@@ -106,6 +113,13 @@
   background-color: white;
   border: 1px solid #d1d5db;
   text-align: left;
+}
+
+.main-content-box {
+  width: 75%;
+  padding: 16px;
+  background-color: white;
+  border: 1px solid #d1d5db;
 }
 
 .search-box {
@@ -157,15 +171,15 @@
   border-bottom:1px solid #374151;
 }
 
-/* Support Box */
+/* Support Box outside of flex container */
 .support-box {
-  width: 25%;
+  width: 100%; /* Make it stretch across full width */
+  margin-top: 16px;
   padding: 12px;
   background-color: white;
   border: 1px solid #d1d5db;
   text-align: center;
-  margin-top: 16px;
+  border-radius: 4px;
 }
-
 
 </style>
