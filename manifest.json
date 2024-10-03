@@ -402,33 +402,7 @@
     {
       "label": "Custom Tiles",
       "variables": [
-        {
-          "identifier": "video_tile_image",
-          "type": "file",
-          "description": "Image for the video tile",
-          "label": "Video Tile Image"
-        },
-        {
-          "identifier": "video_tile_title",
-          "type": "text",
-          "description": "Title for video tile",
-          "label": "Video Tile Title",
-          "value": "Videos"
-        },
-        {
-          "identifier": "video_tile_description",
-          "type": "text",
-          "description": "Description for the video tile",
-          "label": "Video Tile Description",
-          "value": "Recordings from prior Anchore webinars on best practice and implementation"
-        },
-        {
-          "identifier": "video_tile_url",
-          "type": "text",
-          "description": "URL for the video tile",
-          "label": "Video Tile URL",
-          "value": "https://vimeo.com/"
-        },
+        
         {
           "identifier": "tile_1",
           "type": "file",
