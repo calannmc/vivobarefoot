@@ -86,6 +86,7 @@
 </div>
 
 <script>
+<script>
   $(document).ready(function() {
     $.getJSON('/api/v2/help_center/en-us/categories.json', function(data) {
       var categoriesList = '';
@@ -100,4 +101,6 @@
       $('#categories-sidebar').html(categoriesList);
     });
   });
+</script>
+
 </script>
