@@ -8,72 +8,99 @@
   <div class="flex gap-6">
 
     <!-- Sidebar with sections and search bar -->
-    <aside id="sections-list" class="sidebar">
-      <h3 class="sidebar-title">{{dc 'support_hub'}}</h3>
+    <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
+      <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">{{dc 'support_hub'}}</h3>
 
-      <ul id="sections-sidebar" class="category-list">
+      <ul id="sections-sidebar" class="space-y-4 text-left">
         <!-- Sections will be dynamically injected via JavaScript -->
       </ul>
 
       <!-- Search Bar -->
-      <div id="search-box" class="search-container">
-        <input type="text" class="search-input" placeholder="Search sections">
+      <div class="mb-4">
+        <input type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Search sections">
       </div>
     </aside>
 
     <!-- Main content area in a white box with grey border -->
-    <div class="main-content-area">
+    <div class="w-3/4">
       <section id="main-content" class="section-content p-4">
         <!-- Full-width grey box behind the title -->
-        <header class="page-header mb-6 bg-gray-200 text-left w-full" style="margin: 0;">
+        <header class="page-header mb-0 p-4 bg-gray-200 text-left w-full">
           <h1 class="text-2xl font-bold">{{section.name}}</h1>
           {{#if section.description}}
             <p class="page-header-description">{{section.description}}</p>
           {{/if}}
         </header>
 
-        <!-- Placeholder for dynamically loaded articles -->
-        <div id="articles-list" class="article-list">
-          <!-- Articles will be dynamically loaded via JavaScript -->
+        <!-- Loop through articles, each in its own white box -->
+        <div class="sections-container">
+          {{#each articles}}
+          <div class="section-box bg-white p-4 {{#if @first}}mt-0{{/if}} mb-4 border border-gray-300">
+            <h2 class="section-tree-title text-xl font-semibold mb-4">
+              <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{title}}</a>
+            </h2>
+          </div>
+          {{/each}}
         </div>
       </section>
     </div>
   </div>
 </div>
 
+<!-- JavaScript to Fetch and Inject Sections -->
+<script>
+  $(document).ready(function() {
+    var sectionId = {{section.id}}; // Get the section ID
+
+    // Fetch section details to get category_id
+    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '.json', function(sectionData) {
+      var categoryId = sectionData.section.category_id;
+
+      // Fetch sections for the category
+      $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
+        var sectionsList = '';
+        $.each(data.sections, function(index, section) {
+          sectionsList += '<li class="flex items-center p-4 bg-white border border-gray-300 hover:border-gray-400">' +
+                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600 flex-grow">' + section.name + '</a>' +
+                          '</li>';
+        });
+        $('#sections-sidebar').html(sectionsList);
+
+        // Move the search box under the section list
+        $('#search-box').insertAfter('#sections-sidebar');
+      });
+
+      // Fetch articles for the current section
+      $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
+        var articlesList = '';
+        if (data.articles.length > 0) {
+          $.each(data.articles, function(index, article) {
+            articlesList += '<div class="section-box bg-white p-4 mb-4 border border-gray-300">' +
+                            '<h2 class="section-tree-title text-xl font-semibold mb-4">' +
+                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' +
+                            article.title +
+                            '</a>' +
+                            '</h2>' +
+                            '</div>';
+          });
+        } else {
+          articlesList = '<p>No articles found in this section.</p>';
+        }
+        $('#articles-list').html(articlesList);
+      });
+    });
+  });
+</script>
+
 <!-- CSS Styling -->
 <style>
-  .sidebar {
-    width: 25%;
-    padding: 16px;
-    background-color: white;
-    border: 1px solid #ccc;
-  }
-
-  .sidebar-title {
-    margin-bottom: 16px;
-    padding: 16px;
-    text-align: left;
-  }
-
-  .category-list {
-    list-style: none;
-    padding: 0;
-  }
-
   .category-list li {
     display: flex;
     align-items: center;
     padding: 12px;
-  
+    border: 1px solid transparent;
     cursor: pointer;
     transition: border 0.3s;
-  }
-
-  /* Placeholder icon before section names */
-  .category-list li::before {
-    content: url('{{asset '_VB_Icon.Primary.png'}}'); /* Placeholder icon */
-    margin-right: 8px;
   }
 
   .category-list li:hover {
@@ -104,108 +131,16 @@
     border-radius: 4px;
   }
 
-  .main-content-area {
-    width: 75%;
-    padding: 0;
+  .sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .section-box {
     background-color: white;
-    border: 1px solid #ccc;
-  }
-
-  .page-header {
-    background-color: #e5e7eb;
     padding: 16px;
-    margin-bottom: 24px;
-    margin: 0; /* Remove any margins */
-    padding-left: 0; /* Remove padding */
-    padding-right: 0;
-  }
-
-  .article {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 12px;
+    border: 1px solid #ccc;
     margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between; /* Ensure full width for arrows */
-    width: 100%;
-  }
-
-  .article-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 16px;
-    width: 100%; /* Make it span full width */
-  }
-
-  .article-title a {
-    color: #4a5568;
-    text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .article-title a:hover {
-    color: #2d3748;
-  }
-
-  .article-title a svg {
-    margin-left: auto; /* Move arrow to the right */
-  }
-
-  /* Remove padding behind grey background */
-  .page-header {
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
   }
 </style>
-
-<!-- JavaScript to Fetch Sections, Articles, and Move Search Bar -->
-<script>
-  $(document).ready(function() {
-    var sectionId = {{section.id}}; // Get the section ID
-
-    // Fetch section details to get category_id
-    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '.json', function(sectionData) {
-      var categoryId = sectionData.section.category_id;
-
-      // Fetch sections for the category
-      $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
-        var sectionsList = '';
-        $.each(data.sections, function(index, section) {
-          sectionsList += '<li>' +
-                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
-                          '</li>';
-        });
-        $('#sections-sidebar').html(sectionsList);
-
-        // Move the search box under the section list
-        $('#search-box').insertAfter('#sections-sidebar');
-      });
-
-      // Fetch articles for the current section
-      $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
-        var articlesList = '';
-        if (data.articles.length > 0) {
-          $.each(data.articles, function(index, article) {
-            articlesList += '<div class="article">' +
-                            '<h2 class="article-title text-xl font-semibold mb-4">' +
-                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' +
-                            article.title +
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
-                            '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
-                            '</svg>' +
-                            '</a>' +
-                            '</h2>' +
-                            '</div>';
-          });
-        } else {
-          articlesList = '<p>No articles found in this section.</p>';
-        }
-        $('#articles-list').html(articlesList);
-      });
-    });
-  });
-</script>
