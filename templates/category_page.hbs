@@ -9,8 +9,6 @@
 
     <!-- Sidebar with categories, search bar, and link to support page -->
     <aside id="categories-list" class="w-1/4 p-4 bg-white border border-gray-300">
-     
-
       <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">{{dc 'support_hub'}}</h3>
 
       <ul id="categories-sidebar" class="space-y-4 text-left">
@@ -24,7 +22,7 @@
     </aside>
 
     <!-- Main content area in a white box with grey border -->
-    <div class="w-3/4 bg-white border border-gray-300">
+    <div class="w-3/4">
       <section id="main-content" class="section-content p-4">
         <!-- Full-width grey box behind the title -->
         <header class="page-header mb-6 p-4 bg-gray-200 text-left w-full">
@@ -34,9 +32,10 @@
           {{/if}}
         </header>
 
-        <!-- Loop through sections -->
-        {{#each sections}}
-          <section class="section">
+        <!-- Loop through sections, each in its own white box -->
+        <div class="sections-container">
+          {{#each sections}}
+          <div class="section-box bg-white p-4 mb-4 border border-gray-300">
             <h2 class="section-tree-title text-xl font-semibold mb-4">
               <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
             </h2>
@@ -62,32 +61,90 @@
               </a>
               {{/if}}
             {{/if}}
-          </section>
-        {{else}}
-          <i class="category-empty">
-            <a href="{{category.url}}">{{t 'empty'}}</a>
-          </i>
-        {{/each}}
+          </div>
+          {{/each}}
+        </div>
       </section>
     </div>
   </div>
 </div>
 
-<!-- JavaScript to Fetch and Inject Categories -->
-<script>
-  $(document).ready(function() {
-    $.getJSON('/api/v2/help_center/en-us/categories.json', function(data) {
-      var categoriesList = '';
-      $.each(data.categories, function(index, category) {
-        categoriesList += '<li class="flex items-center p-4 bg-white border-t-0 border-b-0 hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300">' +
-                          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">' +
-                          '<path d="M8 0C6.346 0 5 1.346 5 3s1.346 3 3 3 3-1.346 3-3S9.654 0 8 0zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM11.5 7h-7C3.122 7 2 8.122 2 9.5v4C2 14.879 3.122 16 4.5 16h7c1.378 0 2.5-1.121 2.5-2.5v-4C14 8.122 12.878 7 11.5 7zm-7 1h7c.827 0 1.5.673 1.5 1.5v4c0 .827-.673 1.5-1.5 1.5h-7c-.827 0-1.5-.673-1.5-1.5v-4c0-.827.673-1.5 1.5-1.5z"/>' +
-                          '</svg>' +
-                          '<a href="' + category.html_url + '" class="text-gray-800 hover:text-gray-600">' + category.name + '</a>' +
-                          '</li>';
-      });
-      $('#categories-sidebar').html(categoriesList);
-    });
-  });
-</script>
+<!-- CSS Styling -->
+<style>
+  .section-box {
+    background-color: white;
+    padding: 16px;
+    border: 1px solid #ccc;
+    margin-bottom: 16px; /* Space between each box */
+  }
 
+  .sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Other styles for the rest of the layout */
+  .sidebar {
+    width: 25%;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+
+  .sidebar-title {
+    margin-bottom: 16px;
+    padding: 16px;
+    background-color: #e5e7eb;
+    text-align: left;
+  }
+
+  .category-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .category-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: border 0.3s;
+  }
+
+  .category-list li:hover {
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+  }
+
+  .category-list li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #4a5568;
+    flex-grow: 1;
+  }
+
+  .category-list li a:hover {
+    color: #2d3748;
+  }
+
+  .search-container {
+    margin-top: 16px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .main-content-area {
+    width: 75%;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+</style>
