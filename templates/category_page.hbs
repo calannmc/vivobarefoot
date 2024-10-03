@@ -7,12 +7,12 @@
   <!-- Start of two-column layout -->
   <div class="flex">
 
-    <!-- Sidebar with categories -->
-    <aside id="categories-list" class="w-1/4 pr-4 border-r border-gray-300">
+    <!-- Sidebar with sections -->
+    <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
       <h3 class="collapsible-sidebar-title sidenav-title"></h3>
       <ul class="space-y-4">
-        <!-- Each category in a box with borders -->
-        {{#each categories}}
+        <!-- Each section in a box with borders -->
+        {{#each category.sections}}
         <li class="border border-gray-300 p-4 text-left">
           <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
         </li>
