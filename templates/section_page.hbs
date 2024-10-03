@@ -68,9 +68,9 @@
   <div class="content-wrapper">
     <!-- Left aside with section list -->
     <aside class="category-aside">
-      {{#if category.sections}}
+      {{#if section.parent.sections}} <!-- Adjust to use section.parent.sections if you want to display sibling sections -->
         <ul class="category-section-list">
-          {{#each category.sections}}
+          {{#each section.parent.sections}} <!-- Loop through sibling sections -->
           <li class="category-section-list-item">
               <a href="{{url}}">
                 <span>{{name}}</span>
@@ -94,9 +94,9 @@
           {{/if}}
         </header>
 
-        {{#if section.sections}}
+        {{#if section.sections}} <!-- Use section.sections for child sections -->
           <ul class="section-list">
-            {{#each section.sections}}
+            {{#each section.sections}} <!-- Loop through child sections -->
             <li class="section-list-item">
                 <a href="{{url}}">
                   <span>{{name}}</span>
