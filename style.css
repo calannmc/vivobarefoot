@@ -481,6 +481,7 @@ h3 .send_us_message_title{
   text-align: left!important;
   position: relative;
   flex-direction: column;
+  background-color:#fff;
 
 }
 
@@ -561,6 +562,7 @@ h3 .send_us_message_title{
   max-width: 50px;
   display: flex;
   justify-content: center; /* Aligns the content inside the button */
+  background-color:#fff;
 }
 
 .button-large, input[type="submit"] {

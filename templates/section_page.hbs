@@ -54,12 +54,13 @@
 </div>
 
 <!-- JavaScript to Fetch and Inject Sections -->
-<script>
-  $(document).ready(function() {
-    var categoryId = {{section.category_id}}; // Use the correct variable to get the category ID
 
-    // Fetch sections dynamically via API
-    $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
+ <script>
+  $(document).ready(function() {
+    var sectionId = {{section.id}}; // Use section.id instead of category_id if available
+
+    // Fetch sections dynamically based on the section's parent or fixed category
+    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/sections.json', function(data) {
       var sectionsList = '';
       if (data.sections.length > 0) {
         $.each(data.sections, function(index, section) {
@@ -74,3 +75,5 @@
     });
   });
 </script>
+
+
