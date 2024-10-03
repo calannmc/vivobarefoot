@@ -4,19 +4,19 @@
     {{breadcrumbs}}
   </nav>
 
-  <!-- Start of two-column layout -->
+  <!-- Start of two-column layout with grey borders -->
   <div class="flex">
 
-    <!-- Sidebar in a white box with hover/active border effects -->
-    <aside id="sections-list" class="w-1/4 p-4 bg-white border-r border-gray-300">
-      <h3 class="collapsible-sidebar-title sidenav-title mb-4">Sections</h3>
+    <!-- Sidebar in a box with grey borders and left-aligned text -->
+    <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
+      <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">Sections</h3>
 
       <!-- Check if there are any sections -->
       {{#if section.sections.length}}
-      <ul class="space-y-4">
+      <ul class="space-y-4 text-left">
         <!-- Loop through sections -->
         {{#each section.sections}}
-        <li class="p-4 text-left bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300">
+        <li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left">
           <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
         </li>
         {{/each}}
@@ -26,10 +26,10 @@
       {{/if}}
     </aside>
 
-    <!-- Main content area in a white background box -->
-    <div class="w-3/4 pl-4 bg-white">
+    <!-- Main content area with grey border and left-aligned text -->
+    <div class="w-3/4 pl-4 bg-white border border-gray-300">
       <section id="main-content" class="section-content p-4">
-        <header class="page-header mb-6">
+        <header class="page-header mb-6 p-4 bg-gray-200 text-left">
           <h1 class="text-2xl font-bold">{{section.name}}</h1>
           {{#if section.description}}
             <p class="page-header-description">{{section.description}}</p>
@@ -38,7 +38,7 @@
 
         <!-- Articles list -->
         {{#if section.articles}}
-          <ul class="space-y-2 mb-6">
+          <ul class="space-y-2 mb-6 text-left">
             {{#each section.articles}}
             <li class="border-b border-gray-300 pb-2">
               <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
