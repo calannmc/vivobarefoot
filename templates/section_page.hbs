@@ -22,7 +22,7 @@
     <!-- Main content area with grey border and left-aligned text -->
     <div class="w-3/4 pl-4 bg-white border border-gray-300">
       <section id="main-content" class="section-content p-4">
-        <header class="page-header mb-6 p-4 bg-gray-200 text-left">
+        <header class="page-header mb-6 p-4 bg-gray-200 text-left"> <!-- text-left added here -->
           <h1 class="text-2xl font-bold">{{section.name}}</h1>
           {{#if section.description}}
             <p class="page-header-description">{{section.description}}</p>
@@ -31,7 +31,7 @@
 
         <!-- Articles list -->
         {{#if section.articles}}
-          <ul class="space-y-2 mb-6 text-left">
+          <ul class="space-y-2 mb-6 text-left"> <!-- text-left added here -->
             {{#each section.articles}}
             <li class="border-b border-gray-300 pb-2">
               <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
@@ -54,18 +54,17 @@
 </div>
 
 <!-- JavaScript to Fetch and Inject Sections -->
-
- <script>
+<script>
   $(document).ready(function() {
-    var sectionId = {{section.id}}; // Use section.id instead of category_id if available
+    var categoryId = {{section.category_id}}; // If category_id is available
 
-    // Fetch sections dynamically based on the section's parent or fixed category
-    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/sections.json', function(data) {
+    // Fetch sections dynamically via API
+    $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
       var sectionsList = '';
       if (data.sections.length > 0) {
         $.each(data.sections, function(index, section) {
           sectionsList += '<li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left">' +
-                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600 text-left">' + section.name + '</a>' +
                           '</li>';
         });
         $('#sections-sidebar').html(sectionsList);
@@ -75,5 +74,3 @@
     });
   });
 </script>
-
-
