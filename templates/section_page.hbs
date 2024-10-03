@@ -9,12 +9,23 @@
     
     <!-- Sidebar in a box with grey borders and left-aligned text -->
     <aside id="sections-list" class="sidebar-box">
+      
+      <!-- Search Box -->
+      <div class="search-box">
+        <input type="text" placeholder="Search sections..." class="search-input">
+      </div>
+      
       <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
 
       <!-- Dynamically inject sections here -->
       <ul id="sections-sidebar" class="sections-list">
         <!-- Sections will be dynamically loaded via JavaScript -->
       </ul>
+
+      <!-- Back to Support Page Link -->
+      <div class="support-link">
+        <a href="/support" class="back-link">Back to Support Page</a>
+      </div>
     </aside>
 
     <!-- Main content area with grey border and left-aligned text -->
@@ -63,10 +74,11 @@
         if (data.sections.length > 0) {
           $.each(data.sections, function(index, section) {
             sectionsList += '<li class="section-item">' +
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon">' +
+                            '<a href="' + section.html_url + '" class="section-link">' + section.name +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon-right">' +
                             '<path d="M8 0C6.346 0 5 1.346 5 3s1.346 3 3 3 3-1.346 3-3S9.654 0 8 0zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>' +
                             '</svg>' +
-                            '<a href="' + section.html_url + '" class="section-link">' + section.name + '</a>' +
+                            '</a>' +
                             '</li>';
           });
           $('#sections-sidebar').html(sectionsList);
@@ -96,6 +108,17 @@
     text-align: left;
   }
 
+  .search-box {
+    margin-bottom: 16px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+  }
+
   .sections-list {
     list-style-type: none;
     padding: 0;
@@ -104,10 +127,12 @@
   .section-item {
     padding: 12px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
     border: 1px solid #d1d5db;
     margin-bottom: 10px;
+    transition: border 0.3s;
   }
 
   .section-item:hover {
@@ -115,17 +140,33 @@
     border-bottom: 2px solid #d1d5db;
   }
 
-  .icon {
-    margin-right: 8px;
+  .icon-right {
+    margin-left: 8px;
   }
 
   .section-link {
     color: #4b5563;
     text-decoration: none;
+    flex-grow: 1;
+    text-align: left;
   }
 
   .section-link:hover {
     color: #374151;
+  }
+
+  .support-link {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .back-link {
+    color: #1d4ed8;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: #1e40af;
   }
 
   .main-content-box {
@@ -136,7 +177,7 @@
   }
 
   .page-header {
-    padding: 16px;
+    padding: 20px;
     background-color: #e5e7eb;
     text-align: left;
     width: 100%;
@@ -153,8 +194,7 @@
 
   .article-item {
     border-bottom: 1px solid #d1d5db;
-    padding-bottom: 8px;
-    padding-top: 8px;
+    padding: 16px 0; /* Extra padding top and bottom */
   }
 
   .article-link {
