@@ -7,84 +7,104 @@
   <!-- Start of two-column layout with a gap between the boxes -->
   <div class="flex gap-6">
 
-    <!-- Sidebar with sections -->
-    <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
-      <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">{{dc 'support_hub'}}</h3>
+    <!-- Sidebar with sections, search bar, and link to support page -->
+    <aside id="sections-list" class="sidebar">
+      <h3 class="sidebar-title">{{dc 'support_hub'}}</h3>
 
-      <ul id="sections-sidebar" class="section-list">
+      <ul id="sections-sidebar" class="category-list">
         <!-- Sections will be dynamically injected via JavaScript -->
       </ul>
 
-      <!-- Search box will be moved here with JavaScript -->
-      <div id="search-box" class="mb-4">
+      <!-- Search Bar -->
+      <div class="search-container">
         <input type="text" class="search-input" placeholder="Search sections">
       </div>
     </aside>
 
     <!-- Main content area in a white box with grey border -->
-    <div class="w-3/4 bg-white border border-gray-300">
-      <section id="main-content" class="section-content">
-        <!-- Taller grey box behind the title with no white margins -->
-        <header class="page-header mb-6 bg-gray-200 text-left w-full" style="height: 100px;">
+    <div class="main-content-area">
+      <section id="main-content" class="section-content p-4">
+        <!-- Full-width grey box behind the title -->
+        <header class="page-header mb-6 p-4 bg-gray-200 text-left w-full">
           <h1 class="text-2xl font-bold">{{section.name}}</h1>
           {{#if section.description}}
             <p class="page-header-description">{{section.description}}</p>
           {{/if}}
         </header>
 
-        <!-- Placeholder for dynamically loaded articles -->
-        <div id="articles-list" class="article-list">
-          <!-- Articles will be dynamically loaded here via JavaScript -->
-        </div>
+        <!-- Loop through articles -->
+        {{#each articles}}
+          <section class="article">
+            <h2 class="article-title text-xl font-semibold mb-4">
+              <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
+                {{title}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
+                </svg>
+              </a>
+            </h2>
+          </section>
+        {{else}}
+          <i class="section-empty">
+            <a href="{{section.url}}">{{t 'empty'}}</a>
+          </i>
+        {{/each}}
       </section>
     </div>
   </div>
 </div>
 
-<!-- Vanilla CSS Styling -->
+<!-- CSS Styling -->
 <style>
-  /* Ensure section titles are left-aligned with an icon */
-  .section-list li {
+  .sidebar {
+    width: 25%;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+
+  .sidebar-title {
+    margin-bottom: 16px;
+    padding: 16px;
+    background-color: #e5e7eb;
+    text-align: left;
+  }
+
+  .category-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .category-list li {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid transparent;
     cursor: pointer;
-    text-align: left;
-    list-style: none;
+    transition: border 0.3s;
   }
 
-  /* Icon styling for section titles */
-  .section-list li::before {
-    content: url('path_to_your_icon.svg');
-    margin-right: 8px;
-    display: inline-block;
-  }
-
-  /* Hover effects with top and bottom borders */
-  .section-list li:hover {
+  .category-list li:hover {
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
   }
 
-  /* Remove white margins from the grey header background */
-  .page-header {
-    margin: 0;
-    padding: 16px;
+  .category-list li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #4a5568;
+    flex-grow: 1;
   }
 
-  /* Add padding only to article titles */
-  .page-header h1,
-  .page-header-description {
-    padding: 0 16px;
+  .category-list li a:hover {
+    color: #2d3748;
   }
 
-  /* Make the grey header taller */
-  .page-header {
-    height: 100px;
+  .search-container {
+    margin-top: 16px;
   }
 
-  /* Styling for search input */
   .search-input {
     width: 100%;
     padding: 10px;
@@ -92,84 +112,53 @@
     border-radius: 4px;
   }
 
-  /* Full-width article container */
+  .main-content-area {
+    width: 75%;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+
+  .page-header {
+    background-color: #e5e7eb;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
   .article {
-    width: 100%; /* Ensure article takes full width of the box */
-    padding: 16px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
   }
 
-  /* Full-width article title */
-  .article-tree-title {
+  .article-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
   }
 
-  /* Ensure the text and arrow stay properly aligned */
-  .article-tree-title a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .article-title a {
+    color: #4a5568;
     text-decoration: none;
-    width: 100%; /* Make the link span the entire width */
-    padding-right: 16px; /* Add padding for spacing */
   }
 
-  .article-tree-title a:hover {
-    color: #555; /* Add a hover effect for better UX */
+  .article-title a:hover {
+    color: #2d3748;
   }
 </style>
 
-<!-- JavaScript to Fetch Section, Category, and Move Search Box -->
+<!-- JavaScript to Fetch and Inject Sections -->
 <script>
   $(document).ready(function() {
-    // Get the section ID from the page's data attribute or URL
-    var sectionId = {{section.id}};
-
-    // Fetch the section details to retrieve category_id
-    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '.json', function(sectionData) {
-      var categoryId = sectionData.section.category_id;
-
-      // Move the search box to the end of the section list
-      $('#search-box').insertAfter('#sections-sidebar');
-
-      // Fetch sections for the category
-      $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
-        var sectionsList = '';
-        if (data.sections.length > 0) {
-          $.each(data.sections, function(index, section) {
-            sectionsList += '<li>' +
-                            '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
-                            '</li>';
-          });
-        } else {
-          sectionsList = '<p>No sections found in this category.</p>';
-        }
-        $('#sections-sidebar').html(sectionsList);
+    // Fetch sections for the current section page
+    $.getJSON('/api/v2/help_center/en-us/sections.json', function(data) {
+      var sectionsList = '';
+      $.each(data.sections, function(index, section) {
+        sectionsList += '<li>' +
+                        '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                        '</li>';
       });
-
-      // Fetch articles for the current section
-      $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(articleData) {
-        var articlesList = '';
-        if (articleData.articles.length > 0) {
-          $.each(articleData.articles, function(index, article) {
-            articlesList += '<div class="article">' +
-                            '<h2 class="article-tree-title text-xl font-semibold mb-4">' +
-                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' + article.title +
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
-                            '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
-                            '</svg>' +
-                            '</a>' +
-                            '</h2>' +
-                            '</div>';
-          });
-        } else {
-          articlesList = '<p>No articles found in this section.</p>';
-        }
-        $('#articles-list').html(articlesList);
-      });
+      $('#sections-sidebar').html(sectionsList);
     });
   });
 </script>
