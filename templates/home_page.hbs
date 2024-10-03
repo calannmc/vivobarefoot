@@ -44,9 +44,7 @@
     width: 30%;
     text-align: left!important;
     position: relative;
-    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensure space between content and link */
     min-height: 300px; /* Optional: Set a consistent minimum height for boxes */
   }
 
@@ -58,6 +56,7 @@
     width: 50px;
     height: 50px;
     margin-bottom: 10px;
+  
   }
 
   .contact-box a {
@@ -208,10 +207,10 @@
 </div>
 <!--   CONTACT FORM -->
 <div class="container">
-  	<h3 style="text-align:center">{{dc 'still_need_help'}}</h3>
+  	<h3 style="text-align:center; margin-top:20px;">{{dc 'still_need_help'}}</h3>
 	<h1 class="intro-title">{{dc 'contact_us'}}</h1>
 	
-	<p style="text-align:center; margin-top:50px;">{{dc 'customer_service_team'}}</hp>
+	<p style="text-align:center;">{{dc 'customer_service_team'}}</hp>
 	{{!--{{dc 'opening_hours_content'}}--}}
   
   <!-- Three boxes -->
@@ -219,18 +218,20 @@
     <!-- Box 1 - Live Chat -->
     <div class="contact-box">
         <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
+        
         <h3>{{dc 'live_chat_title'}}</h3>
         <p>{{dc 'live_chat_description'}}</p>
-
+  <div class="box_bottom">
         <!-- Online/Offline Status -->
         <p id="chat-status" class="chat-status">Offline</p> <!-- Default to Offline -->
 
         <!-- Chat now / Send a message -->
         <p>
-            <strong>
+  
                 <a id="chat-link" onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a>
-            </strong>
+       
         </p>
+        </div>
     </div>
 
 
@@ -244,13 +245,15 @@
             <img src="{{asset 'call-icon.png'}}" class="contact-box-icon" alt="Call Us Icon" />
             <h3>{{dc 'call_us_title'}}</h3>
             <p>{{dc 'call_us_description'}}</p>
-            <p><strong><a href="tel:+4402070480600">{{dc 'call_us_link'}}</a></strong></p>
+            <p><a href="{{dc 'call_us_number'}}">{{dc 'call_us_link'}}</a></strong></p>
         </div>
 
         <!-- Box 3 - Email Us -->
         <div class="contact-box">
             <img src="{{asset 'whatsapp-icon.png'}}" class="contact-box-icon" alt="Whatsapp Icon" />
-            {{dc 'whatsapp_block'}}
+           <h3>{{dc 'WhatsApp_title'}}</h3>
+            <p>{{dc 'WhatsApp_description'}}</p>
+            <p>{{dc 'whatsapp_block'}}</p>
          
         </div>
 
