@@ -7,7 +7,7 @@
   <!-- Start of two-column layout with a gap between the boxes -->
   <div class="flex gap-6">
 
-    <!-- Sidebar with sections, search bar, and link to support page -->
+    <!-- Sidebar with sections and search bar -->
     <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
       <!-- Search Bar -->
       <div class="mb-4">
@@ -19,11 +19,6 @@
       <ul id="sections-sidebar" class="space-y-4 text-left">
         <!-- Sections will be dynamically injected via JavaScript -->
       </ul>
-
-      <!-- Link back to support page -->
-      <div class="mt-6">
-        <a href="/support" class="text-blue-600 hover:text-black-400 block text-center">Back to Support Page</a>
-      </div>
     </aside>
 
     <!-- Main content area in a white box with grey border -->
@@ -38,8 +33,13 @@
         </header>
 
         <!-- Placeholder for dynamically loaded articles -->
-        <div id="articles-list" class="space-y-4">
+        <div id="articles-list" class="space-y-4 text-left">
           <!-- Articles will be dynamically loaded here via JavaScript -->
+        </div>
+
+        <!-- Link back to support page after articles -->
+        <div class="mt-6">
+          <a href="/support" class="text-blue-600 hover:text-black-400 block text-center">Back to Support Page</a>
         </div>
       </section>
     </div>
@@ -57,9 +57,13 @@
       var articlesList = '';
       if (data.articles.length > 0) {
         $.each(data.articles, function(index, article) {
-          articlesList += '<div class="article">' +
+          articlesList += '<div class="article border-b border-gray-300 pb-4">' +
                           '<h2 class="article-tree-title text-xl font-semibold mb-4">' +
-                          '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' + article.title + '</a>' +
+                          '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">' + article.title +
+                          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
+                          '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
+                          '</svg>' +
+                          '</a>' +
                           '</h2>' +
                           '</div>';
         });
