@@ -358,6 +358,100 @@ ul {
   width: 1px;
   white-space: nowrap;
 }
+/***Custom styling***/
+
+ 
+#flag-dropdown-menu {
+  display: none;
+  position: absolute;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.show-dropdown {
+  display: block !important;
+}
+
+.send_us_message{
+  text-align:center;
+  text-align: center;
+  width: 33%;
+  margin: auto;
+}
+h3 .send_us_message{
+  font-weight:200;
+}
+
+.chat-status {
+  font-weight: bold;
+  color: red; /* Default color for Offline */
+  text-align: left;
+  margin-bottom: 0; /* Spacing between status and link */
+}
+
+.online {
+  color: green; /* Color for Online status */
+}
+
+.chat-link-container {
+  text-align: left; /* Center align the link */
+  margin:0;
+  padding:0;
+}
+
+.box_bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Ensures content is pushed to the bottom */
+  text-align: left; /* Aligns both status and link to the center */
+  min-height: 100px; /* Adjust height as necessary */
+}
+
+
+.contact-boxes {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Allow boxes to wrap on smaller screens */
+}
+
+.contact-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 30%;
+  text-align: left!important;
+  position: relative;
+  flex-direction: column;
+
+}
+
+/*.contact-box-content {
+  flex-grow: 1; 
+}*/
+
+.contact-box-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+
+}
+
+.contact-box a {
+  margin-top:auto;
+  padding-bottom: 10px; /* Add 10px padding beneath the link */
+  text-decoration:underline;
+}
+
+@media (max-width: 768px) {
+  .contact-boxes {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-box {
+    width: 90%; /* Make each box take up most of the width */
+    margin-bottom: 20px; /* Add some space between boxes */
+  }
+}
 
 /***** Buttons *****/
 .button, .split-button button, .section-subscribe button, .article-subscribe button, .community-follow button, .requests-table-toolbar .organization-subscribe button, .subscriptions-subscribe button, .pagination-next-link, .pagination-prev-link, .pagination-first-link, .pagination-last-link {
@@ -1437,6 +1531,27 @@ ul {
   background-image: url("$blocks_icon_10");
 }
 
+
+
+/* Mobile layout: icon on the left of text */
+@media (max-width: 768px) {
+  .blocks-item-link {
+    flex-direction: row; /* Align icon and text in a row */
+    align-items: center; /* Vertically align icon and text */
+    justify-content: flex-start; /* Align content to the left */
+  }
+
+  .blocks-item-link:before {
+    margin: 0 10px 0 0; /* Add spacing between icon and text */
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .blocks-item-title, .blocks-item-description {
+    text-align: left; /* Ensure text is left-aligned */
+  }
+}
 
 
 /***** Homepage *****/
