@@ -57,7 +57,7 @@ $(document).ready(function () {
    console.log(catName);
    
   $.getJSON('/api/v2/help_center/en-us/categories/'+catID+'/sections.json', function(data) {
-    //console.log(data.sections);
+    console.log(data.sections);
     var output = "";
     $.each(data.sections, function(idx, itm) {
      output += '<li>';
