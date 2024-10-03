@@ -751,13 +751,13 @@
         {
           "identifier": "chat_logo",
           "type": "file",
-          "description": "chat_logo",
+          "description": "Chat Logo",
           "label": "Chat icon"
         },
         {
           "identifier": "phone_logo",
           "type": "file",
-          "description": "call_logo",
+          "description": "Call Icon",
           "label": "Call icon"
         },
         {
