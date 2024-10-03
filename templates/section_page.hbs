@@ -32,23 +32,10 @@
           {{/if}}
         </header>
 
-        <!-- Loop through articles -->
-        {{#each articles}}
-          <section class="article">
-            <h2 class="article-title text-xl font-semibold mb-4">
-              <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
-                {{title}}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
-                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
-                </svg>
-              </a>
-            </h2>
-          </section>
-        {{else}}
-          <i class="section-empty">
-            <a href="{{section.url}}">{{t 'empty'}}</a>
-          </i>
-        {{/each}}
+        <!-- Placeholder for dynamically loaded articles -->
+        <div id="articles-list" class="article-list">
+          <!-- Articles will be dynamically loaded via JavaScript -->
+        </div>
       </section>
     </div>
   </div>
@@ -147,8 +134,6 @@
   }
 </style>
 
-<!-- JavaScript to Fetch and Inject Sections -->
-<script>
 <!-- JavaScript to Fetch Section, Category, and Move Search Box -->
 <script>
   $(document).ready(function() {
@@ -200,4 +185,4 @@
     });
   });
 </script>
-</script>
+
