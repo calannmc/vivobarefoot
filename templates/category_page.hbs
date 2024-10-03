@@ -76,7 +76,7 @@
     $.getJSON('/api/v2/help_center/en-us/categories.json', function(data) {
       var categoriesList = '';
       $.each(data.categories, function(index, category) {
-        categoriesList += '<li class="flex items-center p-4 bg-white border  hover:border-t border-b border-gray-400">' +
+        categoriesList += '<li class="flex items-center p-4 bg-white border-0 hover:border-t hover:border-b hover:border-gray-400">' +
                           '<a href="' + category.html_url + '" class="text-gray-800 hover:text-gray-600 flex-grow">' + category.name + '</a>' +
                           '</li>';
       });
@@ -84,6 +84,7 @@
     });
   });
 </script>
+
 
 <!-- CSS Styling -->
 <style>
