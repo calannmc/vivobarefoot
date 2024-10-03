@@ -53,29 +53,80 @@
   </div>
   <section class="quick_links">
   <h2 class="quick_links_text">{{dc 'quick_links'}}</h2>
-    <section class="section knowledge-base">
-    {{#if promoted_articles}}
-      <section class="articles">
-    
-        <ul class="article-list promoted-articles">
-          {{#each promoted_articles}}
-            <li class="promoted-articles-item">
-                <a href="{{url}}">
-                  {{title}}
+   <section class="pb-5 sm:pb-10 bg-no-repeat bg-origin-padding bg-brand-grey"></section>
+   <h2 class="section-header text-center mb-4 pt-8">Custom Tiles</h2>
+  <div class="container mx-auto text-center category-cards py-8 px-3 sm:py-10">
+   
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-8 px-5">
+{{#if settings.video_tile_title}}
+    <a href="{{settings.video_tile_url}}" id="videoTileTrigger" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+      {{#if settings.video_tile_image}}
+        <img src="{{settings.video_tile_image}}" alt="" class="w-full h-40 object-contain p-4">
+      {{/if}}
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.video_tile_title}}</h3>
+        <p class="text-base text-sm mt-2">{{settings.video_tile_description}}</p>
+      </div>
+    </a>
+  {{/if}}
+	    <!-- Lightbox Container (Initially Hidden) -->
+<div id="videoLightbox" style="display:none; position:fixed; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); z-index:1050;">
+    <div style="position:relative; width:70%; height:70%; top:50%; left:50%; transform:translate(-50%, -50%);">
+        <iframe width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+        <button onclick="closeLightbox()" style="position:absolute; top:10px; right:10px; cursor:pointer;">Close</button>
+    </div>
+</div>
 
-                  {{#if internal}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
-                      <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
-                      <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
-                    </svg>
-                  {{/if}}
-                </a>
-            </li>
-          {{/each}}
-        </ul>
-      </section>
-    {{/if}}
-  </section>
+
+     {{#if settings.tile_1_title}}
+    <a href="{{settings.tile_1_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+      {{#if settings.tile_1}}
+        <img src="{{settings.tile_1}}" alt="" class="w-full h-40 object-contain p-4">
+      {{/if}}
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_1_title}}</h3>
+        <p class="text-base text-sm mt-2">{{settings.tile_1_description}}</p>
+      </div>
+    </a>
+  {{/if}}
+
+  {{#if settings.tile_2_title}}
+    <a href="{{settings.tile_2_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+      {{#if settings.tile_2}}
+        <img src="{{settings.tile_2}}" alt="" class="w-full h-40 object-contain p-4">
+      {{/if}}
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_2_title}}</h3>
+        <p class="text-base text-sm mt-2">{{settings.tile_2_description}}</p>
+      </div>
+    </a>
+  {{/if}}
+
+  {{#if settings.tile_3_title}}
+    <a href="{{settings.tile_3_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+      {{#if settings.tile_3}}
+        <img src="{{settings.tile_3}}" alt="" class="w-full h-40 object-contain p-4">
+      {{/if}}
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_3_title}}</h3>
+        <p class="text-base text-sm mt-2">{{settings.tile_3_description}}</p>
+      </div>
+    </a>
+  {{/if}}
+
+  {{#if settings.tile_4_title}}
+    <a href="{{settings.tile_4_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+      {{#if settings.tile_4}}
+        <img src="{{settings.tile_4}}" alt="" class="w-full h-40 object-contain p-4">
+      {{/if}}
+      <div class="p-4">
+        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_4_title}}</h3>
+        <p class="text-base text-sm mt-2">{{settings.tile_4_description}}</p>
+      </div>
+    </a>
+  {{/if}}
+  </div>
+</section>
 
   </section>
 </div>
@@ -303,9 +354,34 @@
 </script>
       
       
+   <div class = "popular_articles"></div>
+    <h2>{{dc 'popular_articles_title'}}</h3>
+
+  </div>    
       
-      
-      
+     <section class="section knowledge-base"></section>
+    {{#if promoted_articles}}
+      <section class="articles">
+    
+        <ul class="article-list promoted-articles">
+          {{#each promoted_articles}}
+            <li class="promoted-articles-item">
+                <a href="{{url}}">
+                  {{title}}
+
+                  {{#if internal}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+                      <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+                      <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+                    </svg>
+                  {{/if}}
+                </a>
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{/if}}
+  </section>  
       
       
 <!--     FORM FIELD DISPLAY NONE - FIX HAMBURGER MENU ISSUE -->

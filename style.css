@@ -377,6 +377,7 @@ ul {
   width: fit-content;
   max-width:600px;
   margin: auto;
+  padding-top:1em;
 }
 h3 .send_us_message{
   font-weight:200;
