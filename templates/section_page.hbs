@@ -11,19 +11,12 @@
     <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
       <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">Sections</h3>
 
-      <!-- Check if there are any sections -->
-      {{#if section.sections.length}}
-      <ul class="space-y-4 text-left"> <!-- Added text-left to ul for proper alignment -->
-        <!-- Loop through sections -->
-        {{#each section.sections}}
-        <li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left"> <!-- Added text-left to li -->
-          <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
-        </li>
-        {{/each}}
+      <!-- Dynamically inject sections here -->
+      <ul id="sections-sidebar" class="space-y-4 text-left">
+        <!-- Sections will be dynamically loaded via JavaScript -->
       </ul>
-      {{else}}
-      <p class="text-red-500">No sections available</p>
-      {{/if}}
+
+      <p id="no-sections-message" class="text-red-500" style="display:none;">No sections available</p>
     </aside>
 
     <!-- Main content area with grey border and left-aligned text -->
@@ -59,3 +52,25 @@
     </div>
   </div>
 </div>
+
+<!-- JavaScript to Fetch and Inject Sections -->
+<script>
+  $(document).ready(function() {
+    var categoryId = {{section.category_id}}; // Use the correct variable to get the category ID
+
+    // Fetch sections dynamically via API
+    $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
+      var sectionsList = '';
+      if (data.sections.length > 0) {
+        $.each(data.sections, function(index, section) {
+          sectionsList += '<li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left">' +
+                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                          '</li>';
+        });
+        $('#sections-sidebar').html(sectionsList);
+      } else {
+        $('#no-sections-message').show();
+      }
+    });
+  });
+</script>
