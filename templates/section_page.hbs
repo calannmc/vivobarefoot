@@ -14,18 +14,18 @@
   <!-- Start of two-column layout -->
   <div class="flex">
     
-    <!-- Sidebar with sections list -->
+    <!-- Sidebar with sections in boxes -->
     <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
       <h3 class="collapsible-sidebar-title sidenav-title"></h3>
       <ul class="space-y-4">
-        <!-- Each section in a box with left-aligned text -->
+        <!-- Each section in a box with borders -->
         <li class="border border-gray-300 p-4 text-left">
           <a href="/section-1" class="text-gray-800 hover:text-gray-600">Section 1 Title</a>
         </li>
         <li class="border border-gray-300 p-4 text-left">
           <a href="/section-2" class="text-gray-800 hover:text-gray-600">Section 2 Title</a>
         </li>
-        <!-- Repeat as needed for more sections -->
+        <!-- Repeat for more sections -->
       </ul>
     </aside>
 
@@ -43,14 +43,14 @@
         </header>
 
         {{#if section.articles}}
-          <!-- Articles list with left-aligned text, border, and arrow after each article -->
-          <ul class="space-y-4">
+          <!-- Articles list with bottom border and arrow -->
+          <ul class="space-y-2">
             {{#each section.articles}}
-            <li class="relative border border-gray-300 p-4 text-left">
-              <a href="{{url}}" class="text-gray-800 hover:text-gray-600 block">
+            <li class="border-b border-gray-300 pb-2">
+              <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
                 {{title}}
-                <!-- Arrow icon positioned to the right of the article -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="absolute right-4 top-1/2 transform -translate-y-1/2" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
+                <!-- Arrow icon aligned to the right -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
                 </svg>
               </a>
