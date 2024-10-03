@@ -5,28 +5,29 @@
   </nav>
 
   <!-- Start of two-column layout with a gap between the boxes -->
- <aside id="sections-list" class="sidebar-box">
-  <!-- Search Box -->
-  <div class="search-box">
-    <input type="text" placeholder="Search sections..." class="search-input">
-  </div>
-  
-  <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
+  <div class="flex-container"> <!-- Added this div to apply the flexbox layout -->
+    
+    <aside id="sections-list" class="sidebar-box">
+      <!-- Search Box -->
+      <div class="search-box">
+        <input type="text" placeholder="Search sections..." class="search-input">
+      </div>
+      
+      <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
 
-  <!-- Sidebar content in flex layout to push the back link to the bottom -->
-  <div class="sidebar-content">
-    <!-- Dynamically inject sections here -->
-    <ul id="sections-sidebar" class="sections-list">
-      <!-- Sections will be dynamically loaded via JavaScript -->
-    </ul>
+      <!-- Sidebar content in flex layout to push the back link to the bottom -->
+      <div class="sidebar-content">
+        <!-- Dynamically inject sections here -->
+        <ul id="sections-sidebar" class="sections-list">
+          <!-- Sections will be dynamically loaded via JavaScript -->
+        </ul>
 
-    <!-- Back to Support Page Link -->
-    <div class="support-link">
-      <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
-    </div>
-  </div>
-</aside>
-
+        <!-- Back to Support Page Link -->
+        <div class="support-link">
+          <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
+        </div>
+      </div>
+    </aside>
 
     <!-- Main content area with grey border and left-aligned text -->
     <div class="main-content-box">
@@ -58,8 +59,10 @@
         {{/if}}
       </section>
     </div>
-  </div>
+    
+  </div> <!-- End of flex-container -->
 </div>
+
 
 <!-- JavaScript to Fetch and Inject Sections -->
 <script>
