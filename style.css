@@ -1532,26 +1532,39 @@ h3 .send_us_message{
 }
 
 
-
-/* Mobile layout: icon on the left of text */
 @media (max-width: 768px) {
+  .blocks-item {
+    display: flex;
+    align-items: center; /* Vertically center icon and text */
+    justify-content: flex-start; /* Align items to the start */
+    padding: 1rem; /* Reduced padding for mobile */
+  }
+
   .blocks-item-link {
+    display: flex;
     flex-direction: row; /* Align icon and text in a row */
-    align-items: center; /* Vertically align icon and text */
-    justify-content: flex-start; /* Align content to the left */
+    align-items: center; /* Center them vertically */
+    justify-content: flex-start; /* Start items from the left */
+    width: 100%; /* Ensure the link takes full width */
+    padding: 0; /* Remove internal padding to avoid extra spacing */
   }
 
   .blocks-item-link:before {
-    margin: 0 10px 0 0; /* Add spacing between icon and text */
+    margin-right: 10px; /* Add space between icon and text */
     position: relative;
     top: 0;
     left: 0;
+    width: 30px; /* Adjust icon size if needed */
+    height: 30px;
   }
 
-  .blocks-item-title, .blocks-item-description {
+  .blocks-item-title,
+  .blocks-item-description {
     text-align: left; /* Ensure text is left-aligned */
+    flex-grow: 1; /* Let the text take up the remaining space */
   }
 }
+
 
 
 /***** Homepage *****/
