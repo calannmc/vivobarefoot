@@ -4,19 +4,13 @@
     {{breadcrumbs}}
   </nav>
 
-  <!-- Start of two-column layout -->
   <div class="flex">
-
+    
     <!-- Sidebar with categories -->
     <aside id="categories-list" class="w-1/4 pr-4 border-r border-gray-300">
       <h3 class="collapsible-sidebar-title sidenav-title">Categories</h3>
-      <ul class="space-y-4">
-        <!-- Display different categories in the sidebar -->
-        {{#each help_center.categories}}
-        <li class="border border-gray-300 p-4 text-left">
-          <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
-        </li>
-        {{/each}}
+      <ul id="categories-sidebar" class="space-y-4">
+        <!-- Categories will be injected here dynamically via JS -->
       </ul>
     </aside>
 
@@ -43,7 +37,6 @@
                 <li class="border-b border-gray-300 pb-2">
                   <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
                     {{title}}
-                    <!-- Arrow icon aligned to the right of each article -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
                       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
                     </svg>
@@ -68,3 +61,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $.getJSON('/api/v2/help_center/en-us/categories.json', function(data) {
+      var categoriesList = '';
+      $.each(data.categories, function(index, category) {
+        categoriesList += '<li class="border border-gray-300 p-4 text-left">' +
+                          '<a href="' + category.html_url + '" class="text-gray-800 hover:text-gray-600">' + category.name + '</a>' +
+                          '</li>';
+      });
+      $('#categories-sidebar').html(categoriesList);
+    });
+  });
+</script>

@@ -2,27 +2,23 @@
 <div class="container">
   <nav class="sub-nav">
     {{breadcrumbs}}
-    <div class="search-container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
-      </svg>
-      {{search scoped=settings.scoped_kb_search submit=false}}
-    </div>
   </nav>
 
-  <!-- Start of two-column layout -->
   <div class="flex">
     
-   <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300"></aside>
-      <h3 class="collapsible-sidebar-title sidenav-title"></h3>
+    <!-- Sidebar with sections -->
+    <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
+      <h3 class="collapsible-sidebar-title sidenav-title">Sections</h3>
       <ul class="space-y-4">
-        <!-- Each section in a box with borders -->
-        {{#each category.sections}}
-        <li class="border border-gray-300 p-4 text-left">
-          <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
-        </li>
-        {{/each}}
+        {{#if section.parent.sections}}
+          {{#each section.parent.sections}}
+          <li class="border border-gray-300 p-4 text-left">
+            <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
+          </li>
+          {{/each}}
+        {{else}}
+          <li>No sections available</li>
+        {{/if}}
       </ul>
     </aside>
 
@@ -31,22 +27,18 @@
       <section id="main-content" class="section-content">
         <header class="page-header mb-6">
           <h1 class="text-2xl font-bold">{{section.name}}</h1>
-          {{#if settings.show_follow_section}}
-            <div class="section-subscribe">{{subscribe}}</div>
-          {{/if}}
           {{#if section.description}}
             <p class="page-header-description">{{section.description}}</p>
           {{/if}}
         </header>
 
+        <!-- Article list -->
         {{#if section.articles}}
-          <!-- Articles list with bottom border and arrow -->
-          <ul class="space-y-2">
+          <ul class="space-y-2 mb-6">
             {{#each section.articles}}
             <li class="border-b border-gray-300 pb-2">
               <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
                 {{title}}
-                <!-- Arrow icon aligned to the right -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
                 </svg>
@@ -55,12 +47,9 @@
             {{/each}}
           </ul>
         {{else}}
-          <i class="section-empty">
-            <a href="{{section.url}}">{{t 'empty'}}</a>
-          </i>
+          <i class="section-empty">No articles available.</i>
         {{/if}}
 
-        {{pagination "section.articles"}}
       </section>
     </div>
   </div>
