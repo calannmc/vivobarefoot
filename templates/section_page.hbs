@@ -120,6 +120,27 @@
         }
         $('#sections-sidebar').html(sectionsList);
       });
+
+      // Fetch articles for the current section
+      $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(articleData) {
+        var articlesList = '';
+        if (articleData.articles.length > 0) {
+          $.each(articleData.articles, function(index, article) {
+            articlesList += '<div class="article border-b border-gray-300 pb-4">' +
+                            '<h2 class="article-tree-title text-xl font-semibold mb-4">' +
+                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">' + article.title +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
+                            '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
+                            '</svg>' +
+                            '</a>' +
+                            '</h2>' +
+                            '</div>';
+          });
+        } else {
+          articlesList = '<p>No articles found in this section.</p>';
+        }
+        $('#articles-list').html(articlesList);
+      });
     });
   });
 </script>
