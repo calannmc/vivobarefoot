@@ -1,7 +1,7 @@
 {
   "name": "devTheme2024",
   "author": "Zendesk",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -402,13 +402,7 @@
     {
       "label": "Custom Tiles",
       "variables": [
-        
-        {
-          "identifier": "tile_1",
-          "type": "file",
-          "description": "Icon for the first tile",
-          "label": "Tile 1"
-        },
+  
         {
           "identifier": "tile_1_title",
           "type": "text",
@@ -430,12 +424,7 @@
           "label": "Tile 1 URL",
           "value": "https://www.zendesk.com"
         },
-        {
-          "identifier": "tile_2",
-          "type": "file",
-          "description": "Icon for the second tile",
-          "label": "Tile 2"
-        },
+
         {
           "identifier": "tile_2_title",
           "type": "text",
@@ -457,12 +446,7 @@
           "label": "Tile 2 URL",
           "value": "https://www.zendesk.com"
         },
-        {
-          "identifier": "tile_3",
-          "type": "file",
-          "description": "Icon for the third tile",
-          "label": "Tile 3"
-        },
+
         {
           "identifier": "tile_3_title",
           "type": "text",
@@ -484,12 +468,7 @@
           "label": "Tile 3 URL",
           "value": "https://www.zendesk.com"
         },
-        {
-          "identifier": "tile_4",
-          "type": "file",
-          "description": "Icon for the fourth tile",
-          "label": "Tile 4"
-        },
+
         {
           "identifier": "tile_4_title",
           "type": "text",

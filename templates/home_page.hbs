@@ -53,63 +53,50 @@
   </div>
   <section class="quick_links">
   <h2 class="quick_links_text">{{dc 'quick_links'}}</h2>
-   <section class="pb-5 sm:pb-10 bg-no-repeat bg-origin-padding bg-brand-grey"></section>
-   <h2 class="section-header text-center mb-4 pt-8">Custom Tiles</h2>
-  <div class="container mx-auto text-center category-cards py-8 px-3 sm:py-10">
-   
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-8 px-5">
+ <section class="pb-5 sm:pb-10 bg-no-repeat bg-origin-padding bg-brand-grey"></section>
 
+<div class="container mx-auto text-center category-cards py-8 px-3 sm:py-10">
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-8 px-5">
 
-
-     {{#if settings.tile_1_title}}
-    <a href="{{settings.tile_1_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-      {{#if settings.tile_1}}
-        <img src="{{settings.tile_1}}" alt="" class="w-full h-40 object-contain p-4">
-      {{/if}}
+    {{#if settings.tile_1_title}}
+    <a href="{{settings.tile_1_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg bg-white border border-gray-300">
       <div class="p-4">
         <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_1_title}}</h3>
         <p class="text-base text-sm mt-2">{{settings.tile_1_description}}</p>
       </div>
     </a>
-  {{/if}}
+    {{/if}}
 
-  {{#if settings.tile_2_title}}
-    <a href="{{settings.tile_2_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-      {{#if settings.tile_2}}
-        <img src="{{settings.tile_2}}" alt="" class="w-full h-40 object-contain p-4">
-      {{/if}}
+    {{#if settings.tile_2_title}}
+    <a href="{{settings.tile_2_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg bg-white border border-gray-300">
       <div class="p-4">
         <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_2_title}}</h3>
         <p class="text-base text-sm mt-2">{{settings.tile_2_description}}</p>
       </div>
     </a>
-  {{/if}}
+    {{/if}}
 
-  {{#if settings.tile_3_title}}
-    <a href="{{settings.tile_3_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-      {{#if settings.tile_3}}
-        <img src="{{settings.tile_3}}" alt="" class="w-full h-40 object-contain p-4">
-      {{/if}}
+    {{#if settings.tile_3_title}}
+    <a href="{{settings.tile_3_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg bg-white border border-gray-300">
       <div class="p-4">
         <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_3_title}}</h3>
         <p class="text-base text-sm mt-2">{{settings.tile_3_description}}</p>
       </div>
     </a>
-  {{/if}}
+    {{/if}}
 
-  {{#if settings.tile_4_title}}
-    <a href="{{settings.tile_4_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-      {{#if settings.tile_4}}
-        <img src="{{settings.tile_4}}" alt="" class="w-full h-40 object-contain p-4">
-      {{/if}}
+    {{#if settings.tile_4_title}}
+    <a href="{{settings.tile_4_url}}" class="group block overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg bg-white border border-gray-300">
       <div class="p-4">
         <h3 class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600">{{settings.tile_4_title}}</h3>
         <p class="text-base text-sm mt-2">{{settings.tile_4_description}}</p>
       </div>
     </a>
-  {{/if}}
+    {{/if}}
+
   </div>
-</section>
+</div>
+
 
   </section>
 </div>
