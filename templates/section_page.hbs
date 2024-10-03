@@ -12,28 +12,28 @@
   </nav>
 
   <!-- Start of two-column layout -->
-  <div class="content-wrapper" style="display: flex;">
-
+  <div class="flex">
+    
     <!-- Sidebar with sections list -->
-    <aside id="sections-list" class="sections-list collapsible-sidebar" style="width: 25%; padding-right: 20px; border-right: 1px solid #ccc;">
+    <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
       <h3 class="collapsible-sidebar-title sidenav-title"></h3>
-      <ul class="section-sidebar-list" style="list-style: none; padding: 0;">
+      <ul class="space-y-4">
         <!-- Each section in a box with left-aligned text -->
-        <li class="section-box" style="border: 1px solid #ddd; margin-bottom: 10px; padding: 10px; text-align: left;">
-          <a href="/section-1" style="text-decoration: none; color: #333;">Section 1 Title</a>
+        <li class="border border-gray-300 p-4 text-left">
+          <a href="/section-1" class="text-gray-800 hover:text-gray-600">Section 1 Title</a>
         </li>
-        <li class="section-box" style="border: 1px solid #ddd; margin-bottom: 10px; padding: 10px; text-align: left;">
-          <a href="/section-2" style="text-decoration: none; color: #333;">Section 2 Title</a>
+        <li class="border border-gray-300 p-4 text-left">
+          <a href="/section-2" class="text-gray-800 hover:text-gray-600">Section 2 Title</a>
         </li>
         <!-- Repeat as needed for more sections -->
       </ul>
     </aside>
 
     <!-- Main content area -->
-    <div class="section-container" style="width: 75%; padding-left: 20px;">
+    <div class="w-3/4 pl-4">
       <section id="main-content" class="section-content">
-        <header class="page-header">
-          <h1>{{section.name}}</h1>
+        <header class="page-header mb-6">
+          <h1 class="text-2xl font-bold">{{section.name}}</h1>
           {{#if settings.show_follow_section}}
             <div class="section-subscribe">{{subscribe}}</div>
           {{/if}}
@@ -44,13 +44,13 @@
 
         {{#if section.articles}}
           <!-- Articles list with left-aligned text, border, and arrow after each article -->
-          <ul class="article-list" style="list-style: none; padding: 0;">
+          <ul class="space-y-4">
             {{#each section.articles}}
-            <li class="article-box" style="border: 1px solid #ddd; margin-bottom: 10px; padding: 10px; text-align: left; position: relative;">
-              <a href="{{url}}" class="article-list-link" style="text-decoration: none; color: #333; display: block;">
+            <li class="relative border border-gray-300 p-4 text-left">
+              <a href="{{url}}" class="text-gray-800 hover:text-gray-600 block">
                 {{title}}
                 <!-- Arrow icon positioned to the right of the article -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="absolute right-4 top-1/2 transform -translate-y-1/2" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
                   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
                 </svg>
               </a>
