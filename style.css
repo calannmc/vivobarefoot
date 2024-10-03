@@ -554,12 +554,15 @@ h3 .send_us_message_title{
   cursor: default;
 }
 
-.feedback-button{
-  padding-top:10px;
-  padding-bottom:10px;
-  margin:auto;
-  max-width:50px;
+.feedback-button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0 auto; /* Ensure the element is centered */
+  max-width: 50px;
+  display: flex;
+  justify-content: center; /* Aligns the content inside the button */
 }
+
 .button-large, input[type="submit"] {
   cursor: pointer;
   background-color: $brand_color;
