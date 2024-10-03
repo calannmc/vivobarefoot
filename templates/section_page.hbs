@@ -5,25 +5,23 @@
   </nav>
 
   <!-- Start of two-column layout with a gap between the boxes -->
-  <div class="flex gap-6">
-
+  <div class="flex-container">
+    
     <!-- Sidebar in a box with grey borders and left-aligned text -->
-    <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
-      <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 text-left">Support Hub</h3>
+    <aside id="sections-list" class="sidebar-box">
+      <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
 
       <!-- Dynamically inject sections here -->
-      <ul id="sections-sidebar" class="space-y-4 text-left">
+      <ul id="sections-sidebar" class="sections-list">
         <!-- Sections will be dynamically loaded via JavaScript -->
       </ul>
-
-   
     </aside>
 
     <!-- Main content area with grey border and left-aligned text -->
-    <div class="w-3/4 pl-4 bg-white border border-gray-300">
-      <section id="main-content" class="section-content p-4">
-        <header class="page-header mb-6 p-4 bg-gray-200 text-left w-full h-full">
-          <h1 class="text-2xl font-bold">{{section.name}}</h1>
+    <div class="main-content-box">
+      <section id="main-content" class="section-content">
+        <header class="page-header">
+          <h1>{{section.name}}</h1>
           {{#if section.description}}
             <p class="page-header-description">{{section.description}}</p>
           {{/if}}
@@ -31,10 +29,10 @@
 
         <!-- Articles list -->
         {{#if section.articles}}
-          <ul class="space-y-2 mb-6 text-left">
+          <ul class="articles-list">
             {{#each section.articles}}
-            <li class="border-b border-gray-300 pb-2">
-              <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
+            <li class="article-item">
+              <a href="{{url}}" class="article-link">
                 {{title}}
                 <!-- Arrow icon aligned to the right -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
@@ -55,26 +53,24 @@
 <!-- JavaScript to Fetch and Inject Sections -->
 <script>
   $(document).ready(function() {
-    // Extract category ID from the URL (assumes URL pattern has category_id in it, e.g., /categories/{category_id})
     var url = window.location.href;
-    var categoryIdMatch = url.match(/categories\/(\d+)/); // Adjust regex as per your URL structure
+    var categoryIdMatch = url.match(/categories\/(\d+)/); 
     var categoryId = categoryIdMatch ? categoryIdMatch[1] : null;
 
     if (categoryId) {
-      // Fetch sections dynamically via API
       $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
         var sectionsList = '';
         if (data.sections.length > 0) {
           $.each(data.sections, function(index, section) {
-            sectionsList += '<li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left flex items-center">' +
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">' +
+            sectionsList += '<li class="section-item">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon">' +
                             '<path d="M8 0C6.346 0 5 1.346 5 3s1.346 3 3 3 3-1.346 3-3S9.654 0 8 0zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>' +
                             '</svg>' +
-                            '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                            '<a href="' + section.html_url + '" class="section-link">' + section.name + '</a>' +
                             '</li>';
           });
           $('#sections-sidebar').html(sectionsList);
-          $('#no-sections-message').hide(); // Hide message when sections are present
+          $('#no-sections-message').hide(); 
         } else {
           $('#no-sections-message').show();
         }
@@ -84,3 +80,91 @@
     }
   });
 </script>
+
+<!-- Add Vanilla CSS -->
+<style>
+  .flex-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .sidebar-box {
+    width: 25%;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    text-align: left;
+  }
+
+  .sections-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .section-item {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    margin-bottom: 10px;
+  }
+
+  .section-item:hover {
+    border-top: 2px solid #d1d5db;
+    border-bottom: 2px solid #d1d5db;
+  }
+
+  .icon {
+    margin-right: 8px;
+  }
+
+  .section-link {
+    color: #4b5563;
+    text-decoration: none;
+  }
+
+  .section-link:hover {
+    color: #374151;
+  }
+
+  .main-content-box {
+    width: 75%;
+    padding-left: 16px;
+    background-color: white;
+    border: 1px solid #d1d5db;
+  }
+
+  .page-header {
+    padding: 16px;
+    background-color: #e5e7eb;
+    text-align: left;
+    width: 100%;
+  }
+
+  .page-header h1 {
+    margin: 0;
+  }
+
+  .articles-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .article-item {
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  .article-link {
+    display: flex;
+    justify-content: space-between;
+    color: #4b5563;
+    text-decoration: none;
+  }
+
+  .article-link:hover {
+    color: #374151;
+  }
+</style>
