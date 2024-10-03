@@ -50,26 +50,36 @@
 
     // Fetch sections for the current category
     $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '.json', function(sectionData) {
+      console.log('Section data loaded:', sectionData);
       var categoryId = sectionData.section.category_id;
 
       // Fetch and inject sections into the sidebar
       $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
-        var sectionsList = '';
-        $.each(data.sections, function(index, section) {
-          sectionsList += '<li class="flex items-center p-4 bg-white border border-gray-300 hover:border-gray-400">' +
-                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600 flex-grow">' + section.name + '</a>' +
-                          '</li>';
-        });
-        $('#sections-sidebar').html(sectionsList);
+        console.log('Sections loaded:', data);
+        if (data.sections.length > 0) {
+          var sectionsList = '';
+          $.each(data.sections, function(index, section) {
+            sectionsList += '<li class="flex items-center p-4 bg-white border border-gray-300 hover:border-gray-400">' +
+                            '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600 flex-grow">' + section.name + '</a>' +
+                            '</li>';
+          });
+          $('#sections-sidebar').html(sectionsList);
 
-        // Move the search box under the section list
-        $('#search-box').insertAfter('#sections-sidebar');
+          // Move the search box under the section list
+          $('#search-box').insertAfter('#sections-sidebar');
+        } else {
+          $('#sections-sidebar').html('<p>No sections found</p>');
+        }
+      }).fail(function() {
+        console.error('Error loading sections.');
+        $('#sections-sidebar').html('<p>Error loading sections</p>');
       });
 
       // Fetch and inject articles for the current section
       $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
-        var articlesList = '';
+        console.log('Articles loaded:', data);
         if (data.articles.length > 0) {
+          var articlesList = '';
           $.each(data.articles, function(index, article) {
             articlesList += '<li class="border-b border-gray-300 pb-2 flex justify-between items-center">' +
                             '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600 flex-grow">' +
@@ -80,11 +90,16 @@
                             '</svg>' +
                             '</li>';
           });
+          $('#articles-list').html(articlesList);
         } else {
-          articlesList = '<p>No articles found in this section.</p>';
+          $('#articles-list').html('<p>No articles found</p>');
         }
-        $('#articles-list').html(articlesList);
+      }).fail(function() {
+        console.error('Error loading articles.');
+        $('#articles-list').html('<p>Error loading articles</p>');
       });
+    }).fail(function() {
+      console.error('Error loading section details.');
     });
   });
 </script>
