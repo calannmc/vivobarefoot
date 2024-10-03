@@ -32,9 +32,11 @@
           {{/if}}
         </header>
 
-        <!-- Placeholder for dynamically loaded articles -->
-        <div id="articles-list" class="article-list">
-          <!-- Articles will be dynamically loaded via JavaScript -->
+        <!-- Placeholder for articles in a single white box -->
+        <div class="articles-box bg-white p-4 mb-4 border border-gray-300">
+          <ul id="articles-list" class="article-list">
+            <!-- Articles will be dynamically loaded via JavaScript -->
+          </ul>
         </div>
       </section>
     </div>
@@ -69,16 +71,14 @@
         var articlesList = '';
         if (data.articles.length > 0) {
           $.each(data.articles, function(index, article) {
-            articlesList += '<div class="section-box bg-white p-4 mb-4 border border-gray-300">' +
-                            '<h2 class="section-tree-title text-xl font-semibold mb-4">' +
-                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' +
+            articlesList += '<li class="border-b border-gray-300 pb-2 flex justify-between items-center">' +
+                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600 flex-grow">' +
                             article.title +
+                            '</a>' +
                             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
                             '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
                             '</svg>' +
-                            '</a>' +
-                            '</h2>' +
-                            '</div>';
+                            '</li>';
           });
         } else {
           articlesList = '<p>No articles found in this section.</p>';
@@ -161,36 +161,31 @@
     margin: 0;
   }
 
-  .article {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  /* Styling for articles box */
+  .articles-box {
+    background-color: white;
+    padding: 16px;
+    border: 1px solid #ccc;
   }
 
-  .article-title {
+  .article-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    padding: 8px 0;
   }
 
-  .article-title a {
+  .article-list li a {
+    flex-grow: 1;
     color: #4a5568;
     text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
   }
 
-  .article-title a:hover {
+  .article-list li a:hover {
     color: #2d3748;
   }
 
-  .article-title a svg {
+  .article-list li svg {
     margin-left: auto;
   }
 </style>
