@@ -5,30 +5,28 @@
   </nav>
 
   <!-- Start of two-column layout with a gap between the boxes -->
-  <div class="flex-container">
-    
-    <!-- Sidebar in a box with grey borders and left-aligned text -->
-    <aside id="sections-list" class="sidebar-box">
-      
-      <!-- Search Box -->
-      <div class="search-box">
-        <input type="text" placeholder="Search sections..." class="search-input">
-      </div>
-      
-      <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
+ <aside id="sections-list" class="sidebar-box">
+  <!-- Search Box -->
+  <div class="search-box">
+    <input type="text" placeholder="Search sections..." class="search-input">
+  </div>
+  
+  <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
 
-      <!-- Dynamically inject sections here -->
-      <ul id="sections-sidebar" class="sections-list">
-        <!-- Sections will be dynamically loaded via JavaScript -->
-      </ul>
+  <!-- Sidebar content in flex layout to push the back link to the bottom -->
+  <div class="sidebar-content">
+    <!-- Dynamically inject sections here -->
+    <ul id="sections-sidebar" class="sections-list">
+      <!-- Sections will be dynamically loaded via JavaScript -->
+    </ul>
 
-      <!-- Back to Support Page Link -->
-        <!-- Link back to support page -->
-      <div class="mt-6">
-        <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
-      </div>
-    
-    </aside>
+    <!-- Back to Support Page Link -->
+    <div class="support-link">
+      <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
+    </div>
+  </div>
+</aside>
+
 
     <!-- Main content area with grey border and left-aligned text -->
     <div class="main-content-box">
@@ -211,4 +209,24 @@
   .article-link:hover {
     color: #374151;
   }
+  /* Flexbox to push the back link to the bottom */
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Sections list should take up as much space as possible */
+.sections-list {
+  list-style-type: none;
+  padding: 0;
+  flex-grow: 1;
+}
+
+/* Support link is aligned to the bottom */
+.support-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
 </style>
