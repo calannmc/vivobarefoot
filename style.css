@@ -1580,6 +1580,7 @@ h3 .send_us_message{
   .blocks-item-description {
     text-align: left; /* Ensure text aligns to the left */
     flex-grow: 1; /* Ensure text takes up remaining space */
+    padding-left:2rem;
   }
 }
 
