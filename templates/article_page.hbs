@@ -74,17 +74,27 @@
           {{/if}}
         </div>
       </section>
+<div class="article-votes">
+  <span class="article-votes-question" id="article-votes-label">{{t 'helpful'}}</span>
+  <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
+    {{#vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
+    </svg>
+    {{/vote}}
+    {{vote 'sum' class='article-vote-label'}}
+    {{#vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
+    </svg>
+    {{/vote}}
+  </div>
+  <small class="article-votes-count">
+    {{vote 'label' class='article-vote-label'}}
+  </small>
+</div>
 
-      <div class="article-votes">
-        <span class="article-votes-question" id="article-votes-label">{{dc 'helpful'}}</span>
-        <div class="article-votes-controls">
-          {{vote 'up' role='radio' class='button article-vote article-vote-up'}}
-          {{vote 'down' role='radio' class='button article-vote article-vote-down'}}
-        </div>
-        <small class="article-votes-count">
-          {{vote 'label' class='article-vote-label'}}
-        </small>
-      </div>
+     
     </article>
   </div>
 </div>
