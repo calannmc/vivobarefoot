@@ -145,45 +145,50 @@
   }
 </style>
 
-<!-- JavaScript to Fetch Sections, Articles, and Move Search Bar -->
+<!-- JavaScript to Fetch Section, Category, and Move Search Bar -->
 <script>
   $(document).ready(function() {
     var sectionId = {{section.id}}; // Get the section ID
 
-    // Fetch sections for the current category
-    $.getJSON('/api/v2/help_center/en-us/categories/{{section.category_id}}/sections.json', function(data) {
-      var sectionsList = '';
-      $.each(data.sections, function(index, section) {
-        sectionsList += '<li>' +
-                        '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
-                        '</li>';
-      });
-      $('#sections-sidebar').html(sectionsList);
-      
-      // Move the search box under the section list
-      $('#search-box').insertAfter('#sections-sidebar');
-    });
+    // Fetch section details to get category_id
+    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '.json', function(sectionData) {
+      var categoryId = sectionData.section.category_id;
 
-    // Fetch articles for the current section
-    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
-      var articlesList = '';
-      if (data.articles.length > 0) {
-        $.each(data.articles, function(index, article) {
-          articlesList += '<div class="article">' +
-                          '<h2 class="article-title text-xl font-semibold mb-4">' +
-                          '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' +
-                          article.title +
-                          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
-                          '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
-                          '</svg>' +
-                          '</a>' +
-                          '</h2>' +
-                          '</div>';
+      // Fetch sections for the category
+      $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
+        var sectionsList = '';
+        $.each(data.sections, function(index, section) {
+          sectionsList += '<li>' +
+                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                          '</li>';
         });
-      } else {
-        articlesList = '<p>No articles found in this section.</p>';
-      }
-      $('#articles-list').html(articlesList);
+        $('#sections-sidebar').html(sectionsList);
+
+        // Move the search box under the section list
+        $('#search-box').insertAfter('#sections-sidebar');
+      });
+
+      // Fetch articles for the current section
+      $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
+        var articlesList = '';
+        if (data.articles.length > 0) {
+          $.each(data.articles, function(index, article) {
+            articlesList += '<div class="article">' +
+                            '<h2 class="article-title text-xl font-semibold mb-4">' +
+                            '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' +
+                            article.title +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">' +
+                            '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>' +
+                            '</svg>' +
+                            '</a>' +
+                            '</h2>' +
+                            '</div>';
+          });
+        } else {
+          articlesList = '<p>No articles found in this section.</p>';
+        }
+        $('#articles-list').html(articlesList);
+      });
     });
   });
 </script>
