@@ -14,18 +14,15 @@
   <!-- Start of two-column layout -->
   <div class="flex">
     
-    <!-- Sidebar with sections in boxes -->
-    <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
+   <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300"></aside>
       <h3 class="collapsible-sidebar-title sidenav-title"></h3>
       <ul class="space-y-4">
         <!-- Each section in a box with borders -->
+        {{#each category.sections}}
         <li class="border border-gray-300 p-4 text-left">
-          <a href="/section-1" class="text-gray-800 hover:text-gray-600">Section 1 Title</a>
+          <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
         </li>
-        <li class="border border-gray-300 p-4 text-left">
-          <a href="/section-2" class="text-gray-800 hover:text-gray-600">Section 2 Title</a>
-        </li>
-        <!-- Repeat for more sections -->
+        {{/each}}
       </ul>
     </aside>
 
