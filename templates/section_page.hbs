@@ -7,27 +7,28 @@
   <!-- Start of two-column layout with a gap between the boxes -->
   <div class="flex-container"> <!-- Added this div to apply the flexbox layout -->
     
-    <aside id="sections-list" class="sidebar-box">
-      <!-- Search Box -->
-      <div class="search-box">
-        <input type="text" placeholder="Search sections..." class="search-input">
-      </div>
-      
-      <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
+<aside id="sections-list" class="sidebar-box">
+  <!-- Search Box -->
+  <div class="search-box">
+    <input type="text" placeholder="Search sections..." class="search-input">
+  </div>
+  
+  <h3 class="collapsible-sidebar-title sidenav-title">Support Hub</h3>
 
-      <!-- Sidebar content in flex layout to push the back link to the bottom -->
-      <div class="sidebar-content">
-        <!-- Dynamically inject sections here -->
-        <ul id="sections-sidebar" class="sections-list">
-          <!-- Sections will be dynamically loaded via JavaScript -->
-        </ul>
+  <!-- Sidebar content -->
+  <div class="sidebar-content">
+    <!-- Dynamically inject sections here -->
+    <ul id="sections-sidebar" class="sections-list">
+      <!-- Sections will be dynamically loaded via JavaScript -->
+    </ul>
+  </div>
 
-        <!-- Back to Support Page Link -->
-        <div class="support-link">
-          <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
-        </div>
-      </div>
-    </aside>
+  <!-- Box for the Back to Support Page Link -->
+  <div class="support-box">
+    <a href="/support" class="text-blue-600 hover:text-blue-400 block text-center">Back to Support Page</a>
+  </div>
+</aside>
+
 
     <!-- Main content area with grey border and left-aligned text -->
     <div class="main-content-box">
@@ -230,6 +231,87 @@
 .support-link {
   margin-top: 16px;
   text-align: center;
+}
+
+/* Sidebar container */
+.sidebar-box {
+  width: 25%;
+  padding: 16px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Support Box to match the style */
+.support-box {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  text-align: center;
+  border-radius: 4px; /* Optional: to give it rounded corners */
+}
+
+.search-box {
+  margin-bottom: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+.sections-list {
+  list-style-type: none;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.section-item {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  margin-bottom: 10px;
+  transition: border 0.3s;
+}
+
+.section-item:hover {
+  border-top: 2px solid #d1d5db;
+  border-bottom: 2px solid #d1d5db;
+}
+
+.icon-right {
+  margin-left: 8px;
+}
+
+.section-link {
+  color: #4b5563;
+  text-decoration: none;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.section-link:hover {
+  color: #374151;
+  border-top:1px solid #374151;
+  border-bottom:1px solid #374151;
+}
+
+.back-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #000;
 }
 
 </style>
