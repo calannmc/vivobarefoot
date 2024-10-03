@@ -5,20 +5,12 @@
   </nav>
 
   <div class="flex">
-    
-    <!-- Sidebar with sections -->
+
+    <!-- Sidebar with sections fetched via JavaScript -->
     <aside id="sections-list" class="w-1/4 pr-4 border-r border-gray-300">
       <h3 class="collapsible-sidebar-title sidenav-title">Sections</h3>
-      <ul class="space-y-4">
-        {{#if section.parent.sections}}
-          {{#each section.parent.sections}}
-          <li class="border border-gray-300 p-4 text-left">
-            <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
-          </li>
-          {{/each}}
-        {{else}}
-          <li>No sections available</li>
-        {{/if}}
+      <ul id="section-sidebar" class="space-y-4">
+        <!-- Sections will be injected here dynamically via JS -->
       </ul>
     </aside>
 
@@ -54,3 +46,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    var sectionID = {{section.id}}; // Ensure this is passed correctly in your context
+    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionID + '.json', function(data) {
+      var parentSectionID = data.section.parent_section_id;
+      if (parentSectionID) {
+        $.getJSON('/api/v2/help_center/en-us/sections/' + parentSectionID + '/sections.json', function(data) {
+          var sectionsList = '';
+          $.each(data.sections, function(index, section) {
+            sectionsList += '<li class="border border-gray-300 p-4 text-left">' +
+                            '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+                            '</li>';
+          });
+          $('#section-sidebar').html(sectionsList);
+        });
+      }
+    });
+  });
+</script>
