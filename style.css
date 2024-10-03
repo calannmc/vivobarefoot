@@ -374,21 +374,15 @@ ul {
 .send_us_message{
   text-align:center;
   text-align: center;
-  width: 33%;
+  width: fit-content;
+  max-width:600px;
   margin: auto;
 }
 h3 .send_us_message{
   font-weight:200;
   font-size:32px;
 }
- @media(max-width:768px){
-  .send_us_message{
-    text-align:center;
-    text-align: center;
-    width: 90%;
-    margin: auto;
-  }
- }
+
 .chat-status {
   font-weight: bold;
   color: red; /* Default color for Offline */
