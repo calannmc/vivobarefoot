@@ -3,6 +3,7 @@
  .chat-status {
   font-weight: bold;
   color: red; /* Default color for Offline */
+  padding-bottom:5px;
 }
 
 .online {
@@ -29,7 +30,10 @@
     font-weight:200;
   }
 
-
+.box_bottom{
+  margin-top:auto;
+  margin-bottom:10px;
+}
 
  .contact-boxes {
     display: flex;
@@ -245,7 +249,9 @@
             <img src="{{asset 'call-icon.png'}}" class="contact-box-icon" alt="Call Us Icon" />
             <h3>{{dc 'call_us_title'}}</h3>
             <p>{{dc 'call_us_description'}}</p>
-            <p><a href="{{dc 'call_us_number'}}">{{dc 'call_us_link'}}</a></strong></p>
+              <div class="box_bottom">
+            <p><a href="{{dc 'call_us_number'}}">{{dc 'call_us_link'}}</a></p>
+            </div>
         </div>
 
         <!-- Box 3 - Email Us -->
@@ -253,8 +259,9 @@
             <img src="{{asset 'whatsapp-icon.png'}}" class="contact-box-icon" alt="Whatsapp Icon" />
            <h3>{{dc 'WhatsApp_title'}}</h3>
             <p>{{dc 'WhatsApp_description'}}</p>
+              <div class="box_bottom">
             <p>{{dc 'whatsapp_block'}}</p>
-         
+         </div>
         </div>
 
     </div>
