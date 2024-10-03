@@ -1,17 +1,6 @@
 <style>
 
- .chat-status {
-  font-weight: bold;
-  color: red; /* Default color for Offline */
-  padding:0;
-  margin:0;
-
-}
-
-.online {
-  color: green; /* Color for Online status */
-}
-
+ 
 #flag-dropdown-menu {
     display: none;
     position: absolute;
@@ -32,10 +21,29 @@
     font-weight:200;
   }
 
-.box_bottom{
- position:relative;
- top:100px;
+.chat-status {
+    font-weight: bold;
+    color: red; /* Default color for Offline */
+    text-align: center;
+    margin-bottom: 10px; /* Spacing between status and link */
 }
+
+.online {
+    color: green; /* Color for Online status */
+}
+
+.chat-link-container {
+    text-align: center; /* Center align the link */
+}
+
+.box_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Ensures content is pushed to the bottom */
+    text-align: center; /* Aligns both status and link to the center */
+    min-height: 100px; /* Adjust height as necessary */
+}
+
 
  .contact-boxes {
     display: flex;
@@ -223,7 +231,7 @@
   <!-- Three boxes -->
  <div class="container contact-boxes">
     <!-- Box 1 - Live Chat -->
-    <div class="contact-box">
+    {{!--<div class="contact-box">
         <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
         
         <h3>{{dc 'live_chat_title'}}</h3>
@@ -240,8 +248,24 @@
        
         </p>
         </div>
-    </div>
+    </div>--}}
+<div class="contact-box"></div>
+    <img src="{{asset 'chat-icon.png'}}" class="contact-box-icon" alt="Live Chat Icon" />
+    
+    <h3>{{dc 'live_chat_title'}}</h3>
+    <p>{{dc 'live_chat_description'}}</p>
 
+    <!-- Chat status and link wrapper -->
+    <div class="box_bottom">
+        <!-- Online/Offline Status -->
+        <p id="chat-status" class="chat-status">Offline</p> <!-- Default to Offline -->
+
+        <!-- Chat now / Send a message -->
+        <p class="chat-link-container">
+            <a id="chat-link" onclick="zE('messenger', 'open');" href="#">{{dc 'Chat_now'}}</a>
+        </p>
+    </div>
+</div>
 
 
  
