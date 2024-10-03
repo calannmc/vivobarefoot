@@ -1532,38 +1532,57 @@ h3 .send_us_message{
 }
 
 
+/* Adjust the blocks on mobile to match the search bar's width */
 @media (max-width: 768px) {
   .blocks-item {
-    display: flex;
-    align-items: center; /* Vertically center icon and text */
-    justify-content: flex-start; /* Align items to the start */
-    padding: 1rem; /* Reduced padding for mobile */
+    width: 100%; /* Make the block item full width, similar to search input */
+    max-width: 100%; /* Prevent it from exceeding screen width */
+    box-sizing: border-box; /* Include padding and borders in width calculation */
+    padding: 1rem; /* Adjust padding for a rectangular shape */
+    margin: 10px 0; /* Space between blocks */
+  }
+
+  /* Ensure .blocks-list items are stacked vertically */
+  .blocks-list {
+    display: block;
+  }
+
+  /* Ensure the search and blocks-item are aligned the same */
+  .search-container,
+  .blocks-item {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Consistent styling for both search input and block items */
+  .search input[type="search"],
+  .blocks-item {
+    width: 100%; /* Ensure both take the full width of their container */
   }
 
   .blocks-item-link {
     display: flex;
     flex-direction: row; /* Align icon and text in a row */
-    align-items: center; /* Center them vertically */
-    justify-content: flex-start; /* Start items from the left */
-    width: 100%; /* Ensure the link takes full width */
-    padding: 0; /* Remove internal padding to avoid extra spacing */
+    align-items: center; /* Center content vertically */
+    padding: 0; /* Remove extra padding */
   }
 
   .blocks-item-link:before {
-    margin-right: 10px; /* Add space between icon and text */
+    margin-right: 10px; /* Space between icon and text */
     position: relative;
     top: 0;
     left: 0;
-    width: 30px; /* Adjust icon size if needed */
+    width: 30px;
     height: 30px;
   }
 
   .blocks-item-title,
   .blocks-item-description {
-    text-align: left; /* Ensure text is left-aligned */
-    flex-grow: 1; /* Let the text take up the remaining space */
+    text-align: left; /* Ensure text aligns to the left */
+    flex-grow: 1; /* Ensure text takes up remaining space */
   }
 }
+
 
 
 
