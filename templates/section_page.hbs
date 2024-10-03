@@ -31,44 +31,22 @@
       <section id="main-content" class="section-content p-4">
         <!-- Full-width grey box behind the title -->
         <header class="page-header mb-6 p-4 bg-gray-200 text-left w-full">
-          <h1 class="text-2xl font-bold">{{category.name}}</h1>
-          {{#if category.description}}
-            <p class="page-header-description">{{category.description}}</p>
+          <h1 class="text-2xl font-bold">{{section.name}}</h1>
+          {{#if section.description}}
+            <p class="page-header-description">{{section.description}}</p>
           {{/if}}
         </header>
 
-        <!-- Loop through sections -->
-        {{#each sections}}
-          <section class="section">
-            <h2 class="section-tree-title text-xl font-semibold mb-4">
-              <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
+        <!-- Loop through articles in the section -->
+        {{#each articles}}
+          <section class="article">
+            <h2 class="article-tree-title text-xl font-semibold mb-4">
+              <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{title}}</a>
             </h2>
-
-            {{#if articles}}
-              <!-- Articles list with bottom border and arrow -->
-              <ul class="space-y-2 mb-6 text-left">
-                {{#each articles}}
-                <li class="border-b border-gray-300 pb-2">
-                  <a href="{{url}}" class="text-gray-800 hover:text-gray-600 flex justify-between items-center">
-                    {{title}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
-                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 14.5l6.1-6.1c.2-.2.2-.5 0-.7L5 1.5"/>
-                    </svg>
-                  </a>
-                </li>
-                {{/each}}
-              </ul>
-
-              {{#if more_articles}}
-              <a href="{{url}}" class="see-all-articles text-blue-600 hover:text-blue-400">
-                {{t 'show_all_articles' count=article_count}}
-              </a>
-              {{/if}}
-            {{/if}}
           </section>
         {{else}}
-          <i class="category-empty">
-            <a href="{{category.url}}">{{t 'empty'}}</a>
+          <i class="section-empty">
+            <a href="{{section.url}}">{{t 'empty'}}</a>
           </i>
         {{/each}}
       </section>
@@ -79,20 +57,17 @@
 <!-- JavaScript to Fetch and Inject Sections -->
 <script>
   $(document).ready(function() {
-    // Get the category ID from the page's data attribute or URL
-    var categoryId = {{category.id}};
+    // Get the section ID from the page's data attribute or URL
+    var sectionId = {{section.id}};
 
-    $.getJSON('/api/v2/help_center/en-us/categories/' + categoryId + '/sections.json', function(data) {
-      var sectionsList = '';
-      $.each(data.sections, function(index, section) {
-        sectionsList += '<li class="flex items-center p-4 bg-white border-t-0 border-b-0 hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300">' +
-                          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">' +
-                          '<path d="M8 0C6.346 0 5 1.346 5 3s1.346 3 3 3 3-1.346 3-3S9.654 0 8 0zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM11.5 7h-7C3.122 7 2 8.122 2 9.5v4C2 14.879 3.122 16 4.5 16h7c1.378 0 2.5-1.121 2.5-2.5v-4C14 8.122 12.878 7 11.5 7zm-7 1h7c.827 0 1.5.673 1.5 1.5v4c0 .827-.673 1.5-1.5 1.5h-7c-.827 0-1.5-.673-1.5-1.5v-4c0-.827.673-1.5 1.5-1.5z"/>' +
-                          '</svg>' +
-                          '<a href="' + section.html_url + '" class="text-gray-800 hover:text-gray-600">' + section.name + '</a>' +
+    $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
+      var articlesList = '';
+      $.each(data.articles, function(index, article) {
+        articlesList += '<li class="flex items-center p-4 bg-white border-t-0 border-b-0 hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300">' +
+                          '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' + article.title + '</a>' +
                           '</li>';
       });
-      $('#sections-sidebar').html(sectionsList);
+      $('#sections-sidebar').html(articlesList);
     });
   });
 </script>
