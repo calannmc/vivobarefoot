@@ -17,16 +17,7 @@
       <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">Categories</h3>
 
       <ul id="categories-sidebar" class="space-y-4 text-left">
-        <!-- Categories injected dynamically with icons -->
-        <!-- Example category structure with an icon for each -->
-        {{#each categories}}
-        <li class="flex items-center border border-gray-300 p-4 bg-white rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
-            <path d="M8 0C6.346 0 5 1.346 5 3s1.346 3 3 3 3-1.346 3-3S9.654 0 8 0zm0 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM11.5 7h-7C3.122 7 2 8.122 2 9.5v4C2 14.879 3.122 16 4.5 16h7c1.378 0 2.5-1.121 2.5-2.5v-4C14 8.122 12.878 7 11.5 7zm-7 1h7c.827 0 1.5.673 1.5 1.5v4c0 .827-.673 1.5-1.5 1.5h-7c-.827 0-1.5-.673-1.5-1.5v-4c0-.827.673-1.5 1.5-1.5z"/>
-          </svg>
-          <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
-        </li>
-        {{/each}}
+        <!-- Categories will be dynamically injected via JavaScript -->
       </ul>
 
       <!-- Link back to support page -->
@@ -85,7 +76,7 @@
   </div>
 </div>
 
-<script>
+<!-- JavaScript to Fetch and Inject Categories -->
 <script>
   $(document).ready(function() {
     $.getJSON('/api/v2/help_center/en-us/categories.json', function(data) {
@@ -101,6 +92,4 @@
       $('#categories-sidebar').html(categoriesList);
     });
   });
-</script>
-
 </script>
