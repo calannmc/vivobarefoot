@@ -37,37 +37,36 @@
           {{/if}}
         </header>
 
-        <!-- Loop through articles in the section -->
-        {{#each articles}}
-          <section class="article">
-            <h2 class="article-tree-title text-xl font-semibold mb-4">
-              <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{title}}</a>
-            </h2>
-          </section>
-        {{else}}
-          <i class="section-empty">
-            <a href="{{section.url}}">{{t 'empty'}}</a>
-          </i>
-        {{/each}}
+        <!-- Placeholder for dynamically loaded articles -->
+        <div id="articles-list" class="space-y-4">
+          <!-- Articles will be dynamically loaded here via JavaScript -->
+        </div>
       </section>
     </div>
   </div>
 </div>
 
-<!-- JavaScript to Fetch and Inject Sections -->
+<!-- JavaScript to Fetch and Inject Articles -->
 <script>
   $(document).ready(function() {
     // Get the section ID from the page's data attribute or URL
     var sectionId = {{section.id}};
 
+    // Fetch articles for the section
     $.getJSON('/api/v2/help_center/en-us/sections/' + sectionId + '/articles.json', function(data) {
       var articlesList = '';
-      $.each(data.articles, function(index, article) {
-        articlesList += '<li class="flex items-center p-4 bg-white border-t-0 border-b-0 hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300">' +
+      if (data.articles.length > 0) {
+        $.each(data.articles, function(index, article) {
+          articlesList += '<div class="article">' +
+                          '<h2 class="article-tree-title text-xl font-semibold mb-4">' +
                           '<a href="' + article.html_url + '" class="text-gray-800 hover:text-gray-600">' + article.title + '</a>' +
-                          '</li>';
-      });
-      $('#sections-sidebar').html(articlesList);
+                          '</h2>' +
+                          '</div>';
+        });
+      } else {
+        articlesList = '<p>No articles found in this section.</p>';
+      }
+      $('#articles-list').html(articlesList);
     });
   });
 </script>
