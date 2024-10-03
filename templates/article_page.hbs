@@ -5,7 +5,6 @@
   </nav>
 
   <div class="article-container" id="article-container">
-    <!-- Sidebar with Articles in Section -->
     <aside class="article-sidebar" aria-labelledby="section-articles-title">
       {{#if settings.show_articles_in_section}}
         <div class="collapsible-sidebar">
@@ -21,10 +20,10 @@
             {{t 'articles_in_section'}}
           </span>
           <div class="collapsible-sidebar-body">
-            <ul class="category-list">
+            <ul>
               {{#each section.articles}}
-                <li class="flex items-center p-4 bg-white border-0 hover:border-t hover:border-b hover:border-gray-400">
-                  <a href="{{url}}" class="sidenav-item {{#is id ../article.id}}current-article{{/is}} text-gray-800 hover:text-gray-600 flex-grow">{{title}}</a>
+                <li>
+                  <a href="{{url}}" class="sidenav-item {{#is id ../article.id}}current-article{{/is}}">{{title}}</a>
                 </li>
               {{/each}}
             </ul>
@@ -36,32 +35,63 @@
       {{/if}}
     </aside>
 
-    <!-- Main Article Content Area -->
-    <article id="main-content" class="article main-content-area">
-      <header class="article-header page-header bg-gray-200 p-4 w-full mb-6">
-        <h1 class="article-title text-2xl font-bold">{{article.title}}</h1>
-        <div class="article-meta">
-          <div class="article-author">
+    <article id="main-content" class="article">
+      <header class="article-header">
+        <h1 title="{{article.title}}" class="article-title">
+          {{article.title}}
+          {{#if article.internal}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+              <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+              <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+            </svg>
+          {{/if}}
+        </h1>
+
+        <div class="article-author">
+          {{#if settings.show_article_author}}
+            <div class="avatar article-avatar">
+              {{#if article.author.agent}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent">
+                  <path fill="currentColor" d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2.3 7H3.7c-.3 0-.4-.3-.3-.5C3.9 7.6 4.9 7 6 7s2.1.6 2.6 1.5c.1.2 0 .5-.3.5z"/>
+                </svg>
+              {{/if}}
+              <img src="{{article.author.avatar_url}}" alt="" class="user-avatar"/>
+            </div>
+          {{/if}}
+          <div class="article-meta">
             {{#if settings.show_article_author}}
-              <img src="{{article.author.avatar_url}}" alt="" class="user-avatar">
-              <span>{{article.author.name}}</span>
+              {{#link 'user_profile' id=article.author.id}}
+                {{article.author.name}}
+              {{/link}}
             {{/if}}
+
+            <ul class="meta-group">
+              {{#is article.created_at article.edited_at}}
+                <li class="meta-data">{{date article.created_at timeago=true}}</li>
+              {{else}}
+                <li class="meta-data">{{date article.edited_at timeago=true}}</li>
+                <li class="meta-data">{{t 'updated'}}</li>
+              {{/is}}
+            </ul>
           </div>
-          <ul class="meta-group">
-            <li class="meta-data">{{date article.edited_at timeago=true}}</li>
-          </ul>
         </div>
+
+        {{#if settings.show_follow_article}}
+          <div class="article-subscribe">{{subscribe}}</div>
+        {{/if}}
       </header>
 
       <section class="article-info">
-        <div class="article-content bg-white p-4 mb-4 border border-gray-300">
+        <div class="article-content">
           <div class="article-body">{{article.body}}</div>
-          
           {{#if attachments}}
             <div class="article-attachments">
               <ul class="attachments">
                 {{#each attachments}}
                   <li class="attachment-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="attachment-icon">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M9.5 4v7.7c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5V3C6.5 1.6 7.6.5 9 .5s2.5 1.1 2.5 2.5v9c0 1.9-1.6 3.5-3.5 3.5S4.5 13.9 4.5 12V4"/>
+                    </svg>
                     <a href="{{url}}" target="_blank">{{name}}</a>
                     <div class="attachment-meta meta-group">
                       <span class="attachment-meta-item meta-data">{{size}}</span>
@@ -72,113 +102,29 @@
               </ul>
             </div>
           {{/if}}
+
+          <!-- Vote Component -->
+          <div class="article-votes">
+            <span class="article-votes-question" id="article-votes-label">{{dc 'helpful'}}</span>
+            <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
+              {{#vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
+              </svg>
+              {{/vote}}
+              {{vote 'sum' class='article-vote-label'}}
+              {{#vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
+              </svg>
+              {{/vote}}
+            </div>
+            <small class="article-votes-count">
+              {{vote 'label' class='article-vote-label'}}
+            </small>
+          </div>
         </div>
       </section>
-<div class="article-votes">
-  <span class="article-votes-question" id="article-votes-label">{{t 'helpful'}}</span>
-  <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
-    {{#vote 'up' role='radio' class='button article-vote article-vote-up' selected_class="button-primary"}}
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
-    </svg>
-    {{/vote}}
-    {{vote 'sum' class='article-vote-label'}}
-    {{#vote 'down' role='radio' class='button article-vote article-vote-down' selected_class="button-primary"}}
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 6.5l3.6 3.6c.2.2.5.2.7 0L12 6.5"/>
-    </svg>
-    {{/vote}}
-  </div>
-  <small class="article-votes-count">
-    {{vote 'label' class='article-vote-label'}}
-  </small>
-</div>
-
-     
     </article>
   </div>
 </div>
-
-<!-- CSS Styling to Match Section and Category Pages -->
-<style>
-  .article-sidebar {
-    width: 25%;
-    padding: 16px;
-    background-color: white;
-    border: 1px solid #ccc;
-  }
-
-  .sidebar-title {
-    margin-bottom: 16px;
-    padding: 16px;
-    background-color: #e5e7eb;
-    text-align: left;
-  }
-
-  .category-list li {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: border 0.3s;
-  }
-
-  .category-list li:hover {
-    border-top: 2px solid gray;
-    border-bottom: 2px solid gray;
-  }
-
-  .category-list li a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #4a5568;
-    flex-grow: 1;
-  }
-
-  .category-list li a:hover {
-    color: #2d3748;
-  }
-
-  .main-content-area {
-    width: 75%;
-    padding: 16px;
-    background-color: white;
-    border: 1px solid #ccc;
-  }
-
-  .page-header {
-    background-color: #e5e7eb;
-    padding: 16px;
-    margin-bottom: 24px;
-    margin: 0;
-  }
-
-  .article-body {
-    padding: 16px;
-  }
-
-  .article-votes {
-    margin-top: 16px;
-  }
-
-  .article-votes-controls {
-    display: flex;
-    gap: 10px;
-  }
-
-  .article-attachments {
-    margin-top: 16px;
-  }
-
-  .attachment-item {
-    margin-bottom: 8px;
-  }
-
-  .attachment-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4px;
-  }
-</style>
