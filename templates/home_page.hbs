@@ -50,9 +50,9 @@
     min-height: 300px; /* Optional: Set a consistent minimum height for boxes */
   }
 
-  .contact-box-content {
-    flex-grow: 1; /* Push the link to the bottom */
-  }
+  /*.contact-box-content {
+    flex-grow: 1; 
+  }*/
 
   .contact-box-icon {
     width: 50px;
@@ -61,6 +61,7 @@
   }
 
   .contact-box a {
+    margin-top:auto;
     padding-bottom: 10px; /* Add 10px padding beneath the link */
   }
 
@@ -504,7 +505,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
-
 <script>
 
 // Function to update the chat status and link text
@@ -528,8 +528,11 @@ function updateChatStatus() {
         chatStatusElement.classList.remove('online');
 
         chatLinkElement.textContent = '{{dc "Send_a_message"}}'; // Send a message when offline
+        chatLinkElement.removeAttribute('onclick'); // Remove the chat opening action
+        chatLinkElement.setAttribute('href', "https://support.vivobarefoot.com/hc/en-gb/requests/new"); // Redirects to the contact page
     }
-}
+    }
+
 
 // Call the function to update the status on page load
 updateChatStatus();
