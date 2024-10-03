@@ -46,7 +46,32 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   }
+// sections
 
+$(document).ready(function () {
+
+  var catID = $('.breadcrumbs li:nth-child(2) a').attr('href').match(/[0-9]+/);
+   
+   var catName = $('.breadcrumbs li:nth-child(2) a').text();
+   var dumpCatName = $('.collapsible-sidebar-title.sidenav-title').text(catName);
+   console.log(catName);
+   
+  $.getJSON('/api/v2/help_center/en-us/categories/'+catID+'/sections.json', function(data) {
+    //console.log(data.sections);
+    var output = "";
+    $.each(data.sections, function(idx, itm) {
+     output += '<li>';
+     output += '<a href="'+itm.html_url+'">'+itm.name+'</a>';
+     output += '</li>';
+    });
+   $('#sections-list').append('<ul>'+output+'</ul>')
+  });
+   
+ });
+ 
+ 
+ 
+ 
   // Social share popups
   Array.prototype.forEach.call(document.querySelectorAll('.share a'), function(anchor) {
     anchor.addEventListener('click', function(e) {
