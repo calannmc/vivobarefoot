@@ -9,9 +9,6 @@
 
     <!-- Sidebar with sections and search bar -->
     <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
-      <!-- Search Bar -->
-      
-
       <h3 class="collapsible-sidebar-title sidenav-title mb-4 p-4 bg-gray-200 text-left">{{dc 'support_hub'}}</h3>
 
       <ul id="sections-sidebar" class="space-y-4 text-left">
@@ -24,12 +21,12 @@
 
     <!-- Main content area in a white box with grey border -->
     <div class="w-3/4 bg-white border border-gray-300">
-      <section id="main-content" class="section-content p-4">
-        <!-- Full-width grey box behind the title -->
-        <header class="page-header mb-6 p-4 bg-gray-200 text-left w-full">
-          <h1 class="text-2xl font-bold">{{section.name}}</h1>
+      <section id="main-content" class="section-content">
+        <!-- Full-width grey box behind the title with no padding -->
+        <header class="page-header mb-6 bg-gray-200 text-left w-full">
+          <h1 class="text-2xl font-bold p-4">{{section.name}}</h1>
           {{#if section.description}}
-            <p class="page-header-description">{{section.description}}</p>
+            <p class="page-header-description p-4">{{section.description}}</p>
           {{/if}}
         </header>
 
@@ -37,13 +34,45 @@
         <div id="articles-list" class="space-y-4 text-left">
           <!-- Articles will be dynamically loaded here via JavaScript -->
         </div>
-
-        <!-- Link back to support page after articles -->
-       
       </section>
     </div>
   </div>
 </div>
+
+<!-- Vanilla CSS Styling -->
+<style>
+  /* Align section titles with an icon */
+  #sections-sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  /* Icon styling for section titles */
+  #sections-sidebar li::before {
+    content: url('path_to_your_icon.svg');
+    margin-right: 8px;
+  }
+
+  /* Hover effects with top and bottom borders */
+  #sections-sidebar li:hover {
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+  }
+
+  /* Remove white margins from the grey header background */
+  .page-header {
+    margin: 0;
+  }
+
+  /* Add padding only to article titles */
+  .page-header h1,
+  .page-header-description {
+    padding: 0 16px;
+  }
+</style>
 
 <!-- JavaScript to Fetch and Inject Articles -->
 <script>
