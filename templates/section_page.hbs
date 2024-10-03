@@ -4,8 +4,8 @@
     {{breadcrumbs}}
   </nav>
 
-  <!-- Start of two-column layout with grey borders -->
-  <div class="flex">
+  <!-- Start of two-column layout with a gap between the boxes -->
+  <div class="flex gap-6"> <!-- Added gap-6 to create a gap between the boxes -->
 
     <!-- Sidebar in a box with grey borders and left-aligned text -->
     <aside id="sections-list" class="w-1/4 p-4 bg-white border border-gray-300">
@@ -13,10 +13,10 @@
 
       <!-- Check if there are any sections -->
       {{#if section.sections.length}}
-      <ul class="space-y-4 text-left">
+      <ul class="space-y-4 text-left"> <!-- Added text-left to ul for proper alignment -->
         <!-- Loop through sections -->
         {{#each section.sections}}
-        <li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left">
+        <li class="p-4 bg-white hover:border-t-2 hover:border-b-2 active:border-t-2 active:border-b-2 border-gray-300 text-left"> <!-- Added text-left to li -->
           <a href="{{url}}" class="text-gray-800 hover:text-gray-600">{{name}}</a>
         </li>
         {{/each}}
