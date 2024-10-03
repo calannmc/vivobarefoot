@@ -381,7 +381,9 @@ h3 .send_us_message{
   font-weight:200;
   font-size:32px;
 }
-
+ @media(max-width:768px){
+  width:90%;
+ }
 .chat-status {
   font-weight: bold;
   color: red; /* Default color for Offline */
@@ -1254,6 +1256,8 @@ h3 .send_us_message{
 .intro-title{
   font-size:5vh;
   text-align:center;
+  margin:0;
+  padding:0;
 }
 
 @media(max-width:768px;){
