@@ -392,7 +392,7 @@ ul {
 }
 
 /* Card styling */
-.card {
+.tile-content {
   background-color: white;
   border: 1px solid #d3d3d3;
   text-decoration: none;
@@ -401,18 +401,18 @@ ul {
   transition: none;
 }
 
-.card-content {
+.tile-content {
   padding: 2rem;
 }
 
 /* Text styling */
-.card-content h3 {
+.tile-content h3 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #333;
 }
 
-.card-content p {
+.tile-content p {
   font-size: 1rem;
   margin-top: 0.5rem;
   color: #666;
