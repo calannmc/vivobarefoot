@@ -22,16 +22,16 @@
     </aside>
 
     <!-- Main content area in a white box with grey border -->
-    <div class="main-content-area-expanded">
-      <!-- Title outside of main content -->
-      <header class="page-header mb-6 bg-gray-200 text-left w-full" style="margin: 0;">
-        <h1 class="text-2xl font-bold">{{section.name}}</h1>
-        {{#if section.description}}
-          <p class="page-header-description">{{section.description}}</p>
-        {{/if}}
-      </header>
-
+    <div class="main-content-area">
       <section id="main-content" class="section-content p-4">
+        <!-- Full-width grey box behind the title -->
+        <header class="page-header mb-6 bg-gray-200 text-left w-full" style="margin: 0;">
+          <h1 class="text-2xl font-bold">{{section.name}}</h1>
+          {{#if section.description}}
+            <p class="page-header-description">{{section.description}}</p>
+          {{/if}}
+        </header>
+
         <!-- Placeholder for dynamically loaded articles -->
         <div id="articles-list" class="article-list">
           <!-- Articles will be dynamically loaded via JavaScript -->
@@ -72,7 +72,7 @@
 
   /* Placeholder icon before section names */
   .category-list li::before {
-    content: url('{{asset '_VB_Icon.Primary.png'}}'); /* Placeholder icon */
+    content: url('{{asset '_VB_Icon.Primary.png'}}');
     margin-right: 8px;
   }
 
@@ -104,13 +104,11 @@
     border-radius: 4px;
   }
 
-  /* Expanded main content area */
-  .main-content-area-expanded {
+  .main-content-area {
     width: 75%;
     padding: 0;
     background-color: white;
     border: 1px solid #ccc;
-    flex-grow: 1; /* Ensure the main content expands to take available space */
   }
 
   .page-header {
@@ -154,6 +152,13 @@
 
   .article-title a svg {
     margin-left: auto; /* Move arrow to the right */
+  }
+
+  /* Remove padding behind grey background */
+  .page-header {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 </style>
 
