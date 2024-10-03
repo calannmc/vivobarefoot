@@ -1,7 +1,7 @@
 {
   "name": "devTheme2024",
   "author": "Zendesk",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
@@ -743,6 +743,30 @@
           "description": "Home category icon #10",
           "label": "Home category icon #10"
         }
+      ]
+    },
+    {
+      "label": "contact_icons",
+      "variables": [
+        {
+          "identifier": "chat_logo",
+          "type": "file",
+          "description": "chat_logo",
+          "label": "Chat icon"
+        },
+        {
+          "identifier": "phone_logo",
+          "type": "file",
+          "description": "call_logo",
+          "label": "Call icon"
+        },
+        {
+          "identifier": "wa_logo",
+          "type": "file",
+          "description": "wa_logo",
+          "label": "Whats app icon"
+        }
+       
       ]
     },
     {
