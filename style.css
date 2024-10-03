@@ -554,6 +554,10 @@ h3 .send_us_message{
   cursor: default;
 }
 
+.feedback-button{
+  padding-top:10px;
+  padding-bottom:10px;
+}
 .button-large, input[type="submit"] {
   cursor: pointer;
   background-color: $brand_color;
