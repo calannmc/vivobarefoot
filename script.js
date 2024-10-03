@@ -50,24 +50,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $(document).ready(function () {
 
-  var catID = $('.breadcrumbs li:nth-child(2) a').attr('href').match(/[0-9]+/);
-   
-   var catName = $('.breadcrumbs li:nth-child(2) a').text();
-   var dumpCatName = $('.collapsible-sidebar-title.sidenav-title').text(catName);
-   console.log(catName);
-   
-  $.getJSON('/api/v2/help_center/en-us/categories/'+catID+'/sections.json', function(data) {
-    console.log(data.sections);
-    var output = "";
-    $.each(data.sections, function(idx, itm) {
-     output += '<li>';
-     output += '<a href="'+itm.html_url+'">'+itm.name+'</a>';
-     output += '</li>';
+  // Get the href attribute from the breadcrumbs link
+  var breadcrumbLink = $('.breadcrumbs li:nth-child(2) a').attr('href');
+
+  // Ensure breadcrumbLink exists and contains an href before using .match()
+  if (breadcrumbLink && breadcrumbLink.match(/[0-9]+/)) {
+    var catID = breadcrumbLink.match(/[0-9]+/)[0]; // Extract the first match
+    var catName = $('.breadcrumbs li:nth-child(2) a').text();
+    
+    // Set the category name in the sidebar
+    $('.collapsible-sidebar-title.sidenav-title').text(catName);
+    console.log(catName);
+    
+    // Make the API call to get sections
+    $.getJSON('/api/v2/help_center/en-us/categories/' + catID + '/sections.json', function (data) {
+      console.log(data.sections);
+      var output = "";
+      $.each(data.sections, function (idx, itm) {
+        output += '<li>';
+        output += '<a href="' + itm.html_url + '">' + itm.name + '</a>';
+        output += '</li>';
+      });
+      $('#sections-list').append('<ul>' + output + '</ul>');
     });
-   $('#sections-list').append('<ul>'+output+'</ul>')
-  });
-   
- });
+  } else {
+    console.error("Breadcrumb link is undefined or does not match the expected format.");
+  }
+  
+});
+
  
  
  
